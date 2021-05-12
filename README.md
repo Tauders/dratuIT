@@ -1,16 +1,21 @@
-# Задачи для Дениса
+# Задачи для DratuIT
 
-## Задача первая
+Правила работы в этом репозитории представлены на [wiki](https://github.com/Tauders/dratuIT/wiki)
+
+## Задачи для Дениса
+
+### Задача первая
 
 Условия задачи в папке [task-1](task-1/README.md)
 
-# Задачи для Жени
+## Задачи для Жени
 
-## Предусловия
-
-- Установить Visual Studio Community - https://visualstudio.microsoft.com/ru/
-- Установить GitKraken - https://www.gitkraken.com/ или GitHub desktop https://desktop.github.com/
-
-## Задача первая 
+### Задача первая
 
 Условия задачи в папке [task-2](task-2/README.md)
+
+## Задачи для Толи
+
+### Задача первая
+
+Условия задачи в папке [task-3](task-3/README.md)
