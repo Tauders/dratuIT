@@ -13,7 +13,7 @@ namespace Summator
             a = Convert.ToDouble(Console.ReadLine());
             b = Convert.ToDouble(Console.ReadLine());
             double total = a + b;
-            Console.WriteLine("Cумма " + a + " и " + b + " равна " + total + ".");
+            Console.WriteLine($"Сумма {a} и {b} равна {total}.");
         }
     }
 }
