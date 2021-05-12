@@ -6,7 +6,14 @@ namespace Summator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            double a;
+            double b;
+
+            Console.WriteLine("Введите пару чисел для их сложения");
+            a = Convert.ToDouble(Console.ReadLine());
+            b = Convert.ToDouble(Console.ReadLine());
+            double total = a + b;
+            Console.WriteLine("Cумма " + a + " и " + b + " равна " + total + ".");
         }
     }
 }
