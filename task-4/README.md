@@ -16,7 +16,7 @@
 
 ## Входные данные
 
-Команда запускается с аргументом командным строки: путём до файла с описаниями фигур.
+Команда запускается с аргументом командным строки: путём до файла(абслютным или относительным) с описаниями фигур.
 
 ```
 ShapePacker.exe input.txt
@@ -33,10 +33,10 @@ ShapePacker.exe input.txt
 
 Фигура | Формат описания | Формула расчёта объёма | Пример
 ------------ | -------------  | ------------- | ------------- 
-Cube | Тип Название H(Высота ребра) | ![Объём куба](http://www.sciweavers.org/tex2img.php?eq=%20H%5E%7B3%7D%20&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=0)| Cube Кубик-Рубик 3
-Cylinder| Тип Название H(высота цилиндра) R(радиус цилиндра) | ![Объём цилиндра](http://www.sciweavers.org/tex2img.php?eq=%20%20%5Cpi%20R%5E%7B2%7D%20H&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=0) | Cylinder Бочонок 3 2.4
-Pyramid | Тип Название H(высота пирамиды) A(сторона пирамиды A) B(сторона пирамиды B) | ![Объём пирамиды](http://www.sciweavers.org/tex2img.php?eq=%20%5Cfrac%7BABH%7D%7B3%7D%20&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=0) | Pyramid ГробницаМопса 7 2 3
-Sphere | Тип Название R(радиус сферы) | ![Объём сферы](http://www.sciweavers.org/tex2img.php?eq=%20%5Cfrac%7B4%7D%7B3%7D%20%20%5Cpi%20%20R%5E%7B3%7D%20&bc=White&fc=Black&im=png&fs=12&ff=arev&edit=0) | Sphere Дискошар 3
+Cube | Тип Название H(Высота ребра) | ![Объём куба](https://i.imgur.com/9BOtDUI.png)| Cube Кубик-Рубик 3
+Cylinder| Тип Название H(высота цилиндра) R(радиус цилиндра) | ![Объём цилиндра](https://i.imgur.com/bqIIEVZ.png) | Cylinder Бочонок 3 2.4
+Pyramid | Тип Название H(высота пирамиды) A(сторона пирамиды A) B(сторона пирамиды B) | ![Объём пирамиды](https://i.imgur.com/fODIMNC.png) | Pyramid ГробницаМопса 7 2 3
+Sphere | Тип Название R(радиус сферы) | ![Объём сферы](https://i.imgur.com/ywBYcGA.png) | Sphere Дискошар 3
 
 Основной разделитель - пробел. В названиях фигур не допускаются пробелы! Все численные значения - вещественные.
 
