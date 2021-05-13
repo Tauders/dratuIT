@@ -25,7 +25,7 @@ namespace Calculator_1
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Вы ввели недопустимый сомвол, попробуйте еще.");
+                    Console.WriteLine("Вы ввели недопустимый символ, попробуйте еще.");
                     Console.WriteLine("Для продолжения нажмите ENTER");
                     Console.ReadLine();
                     continue;
