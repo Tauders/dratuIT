@@ -16,9 +16,9 @@ namespace Summator
                 double total = a + b;
                 Console.WriteLine($"Сумма {a} и {b} равна {total}.");
             }
-            catch (FormatException)
+            catch (Exception ex)
             {
-                Console.WriteLine("Введены некорректные символы, пожалуйста попробуйте ещё раз используя числовые значения. Полученная ошибка: {FormatException}");
+                Console.WriteLine($"Введены некорректные символы, пожалуйста попробуйте ещё раз используя числовые значения. Полученная ошибка: {ex.Message}");
             }
         }
     }
