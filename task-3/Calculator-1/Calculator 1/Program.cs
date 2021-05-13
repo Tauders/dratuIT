@@ -6,13 +6,15 @@ namespace Calculator_1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Добро пожаловать в программу Калькулятор.");
+            Console.WriteLine("Для продолжения нажмите Enter");
+            Console.WriteLine("Для выхода Нажмите 'G'");
 
-
-            while (true)
+            while (Console.ReadKey().Key != ConsoleKey.G)
             {
                 Console.Clear();
+
                 double firstValue, secondValue, result;
-                string action;
 
                 try
                 {
@@ -23,63 +25,52 @@ namespace Calculator_1
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Вы ввели не допустимый сомвол, попробуйте еще.");
+                    Console.WriteLine("Вы ввели недопустимый сомвол, попробуйте еще.");
                     Console.WriteLine("Для продолжения нажмите ENTER");
                     Console.ReadLine();
                     continue;
                 }
 
-
                 Console.WriteLine("Введите действие '+', '-', '*', '/', затем нажмите ENTER");
+
+                string action;
+
                 action = Console.ReadLine();
-
-
+                
                 if (action == "+")
                 {
                     result = firstValue + secondValue;
-                    Console.WriteLine("Сумма = " + result);
-                    Console.WriteLine("Для продолжения нажмите ENTER");
+                    Console.WriteLine($"Сумма = {result}");
                 }
                 else if (action == "-")
                 {
                     result = firstValue - secondValue;
-                    Console.WriteLine("Разность = " + result);
-                    Console.WriteLine("Для продолжения нажмите ENTER");
+                    Console.WriteLine($"Разность = {result}");
                 }
                 else if (action == "*")
                 {
                     result = firstValue * secondValue;
-                    Console.WriteLine("Произведение = " + result);
-                    Console.WriteLine("Для продолжения нажмите ENTER");
+                    Console.WriteLine($"Произведение = {result}");
                 }
                 else if (action == "/")
                 {
                     if (secondValue == 0)
                     {
-                        Console.WriteLine("На 0 делить нельзя.");
-                        Console.WriteLine("Для продолжения нажмите ENTER");
+                        Console.WriteLine("На 0 делить нельзя."); 
                     }
                     else
                     {
                         result = firstValue / secondValue;
-                        Console.WriteLine("Частное = " + result);
-                        Console.WriteLine("Для продолжения нажмите ENTER");
+                        Console.WriteLine($"Частное = {result}"); 
                     }
-
                 }
                 else
                 {
-                    Console.WriteLine("Вы ввели недопустимое действие, попробуйте еще.");
-                    Console.WriteLine("Для продолжения нажмите ENTER");
+                    Console.WriteLine("Вы ввели недопустимое действие, попробуйте еще.");  
                 }
 
-                Console.ReadLine();
-
+                Console.WriteLine("Для продолжения нажмите ENTER. Либо нажмите 'G' для выхода из программы");
             }
-
-
-
-
-        }
+        } 
     }
 }
