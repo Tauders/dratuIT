@@ -10,24 +10,15 @@ namespace Summator
             double b;
             try
             {
-
                 Console.WriteLine("Введите пару чисел для их сложения");
                 a = Convert.ToDouble(Console.ReadLine());
                 b = Convert.ToDouble(Console.ReadLine());
                 double total = a + b;
                 Console.WriteLine($"Сумма {a} и {b} равна {total}.");
             }
-            catch
+            catch (FormatException)
             {
-                Console.WriteLine("Введите числовые значения.");
-            }
-            finally
-            {
-
-                a = Convert.ToDouble(Console.ReadLine());
-                b = Convert.ToDouble(Console.ReadLine());
-                double total = a + b;
-                Console.WriteLine($"Сумма {a} и {b} равна {total}.");
+                Console.WriteLine("Введены некорректные символы, пожалуйста попробуйте ещё раз используя числовые значения");
             }
         }
     }
