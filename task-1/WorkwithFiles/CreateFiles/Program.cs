@@ -31,8 +31,8 @@ namespace CreateFiles
             switch (figure)
             {
                 case 1:
-                    Cube cube = new Cube();
-                    Console.WriteLine($"Созданная вами фигура это {cube}");
+                    Cube cube = new Cube(r);
+                    Console.WriteLine($"Созданная вами фигура это {cube} и её объем {cube.Volume()}");
                     break;
                 case 2:
                     Cylinder cylinder = new Cylinder(h, r);
@@ -47,12 +47,12 @@ namespace CreateFiles
                     Console.WriteLine($"Созданная вами фигура это {ball} и её объем {ball.Volume()}");
                     break;
                 case 5:
-                    Cone cone = new Cone();
-                    Console.WriteLine($"Созданная вами фигура это {cone}");
+                    Cone cone = new Cone(h, r);
+                    Console.WriteLine($"Созданная вами фигура это {cone} и её объем {cone.Volume()}");
                     break;
                 case 6:
-                    Prism prism = new Prism();
-                    Console.WriteLine($"Созданная вами фигура это {prism}");
+                    Prism prism = new Prism(h);
+                    Console.WriteLine($"Созданная вами фигура это {prism} и её объем {prism.Volume()}");
                     break;
             }
 
