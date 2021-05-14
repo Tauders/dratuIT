@@ -20,7 +20,7 @@ namespace CreateFiles
 
         
 
-        static private void CreateFigure()
+        static private int CreateFigure()
         {
             Random rdn = new Random();
             double h = 11.0 + rdn.NextDouble() * (11.0 - 1.0);
@@ -55,15 +55,26 @@ namespace CreateFiles
                     Console.WriteLine($"Созданная вами фигура это {prism} и её объем {prism.Volume()}");
                     break;
             }
-
-            Console.WriteLine(figure.ToString());
+            return figure;
         }
 
-            static void Main(string[] args)
+        static void Main(string[] args)
+        {
+            Random rnd = new Random();
+
+            int n = rnd.Next(1,11);
+
+            
+
+            object[] vars = new object[n];
+            for (int i = 0; i<vars.Length; i++)
             {
-                CreateFigure();
-                
+                vars[i] = CreateFigure();
             }
+            Console.WriteLine(vars);
+            Console.ReadKey();
+
+        }
         
     }
 }
