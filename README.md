@@ -30,6 +30,6 @@
 
 ## Задачи для Димы
 
-### Задача первая CalculatorFile
+### Задача первая FileCalculator
 
 Условия задачи в папке [task-6](task-6/README.md)
