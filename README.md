@@ -27,3 +27,9 @@
 ### Задача вторая ShapePacker
 
 Условия задачи в папке [task-4](task-4/README.md)
+
+## Задачи для Димы
+
+### Задача первая CalculatorFile
+
+Условия задачи в папке [task-6](task-6/README.md)
