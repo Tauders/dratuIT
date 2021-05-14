@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreateFiles
 {
-    public class Pyramid : Shape
+    public class Pyramid: Shape
     {
         private double _s;
         private double _h;

@@ -6,23 +6,18 @@ using System.Threading.Tasks;
 
 namespace CreateFiles
 {
-    class Prism:Shape
+    public class Prism: Shape
     {
         private double _h;
-        
 
         public Prism(double h)
         {
             _h = h;
-            
         }
 
         public override double Volume()
         {
-            double perRomb = _h * 4;
-            double height = perRomb / 2;
-            double sOsn = Math.Pow(_h, 2) * Math.Sqrt(3) / 2;
-            double V = sOsn * height;
+            double V = (Math.Pow(_h, 2) * Math.Sqrt(3) / 2) * ((_h * 4) / 2);
             return V;
         }
 

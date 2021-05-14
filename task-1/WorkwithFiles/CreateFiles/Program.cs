@@ -18,10 +18,10 @@ namespace CreateFiles
             return selectFugure;
         }
 
-        
-
         static private int CreateFigure()
         {
+            
+
             Random rdn = new Random();
             double h = 11.0 + rdn.NextDouble() * (11.0 - 1.0);
             double r = 11.0 + rdn.NextDouble() * (11.0 - 1.0);
@@ -55,6 +55,8 @@ namespace CreateFiles
                     Console.WriteLine($"Созданная вами фигура это {prism} и её объем {prism.Volume()}");
                     break;
             }
+
+            
             return figure;
         }
 

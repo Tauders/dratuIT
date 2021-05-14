@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreateFiles
 {
-    class Cube: Shape
+    public class Cube: Shape
     {
         private double _r;
 
