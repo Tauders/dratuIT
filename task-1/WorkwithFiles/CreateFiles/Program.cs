@@ -21,7 +21,7 @@ namespace CreateFiles
             return figures;
         }
 
-        static private object CreateFigure(Figures figures)
+        static private Figures CreateFigure(Figures figures)
         {
             Random rdnSize = new Random();
             double h = 11.0 + rdnSize.NextDouble() * (11.0 - 1.0);
@@ -59,23 +59,24 @@ namespace CreateFiles
             return figures;
         }
 
-        static void Main(string[] args)
+        static private void FiguresArrive()
         {
             Random rnd = new Random();
             int n = rnd.Next(1, 11);
 
-            object[] vars = new object[n];
-            for (int i = 0; i < vars.Length; i++)
+            Figures[] figuresArrive = new Figures[n];
+            for (int i = 0; i < figuresArrive.Length; i++)
             {
-                vars[i] = CreateFigure(SelectFigure());
+                figuresArrive[i] = CreateFigure(SelectFigure());
             }
-            Console.WriteLine(vars);
+        }
+
+
+
+        static void Main(string[] args)
+        {
+            FiguresArrive();
             Console.ReadKey();
-
-
-
-            
-
         }
     }
 }
