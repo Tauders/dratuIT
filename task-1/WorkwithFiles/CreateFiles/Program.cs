@@ -7,48 +7,48 @@ namespace CreateFiles
 {
     class Program
     {
-        private static Figures SelectFigure()
+        private static Figure SelectFigure()
         {
             Random rdnFigureNumber = new Random();
-            Figures figures = (Figures)rdnFigureNumber.Next(1,7);
-            return figures;
+            Figure figure = (Figure)rdnFigureNumber.Next(1,7);
+            return figure;
         }
 
-        private static Figures CreateFigure(Figures figures)
+        private static Figure CreateFigure(Figure figure)
         {
             Random rdnSize = new Random();
             double h = rdnSize.NextDouble();
             double r = rdnSize.NextDouble();
             double s = rdnSize.NextDouble();
             
-            switch (figures)
+            switch (figure)
             {
-                case Figures.Cube:
+                case Figure.Cube:
                     Shape cube = new Cube(r);
                     Console.WriteLine($"Созданная вами фигура это {cube} и её объем {cube.Volume()}");
                     break;
-                case Figures.Cylinder:
+                case Figure.Cylinder:
                     Shape cylinder = new Cylinder(h, r);
                     Console.WriteLine($"Созданная вами фигура это {cylinder} и её объем {cylinder.Volume()}");
                     break;
-                case Figures.Pyramid:
+                case Figure.Pyramid:
                     Shape pyramid = new Pyramid(s, r);
                     Console.WriteLine($"Созданная вами фигура это {pyramid} и её объем {pyramid.Volume()}");
                     break;
-                case Figures.Ball:
+                case Figure.Ball:
                     Shape ball = new Ball(r);
                     Console.WriteLine($"Созданная вами фигура это {ball} и её объем {ball.Volume()}");
                     break;
-                case Figures.Cone:
+                case Figure.Cone:
                     Shape cone = new Cone(h,r);
                     Console.WriteLine($"Созданная вами фигура это {cone} и её объем {cone.Volume()}");
                     break;
-                case Figures.Prism:
+                case Figure.Prism:
                     Shape prism = new Prism(h);
                     Console.WriteLine($"Созданная вами фигура это {prism} и её объем {prism.Volume()}");
                     break;
             }
-            return figures;
+            return figure;
         }
 
         private static void FiguresArray()
@@ -56,7 +56,7 @@ namespace CreateFiles
             Random rndArrayNumder = new Random();
             int n = rndArrayNumder.Next(1, 11);
 
-            Figures[] figuresArrive = new Figures[n];
+            Figure[] figuresArrive = new Figure[n];
             for (int i = 0; i < figuresArrive.Length; i++)
             {
                 figuresArrive[i] = CreateFigure(SelectFigure());

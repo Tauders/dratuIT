@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreateFiles
 {
-    public enum Figures 
+    public enum Figure 
     {
         Cube = 1,
         Cylinder = 2,
