@@ -10,65 +10,63 @@ namespace CreateFiles
         private static Figure SelectFigure()
         {
             Random rdnFigureNumber = new Random();
-            Figure figure = (Figure)rdnFigureNumber.Next(1,7);
-            return figure;
+            return (Figure)rdnFigureNumber.Next(1,7);
         }
 
-        private static Figure CreateFigure(Figure figure)
+        private static Shape CreateShape(Figure figure)
         {
             Random rdnSize = new Random();
             double h = rdnSize.NextDouble();
             double r = rdnSize.NextDouble();
             double s = rdnSize.NextDouble();
+            Shape shape;
             
             switch (figure)
             {
                 case Figure.Cube:
-                    Shape cube = new Cube(r);
-                    Console.WriteLine($"Созданная вами фигура это {cube} и её объем {cube.Volume()}");
+                    shape = new Cube(r);
                     break;
                 case Figure.Cylinder:
-                    Shape cylinder = new Cylinder(h, r);
-                    Console.WriteLine($"Созданная вами фигура это {cylinder} и её объем {cylinder.Volume()}");
+                    shape = new Cylinder(h, r);
                     break;
                 case Figure.Pyramid:
-                    Shape pyramid = new Pyramid(s, r);
-                    Console.WriteLine($"Созданная вами фигура это {pyramid} и её объем {pyramid.Volume()}");
+                    shape = new Pyramid(s, r);
                     break;
                 case Figure.Ball:
-                    Shape ball = new Ball(r);
-                    Console.WriteLine($"Созданная вами фигура это {ball} и её объем {ball.Volume()}");
+                    shape = new Ball(r);
                     break;
                 case Figure.Cone:
-                    Shape cone = new Cone(h,r);
-                    Console.WriteLine($"Созданная вами фигура это {cone} и её объем {cone.Volume()}");
+                    shape = new Cone(h,r);
                     break;
                 case Figure.Prism:
-                    Shape prism = new Prism(h);
-                    Console.WriteLine($"Созданная вами фигура это {prism} и её объем {prism.Volume()}");
+                    shape = new Prism(h);
                     break;
+                default:
+                    throw new Exception("Тип фигуры не определён");
             }
-            return figure;
+            Console.WriteLine($"Созданная вами фигура это {shape} и её объем {shape.Volume()}");
+            return shape;
         }
 
-        private static void FiguresArray()
+        private static Shape[] GetShapes()
         {
             Random rndArrayNumder = new Random();
             int n = rndArrayNumder.Next(1, 11);
 
-            Figure[] figuresArrive = new Figure[n];
-            for (int i = 0; i < figuresArrive.Length; i++)
+            Shape[] shapes = new Shape[n];
+            for (int i = 0; i < shapes.Length; i++)
             {
-                figuresArrive[i] = CreateFigure(SelectFigure());
+                shapes[i] = CreateShape(SelectFigure());
             }
+            return shapes;
         }
 
         private static void Main(string[] args)
         {
             using (FileStream fs = new FileStream("figures.json", FileMode.OpenOrCreate))
             {
-                FiguresArray();
-                Console.ReadKey();                
+                GetShapes();
+                             
             }
         }
     }
