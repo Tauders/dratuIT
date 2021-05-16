@@ -51,7 +51,7 @@ namespace CreateFiles
             return figures;
         }
 
-        private static void FiguresArrive()
+        private static void FiguresArray()
         {
             Random rnd = new Random();
             int n = rnd.Next(1, 11);
@@ -67,7 +67,7 @@ namespace CreateFiles
         {
             using (FileStream fs = new FileStream("figures.json", FileMode.OpenOrCreate))
             {
-                FiguresArrive();
+                FiguresArray();
                 Console.ReadKey();                
             }
         }
