@@ -1,33 +1,26 @@
 ﻿using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace CreateFiles
 {
     class Program
     {
-        enum Figures
-        {
-            Cube,
-            Cylinder,
-            Pyramid,
-            Ball,
-            Cone,
-            Prism
-        } 
-
-        static private Figures SelectFigure()
+        private static Figures SelectFigure()
         {
             Random rdn = new Random();
-            Figures figures = (Figures)rdn.Next(6);
+            Figures figures = (Figures)rdn.Next(1,7);
             return figures;
         }
 
-        static private Figures CreateFigure(Figures figures)
+        private static Figures CreateFigure(Figures figures)
         {
             Random rdnSize = new Random();
-            double h = 11.0 + rdnSize.NextDouble() * (11.0 - 1.0);
-            double r = 11.0 + rdnSize.NextDouble() * (11.0 - 1.0);
-            double s = 11.0 + rdnSize.NextDouble() * (11.0 - 1.0);
-
+            double h = rdnSize.NextDouble();
+            double r = rdnSize.NextDouble();
+            double s = rdnSize.NextDouble();
+            
             switch (figures)
             {
                 case Figures.Cube:
@@ -55,11 +48,10 @@ namespace CreateFiles
                     Console.WriteLine($"Созданная вами фигура это {prism} и её объем {prism.Volume()}");
                     break;
             }
-            Console.WriteLine(figures);
             return figures;
         }
 
-        static private void FiguresArrive()
+        private static void FiguresArrive()
         {
             Random rnd = new Random();
             int n = rnd.Next(1, 11);
@@ -71,12 +63,13 @@ namespace CreateFiles
             }
         }
 
-
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            FiguresArrive();
-            Console.ReadKey();
+            using (FileStream fs = new FileStream("figures.json", FileMode.OpenOrCreate))
+            {
+                FiguresArrive();
+                Console.ReadKey();                
+            }
         }
     }
 }
