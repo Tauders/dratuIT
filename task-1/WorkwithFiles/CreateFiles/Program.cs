@@ -9,16 +9,16 @@ namespace CreateFiles
     {
         private static Figure SelectFigure()
         {
-            Random rdnFigureNumber = new Random();
-            return (Figure)rdnFigureNumber.Next(1,7);
+            Random randomFigureNumber = new Random();
+            return (Figure)randomFigureNumber.Next(1,7);
         }
 
         private static Shape CreateShape(Figure figure)
         {
-            Random rdnSize = new Random();
-            double h = rdnSize.NextDouble();
-            double r = rdnSize.NextDouble();
-            double s = rdnSize.NextDouble();
+            Random randomSize = new Random();
+            double h = randomSize.NextDouble();
+            double r = randomSize.NextDouble();
+            double s = randomSize.NextDouble();
             Shape shape;
             
             switch (figure)
@@ -50,8 +50,8 @@ namespace CreateFiles
 
         private static Shape[] GetShapes()
         {
-            Random rndArrayNumder = new Random();
-            int n = rndArrayNumder.Next(1, 11);
+            Random randomArrayNumder = new Random();
+            int n = randomArrayNumder.Next(1, 11);
 
             Shape[] shapes = new Shape[n];
             for (int i = 0; i < shapes.Length; i++)
@@ -66,7 +66,7 @@ namespace CreateFiles
             using (FileStream fs = new FileStream("figures.json", FileMode.OpenOrCreate))
             {
                 GetShapes();
-                             
+                Console.ReadKey();                
             }
         }
     }
