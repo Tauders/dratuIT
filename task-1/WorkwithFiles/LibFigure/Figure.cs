@@ -1,5 +1,4 @@
-﻿
-namespace LibFigure
+﻿namespace LibFigure
 {
     public enum Figure
     {
