@@ -1,81 +1,73 @@
 ﻿using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace CreateFiles
 {
     class Program
     {
-        enum Figures
+        private static Figure SelectFigure()
         {
-            Cube,
-            Cylinder,
-            Pyramid,
-            Ball,
-            Cone,
-            Prism
-        } 
-
-        static private Figures SelectFigure()
-        {
-            Random rdn = new Random();
-            Figures figures = (Figures)rdn.Next(6);
-            return figures;
+            Random randomFigureNumber = new Random();
+            return (Figure)randomFigureNumber.Next(1,7);
         }
 
-        static private object CreateFigure(Figures figures)
+        private static Shape CreateShape(Figure figure)
         {
-            Random rdnSize = new Random();
-            double h = 11.0 + rdnSize.NextDouble() * (11.0 - 1.0);
-            double r = 11.0 + rdnSize.NextDouble() * (11.0 - 1.0);
-            double s = 11.0 + rdnSize.NextDouble() * (11.0 - 1.0);
-
-            switch (figures)
-            {
-                case Figures.Cube:
-                    Cube cube = new Cube(r);
-                    Console.WriteLine($"Созданная вами фигура это {cube} и её объем {cube.Volume()}");
-                    break;
-                case Figures.Cylinder:
-                    Cylinder cylinder = new Cylinder(h, r);
-                    Console.WriteLine($"Созданная вами фигура это {cylinder} и её объем {cylinder.Volume()}");
-                    break;
-                case Figures.Pyramid:
-                    Pyramid pyramid = new Pyramid(s, r);
-                    Console.WriteLine($"Созданная вами фигура это {pyramid} и её объем {pyramid.Volume()}");
-                    break;
-                case Figures.Ball:
-                    Ball ball = new Ball(r);
-                    Console.WriteLine($"Созданная вами фигура это {ball} и её объем {ball.Volume()}");
-                    break;
-                case Figures.Cone:
-                    Cone cone = new Cone(h, r);
-                    Console.WriteLine($"Созданная вами фигура это {cone} и её объем {cone.Volume()}");
-                    break;
-                case Figures.Prism:
-                    Prism prism = new Prism(h);
-                    Console.WriteLine($"Созданная вами фигура это {prism} и её объем {prism.Volume()}");
-                    break;
-            }
-            Console.WriteLine(figures);
-            return figures;
-        }
-
-        static void Main(string[] args)
-        {
-            Random rnd = new Random();
-            int n = rnd.Next(1, 11);
-
-            object[] vars = new object[n];
-            for (int i = 0; i < vars.Length; i++)
-            {
-                vars[i] = CreateFigure(SelectFigure());
-            }
-            Console.WriteLine(vars);
-            Console.ReadKey();
-
-
-
+            Random randomSize = new Random();
+            double h = randomSize.NextDouble();
+            double r = randomSize.NextDouble();
+            double s = randomSize.NextDouble();
+            Shape shape;
             
+            switch (figure)
+            {
+                case Figure.Cube:
+                    shape = new Cube(r);
+                    break;
+                case Figure.Cylinder:
+                    shape = new Cylinder(h, r);
+                    break;
+                case Figure.Pyramid:
+                    shape = new Pyramid(s, r);
+                    break;
+                case Figure.Ball:
+                    shape = new Ball(r);
+                    break;
+                case Figure.Cone:
+                    shape = new Cone(h,r);
+                    break;
+                case Figure.Prism:
+                    shape = new Prism(h);
+                    break;
+                default:
+                    throw new Exception("Тип фигуры не определён");
+            }
+            Console.WriteLine($"Созданная вами фигура это {shape} и её объем {shape.Volume()}");
+            return shape;
+        }
 
+        private static Shape[] GetShapes()
+        {
+            Random randomArrayNumder = new Random();
+            int n = randomArrayNumder.Next(1, 11);
+
+            Shape[] shapes = new Shape[n];
+            for (int i = 0; i < shapes.Length; i++)
+            {
+                shapes[i] = CreateShape(SelectFigure());
+            }
+            return shapes;
+        }
+
+        private static void Main(string[] args)
+        {
+            using (FileStream fs = new FileStream("figures.json", FileMode.OpenOrCreate))
+            {
+                GetShapes();
+                Console.ReadKey();                
+            }
         }
     }
 }
