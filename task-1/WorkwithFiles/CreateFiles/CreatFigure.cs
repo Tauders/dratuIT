@@ -1,6 +1,7 @@
 ﻿using System;
+using LibFigure;
 
-namespace LibFigure
+namespace CreateFiles
 {
     public class CreatFigure
     {

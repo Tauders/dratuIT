@@ -2,7 +2,7 @@
 
 namespace LibFigure
 {
-    public class Pyramid: Shape
+    public class Pyramid : Shape
     {
         private double _s;
         private double _h;
@@ -15,7 +15,7 @@ namespace LibFigure
         }
 
         public override double Volume() => Math.Round(((_s * _h) / 3), 3);
-        
+
         public override string ToString()
         {
             return "Пирамида";

@@ -2,7 +2,7 @@
 
 namespace LibFigure
 {
-    public class Cube: Shape
+    public class Cube : Shape
     {
         private double _r;
 

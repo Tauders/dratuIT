@@ -1,6 +1,7 @@
-﻿namespace LibFigure
+﻿
+namespace LibFigure
 {
-    public enum Figure 
+    public enum Figure
     {
         Cube = 1,
         Cylinder = 2,

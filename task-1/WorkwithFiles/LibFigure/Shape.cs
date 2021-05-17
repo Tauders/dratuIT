@@ -1,4 +1,5 @@
-﻿namespace LibFigure
+﻿
+namespace LibFigure
 {
     public abstract class Shape
     {
