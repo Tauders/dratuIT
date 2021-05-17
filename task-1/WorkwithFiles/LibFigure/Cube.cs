@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CreateFiles
+namespace LibFigure
 {
     public class Cube: Shape
     {
@@ -11,11 +11,7 @@ namespace CreateFiles
             _r = r;
         }
 
-        public override double Volume()
-        {
-            double V = Math.Pow(_r, 3);
-            return V;
-        }
+        public override double Volume() => Math.Round(Math.Pow(_r, 3), 3);
 
         public override string ToString()
         {

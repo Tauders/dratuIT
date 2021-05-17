@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CreateFiles
+namespace LibFigure
 {
     public class Prism: Shape
     {
@@ -11,12 +11,8 @@ namespace CreateFiles
             _h = h;
         }
 
-        public override double Volume()
-        {
-            double V = (Math.Pow(_h, 2) * Math.Sqrt(3) / 2) * ((_h * 4) / 2);
-            return V;
-        }
-
+        public override double Volume() => Math.Round((Math.Pow(_h, 2) * Math.Sqrt(3) / 2) * ((_h * 4) / 2), 3);
+        
         public override string ToString()
         {
             return "Призма";

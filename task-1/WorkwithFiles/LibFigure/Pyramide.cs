@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CreateFiles
+namespace LibFigure
 {
     public class Pyramid: Shape
     {
@@ -14,12 +14,8 @@ namespace CreateFiles
             _h = h;
         }
 
-        public override double Volume()
-        {
-            double V = (_s * _h) / 3;
-            return V;
-        }
-
+        public override double Volume() => Math.Round(((_s * _h) / 3), 3);
+        
         public override string ToString()
         {
             return "Пирамида";

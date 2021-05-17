@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CreateFiles
+namespace LibFigure
 {
     public class Ball: Shape
     {
@@ -11,12 +11,8 @@ namespace CreateFiles
             _r = r;
         }
 
-        public override double Volume()
-        {
-            double V = (4 / 3.0) * Math.PI * Math.Pow(_r, 3);
-            return V;
-        }
-
+        public override double Volume() => Math.Round((4 / 3.0) * Math.PI * Math.Pow(_r, 3), 3);
+        
         public override string ToString()
         {
             return "Шар";

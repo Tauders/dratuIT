@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CreateFiles
+namespace LibFigure
 {
     public class Cone: Shape
 
@@ -14,12 +14,8 @@ namespace CreateFiles
             _r = r;
         }
 
-        public override double Volume()
-        {
-            double V = (Math.PI * Math.Pow(_r, 2) * _h)/3;
-            return V;
-        }
-
+        public override double Volume() => Math.Round((Math.PI * Math.Pow(_r, 2) * _h) / 3, 3);
+        
         public override string ToString()
         {
             return "Конус";
