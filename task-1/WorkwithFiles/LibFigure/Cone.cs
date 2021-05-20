@@ -3,7 +3,6 @@
 namespace LibFigure
 {
     public class Cone : Shape
-
     {
         private double _h;
         private double _r;

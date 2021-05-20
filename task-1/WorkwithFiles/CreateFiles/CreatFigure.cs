@@ -3,7 +3,7 @@ using LibFigure;
 
 namespace CreateFiles
 {
-    public class CreatFigure
+    public static class CreatFigure
     {
         private static Figure SelectFigure()
         {
@@ -14,9 +14,9 @@ namespace CreateFiles
         private static Shape CreateShape(Figure figure)
         {
             Random randomSize = new Random();
-            double h = randomSize.NextDouble();
-            double r = randomSize.NextDouble();
-            double s = randomSize.NextDouble();
+            double h = randomSize.NextDouble() * (10.0 - 9.0) + 11;
+            double r = randomSize.NextDouble() * (10.0 - 9.0) + 11;
+            double s = randomSize.NextDouble() * (10.0 - 9.0) + 11;
             Shape shape;
 
             switch (figure)
