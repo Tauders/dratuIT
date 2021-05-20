@@ -12,15 +12,22 @@ namespace CalculatorCMD
             try
             {
                 number1 = double.Parse(args[0]);
-                number2 = double.Parse(args[1]);
-                action = char.Parse(args[2]);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Введены некорректные символы, пожалуйста попробуйте ещё раз, используя подобную форму ввода: число число операция. Полученная ошибка: {ex.Message}");
+                Console.WriteLine($"Вы ввели первый аргумент неправильно. Полученная ошибка: {ex.Message}");
                 return;
             }
-
+            try
+            {
+                number2 = double.Parse(args[1]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Вы ввели второй аргумент неправильно. Полученная ошибка: {ex.Message}");
+                return;
+            }
+            action = char.Parse(args[2]);
             double total;
 
                 if (action == '+')
@@ -41,6 +48,9 @@ namespace CalculatorCMD
                 else if (action == '/')
                 {
                     total = number1 / number2;
+                if (number2 == 0)
+                    Console.WriteLine("На ноль делить нельзя!!!");
+                return;
                     Console.WriteLine(total);
                 }
                 else
