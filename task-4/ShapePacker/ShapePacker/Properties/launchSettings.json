@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "ShapePacker": {
-      "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\Ratatata\\source\\repos\\dratuIT\\task-4\\ShapePacker\\ShapePacker\\input.txt"
-    }
-  }
-}

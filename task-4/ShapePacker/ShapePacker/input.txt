@@ -1,5 +1,0 @@
-Cube Hexahedron 2
-Sphere Ball 100
-Cube IceCube 3
-Pyramid HanoiPyramid 4 4 2
-Cylinder Hat 29 30
