@@ -11,6 +11,11 @@ namespace LibFigure
             _r = r;
         }
 
+        public Ball()
+        {
+
+        }
+
         public override double Volume() => Math.Round((4 / 3.0) * Math.PI * Math.Pow(_r, 3), 3);
 
         public override string ToString()

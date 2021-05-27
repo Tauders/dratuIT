@@ -13,6 +13,11 @@ namespace LibFigure
             _h = h;
         }
 
+        public Pyramid()
+        {
+           
+        }
+
         public override double Volume() => Math.Round(((_s * _h) / 3), 3);
 
         public override string ToString()

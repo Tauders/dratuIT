@@ -11,6 +11,11 @@ namespace LibFigure
             _r = r;
         }
 
+        public Cube()
+        {
+
+        }
+
         public override double Volume() => Math.Round(Math.Pow(_r, 3), 3);
 
         public override string ToString()

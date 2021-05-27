@@ -31,7 +31,7 @@ namespace CreateFiles
                     shape = new Pyramid(s, r);
                     break;
                 case Figure.Ball:
-                    shape = new Ball(r);
+                    shape = new Ball();
                     break;
                 case Figure.Cone:
                     shape = new Cone(h, r);
