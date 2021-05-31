@@ -18,6 +18,10 @@
 
 Условия задачи в папке [task-5](task-5/README.md)
 
+### Задача третья PlantIndexer
+
+Условия задачи в папке [task-7](task-7/README.md)
+
 ## Задачи для Толи
 
 ### Задача первая Calculator
