@@ -1,5 +1,6 @@
 ﻿using System;
 using LibFigure;
+using System.Xml.Serialization;
 
 namespace CreateFiles
 {
@@ -19,9 +20,11 @@ namespace CreateFiles
             double s = randomSize.NextDouble() * (10.0 - 9.0) + 11;
             Shape shape;
 
+
             switch (figure)
             {
                 case Figure.Cube:
+
                     shape = new Cube(r);
                     break;
                 case Figure.Cylinder:

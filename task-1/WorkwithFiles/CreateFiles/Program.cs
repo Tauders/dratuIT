@@ -13,14 +13,12 @@ namespace CreateFiles
     {
         private static void Main(string[] args)
         {
-            Shape[] figure = CreatFigure.GetShapes();
-            XmlSerializer write = new XmlSerializer(typeof(Shape[]));
-
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "//Figure2.xml";
-            FileStream file = File.Create(path);
-
-            write.Serialize(file, figure);
-            file.Close();
+            Shape[] shape = CreatFigure.GetShapes();
+            XmlSerializer serializer = new XmlSerializer(typeof(Shape[]));
+            using (FileStream fs = new FileStream("data.xml", FileMode.OpenOrCreate))
+            {
+                serializer.Serialize(fs, shape);
+            }
         }
     }
 }
