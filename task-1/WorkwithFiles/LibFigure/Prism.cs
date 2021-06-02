@@ -5,7 +5,7 @@ namespace LibFigure
     public class Prism : Shape
     {
         private double _h;
-
+        
         public Prism(double h)
         {
             _h = h;

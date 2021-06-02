@@ -6,7 +6,7 @@ namespace LibFigure
     {
         private double _s;
         private double _h;
-
+        
         public Pyramid(double s, double h)
         {
             _s = s;

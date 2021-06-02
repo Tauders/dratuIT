@@ -5,7 +5,7 @@ namespace LibFigure
     public class Cube : Shape
     { 
         private double _r;
-
+        
         public Cube(double r)
         {
             _r = r;

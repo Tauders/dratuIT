@@ -13,6 +13,8 @@ namespace LibFigure
     [Serializable]
     public abstract class Shape
     {
+        public string FigureName;
         public abstract double Volume();
+       
     }
 }
