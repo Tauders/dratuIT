@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LibFigure
+namespace LibShapes
 {
     public class Cone : Shape
     {
@@ -22,7 +22,7 @@ namespace LibFigure
 
         public override string ToString()
         {
-            return "Конус";
+            return _shapeName = "Конус";
         }
     }
 }

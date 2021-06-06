@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LibFigure\LibFigure.csproj" />
+    <ProjectReference Include="..\LibFigure\LibShapes.csproj" />
   </ItemGroup>
 
 </Project>

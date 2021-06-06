@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkwithFiles", "WorkwithFi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateFiles", "CreateFiles\CreateFiles.csproj", "{16A95195-9676-4036-8632-9744FD92071B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibFigure", "LibFigure\LibFigure.csproj", "{EC9698A7-2C33-4FDE-B1BA-1F8FAF7D2129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibShapes", "LibFigure\LibShapes.csproj", "{EC9698A7-2C33-4FDE-B1BA-1F8FAF7D2129}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

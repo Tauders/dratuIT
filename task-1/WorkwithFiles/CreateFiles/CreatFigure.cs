@@ -1,5 +1,5 @@
 ﻿using System;
-using LibFigure;
+using LibShapes;
 using System.Xml.Serialization;
 
 namespace CreateFiles
@@ -25,27 +25,21 @@ namespace CreateFiles
                 case Figure.Cube:
 
                     shape = new Cube(r);
-                    shape.FigureName = shape.ToString();
                     break;
                 case Figure.Cylinder:
                     shape = new Cylinder(h, r);
-                    shape.FigureName = shape.ToString();
                     break;
                 case Figure.Pyramid:
                     shape = new Pyramid(s, r);
-                    shape.FigureName = shape.ToString();
                     break;
                 case Figure.Ball:
                     shape = new Ball();
-                    shape.FigureName = shape.ToString();
                     break;
                 case Figure.Cone:
                     shape = new Cone(h, r);
-                    shape.FigureName = shape.ToString();
                     break;
                 case Figure.Prism:
                     shape = new Prism(h);
-                    shape.FigureName = shape.ToString();
                     break;
                 default:
                     throw new Exception("Тип фигуры не определён");
@@ -65,6 +59,8 @@ namespace CreateFiles
                 shapes[i] = CreateShape(SelectFigure());
             }
             return shapes;
+            
         }
+        
     }
 }

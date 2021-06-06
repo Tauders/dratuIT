@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 
 
-namespace LibFigure
+namespace LibShapes
 {
     [XmlInclude(typeof(Cube)),
     XmlInclude(typeof(Cylinder)),
@@ -13,7 +13,7 @@ namespace LibFigure
     [Serializable]
     public abstract class Shape
     {
-        public string FigureName;
+        protected string _shapeName;
         public abstract double Volume();
        
     }
