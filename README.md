@@ -1,6 +1,6 @@
 # Задачи для DratuIT
 
-Правила работы в этом репозитории представлены на [wiki](https://github.com/Tauders/dratuIT/wiki)
+Правила работы в этом репозитории представлены на [wiki](https://github.com/Tauders/dratuIT/wiki).
 
 ## Задачи для Дениса
 
