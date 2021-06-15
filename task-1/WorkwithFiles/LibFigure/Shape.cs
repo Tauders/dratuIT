@@ -13,8 +13,8 @@ namespace LibShapes
     [Serializable]
     public abstract class Shape
     {
-        protected string _shapeName;
+        public string Name { get; set; }
+        public double ShapeVolume { get; set; }
         public abstract double Volume();
-       
     }
 }

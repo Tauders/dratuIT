@@ -20,6 +20,8 @@ namespace CreateFiles
             double s = randomSize.NextDouble() * (10.0 - 9.0) + 11;
             Shape shape;
 
+
+
             switch (figure)
             {
                 case Figure.Cube:
@@ -45,7 +47,7 @@ namespace CreateFiles
                     throw new Exception("Тип фигуры не определён");
             }
             Console.WriteLine($"Созданная вами фигура это {shape} и её объем {shape.Volume()}");
-            return shape;
+            return shape; 
         }
 
         public static Shape[] GetShapes()
@@ -54,12 +56,12 @@ namespace CreateFiles
             int n = randomArrayNumder.Next(1, 11);
 
             Shape[] shapes = new Shape[n];
+            
             for (int i = 0; i < shapes.Length; i++)
             {
                 shapes[i] = CreateShape(SelectFigure());
             }
             return shapes;
-            
         }
         
     }
