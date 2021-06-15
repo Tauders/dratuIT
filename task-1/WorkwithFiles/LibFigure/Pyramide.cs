@@ -4,13 +4,13 @@ namespace LibShapes
 {
     public class Pyramid : Shape
     {
-        private double _s;
-        private double _h;
+        public double S { get; set; }
+        public double H { get; set; }
 
         public Pyramid(double s, double h)
         {
-            _s = s;
-            _h = h;
+            S = s;
+            H = h;
         }
 
         public Pyramid()
@@ -20,7 +20,7 @@ namespace LibShapes
 
         public override double Volume()
         {
-            return ShapeVolume = Math.Round(((_s * _h) / 3), 3);
+            return Math.Round(((S * H) / 3), 3);
         }
 
         public override string ToString()

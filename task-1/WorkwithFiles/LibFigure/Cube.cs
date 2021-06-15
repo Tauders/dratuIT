@@ -4,11 +4,11 @@ namespace LibShapes
 {
     public class Cube : Shape
     {
-        private double _r;
+        public double R { get; set; }
 
         public Cube(double r)
         {
-            _r = r;
+            R = r;
         }
 
         public Cube()
@@ -18,7 +18,7 @@ namespace LibShapes
 
         public override double Volume()
         {
-            return ShapeVolume = Math.Round(Math.Pow(_r, 3), 3);
+            return Math.Round(Math.Pow(R, 3), 3);
         }
 
         public override string ToString()

@@ -40,7 +40,7 @@ namespace CreateFiles
                 Shape[] shapes = (Shape[])serializer.Deserialize(fs);
                 foreach (Shape shape in shapes)
                 {
-                    Console.WriteLine($"Фигура {shape.Name} и её объём {shape.ShapeVolume}");
+                    Console.WriteLine($"Фигура {shape.Name}");
                 }
             }
             Console.WriteLine("===================");
@@ -66,7 +66,7 @@ namespace CreateFiles
                 Shape[] shapes = await JsonSerializer.DeserializeAsync<Shape[]>(fs);
                 foreach (Shape shape in shapes)
                 {
-                    Console.WriteLine($"Фигура {shape.Name} и её объём {shape.ShapeVolume}");
+                    Console.WriteLine($"Фигура {shape.Name}");
                 }
                 Console.WriteLine("===================");
             }
@@ -81,14 +81,14 @@ namespace CreateFiles
             string path = CreateDirectory(directory, fileName);
             Console.Clear();
             ////Encoding utf8 = Encoding.UTF8;
-            //Console.WriteLine("Работа с файлами типа XML");
-            //XmlSerializeFigur(path);
-            //XmlDeserializaFigur(path);
+            Console.WriteLine("Работа с файлами типа XML");
+            XmlSerializeFigur(path);
+            XmlDeserializaFigur(path);
 
-            Console.WriteLine("Работа с файлами типа JSON");
-            JsonSerializeFigur(path);
-            Console.WriteLine("===================");
-            JsonDeserializaFigur(path);
+            //Console.WriteLine("Работа с файлами типа JSON");
+            //JsonSerializeFigur(path);
+            //Console.WriteLine("===================");
+            //JsonDeserializaFigur(path);
 
             Console.ReadKey();
         }

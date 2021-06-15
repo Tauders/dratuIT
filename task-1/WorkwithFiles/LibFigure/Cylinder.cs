@@ -4,13 +4,13 @@ namespace LibShapes
 {
     public class Cylinder : Shape
     {
-        private double _h;
-        private double _r;
+        public double H { get; set; }
+        public double R { get; set; }
 
         public Cylinder(double h, double r)
         {
-            _h = h;
-            _r = r;
+            H = h;
+            R = r;
         }
 
         public Cylinder()
@@ -20,7 +20,7 @@ namespace LibShapes
 
         public override double Volume() 
         {
-            return ShapeVolume = Math.Round((Math.PI * Math.Pow(_r, 2) * _h), 3);
+            return Math.Round((Math.PI * Math.Pow(R, 2) * H), 3);
         } 
 
         public override string ToString()

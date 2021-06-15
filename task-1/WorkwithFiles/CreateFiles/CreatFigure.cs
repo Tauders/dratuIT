@@ -25,7 +25,6 @@ namespace CreateFiles
             switch (figure)
             {
                 case Figure.Cube:
-
                     shape = new Cube(r);
                     break;
                 case Figure.Cylinder:
@@ -35,7 +34,7 @@ namespace CreateFiles
                     shape = new Pyramid(s, r);
                     break;
                 case Figure.Ball:
-                    shape = new Ball();
+                    shape = new Ball(r);
                     break;
                 case Figure.Cone:
                     shape = new Cone(h, r);
