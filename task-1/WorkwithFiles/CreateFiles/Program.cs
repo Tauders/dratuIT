@@ -72,7 +72,7 @@ namespace CreateFiles
 
         private static void Main(string[] args)
         {
-            string path = CreateDirectory(@"D:\test2", "figure2.json");
+            string path = CreateDirectory(@"D:\test2", "figure2");
             //Console.WriteLine("Укажите место создаваемой директории");
             //string directory = Console.ReadLine();
             //Console.WriteLine("Введите название файла");
