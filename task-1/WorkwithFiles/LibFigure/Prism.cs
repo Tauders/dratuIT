@@ -24,7 +24,7 @@ namespace LibShapes
 
         public override string ToString()
         {
-            return Name = "Призма";
+            return "Призма";
         }
     }
 }

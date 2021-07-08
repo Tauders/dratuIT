@@ -25,6 +25,7 @@ namespace CreateFiles
             {
                 serializer.Serialize(fs, shapes);
             }
+            Console.WriteLine("Объект создан");
             Console.WriteLine("================================");
         }
 
@@ -47,6 +48,7 @@ namespace CreateFiles
         {
             Console.WriteLine("Сериализация");
             File.WriteAllText(path + ".json", JsonConvert.SerializeObject(shapes, jset));
+            Console.WriteLine("Объект создан");
             Console.WriteLine("================================");
         }
 
@@ -65,12 +67,12 @@ namespace CreateFiles
         private static void Main(string[] args)
         {
             JsonSerializerSettings jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
-            Console.WriteLine("Введите название файла");
-            string fileName = Console.ReadLine();
+            //Console.WriteLine("Введите название файла");
+            string fileName = "tester"; //Console.ReadLine();
             string path = CreateDirectory(@"D:\Figures",fileName);
             //Console.WriteLine("Укажите место создаваемой директории");
             //string directory = Console.ReadLine();
-            Console.Clear();
+            //Console.Clear();
             //string path = CreateDirectory(directory, fileName);
             Shape[] shapes = CreateFigure.GetShapes();
             Console.WriteLine("Работа с файлами типа XML");

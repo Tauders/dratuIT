@@ -23,21 +23,27 @@ namespace CreateFiles
             {
                 case Figure.Cube:
                     shape = new Cube(r);
+                    shape.Name = "Куб";
                     break;
                 case Figure.Cylinder:
                     shape = new Cylinder(h, r);
+                    shape.Name = "Цилиндр";
                     break;
                 case Figure.Pyramid:
                     shape = new Pyramid(s, r);
+                    shape.Name = "пирамида";
                     break;
                 case Figure.Ball:
                     shape = new Ball(r);
+                    shape.Name = "Шар";
                     break;
                 case Figure.Cone:
                     shape = new Cone(h, r);
+                    shape.Name = "Конус";
                     break;
                 case Figure.Prism:
                     shape = new Prism(h);
+                    shape.Name = "Призма";
                     break;
                 default:
                     throw new Exception("Тип фигуры не определён");
