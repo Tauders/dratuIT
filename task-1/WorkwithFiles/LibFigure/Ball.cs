@@ -1,16 +1,19 @@
 ﻿using System;
-using System.Xml.Serialization;
 
 namespace LibShapes
 {
+    [Serializable]
     public class Ball : Shape
     {
+        
         public double R { get; set; }
-
+        
         public Ball(double r)
         {
            R = r;
         }
+
+        
 
         public Ball()
         {

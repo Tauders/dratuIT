@@ -2,6 +2,7 @@
 
 namespace LibShapes
 {
+    [Serializable]
     public class Pyramid : Shape
     {
         public double S { get; set; }

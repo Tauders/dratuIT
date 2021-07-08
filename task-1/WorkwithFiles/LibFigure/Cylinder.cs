@@ -2,6 +2,7 @@
 
 namespace LibShapes
 {
+    [Serializable]
     public class Cylinder : Shape
     {
         public double H { get; set; }

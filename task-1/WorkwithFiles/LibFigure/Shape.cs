@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 
 namespace LibShapes
 {
-
     [XmlInclude(typeof(Cube)),
     XmlInclude(typeof(Cylinder)),
     XmlInclude(typeof(Pyramid)),
@@ -17,5 +17,11 @@ namespace LibShapes
     {
         public string Name { get; set; }
         public abstract double Volume();
+
+        public Shape()
+        {
+
+        }
     }
+
 }

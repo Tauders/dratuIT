@@ -2,6 +2,7 @@
 
 namespace LibShapes
 {
+    [Serializable]
     public class Cone : Shape
     {
         public double H { get; set; }

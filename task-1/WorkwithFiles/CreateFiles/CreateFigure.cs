@@ -1,10 +1,9 @@
 ﻿using System;
 using LibShapes;
-using System.Xml.Serialization;
 
 namespace CreateFiles
 {
-    public static class CreatFigure
+    public static class CreateFigure
     {
         private static Figure SelectFigure()
         {
@@ -19,8 +18,6 @@ namespace CreateFiles
             double r = randomSize.NextDouble() * (10.0 - 9.0) + 11;
             double s = randomSize.NextDouble() * (10.0 - 9.0) + 11;
             Shape shape;
-
-
 
             switch (figure)
             {
@@ -45,7 +42,7 @@ namespace CreateFiles
                 default:
                     throw new Exception("Тип фигуры не определён");
             }
-            Console.WriteLine($"Созданная вами фигура это {shape} и её объем {shape.Volume()}");
+            //Console.WriteLine($"Созданная вами фигура это {shape}");
             return shape; 
         }
 
