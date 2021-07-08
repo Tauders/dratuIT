@@ -37,56 +37,48 @@ namespace CreateFiles
                 shapes = (Shape[])serializer.Deserialize(fs);
                 foreach (Shape shape in shapes)
                 {
-                    Console.WriteLine($"Фигура {shape}");
+                    Console.WriteLine($"Фигура {shape} и её объём равен: {shape.Volume()}");
                 }
             }
             Console.WriteLine("================================");
         }
 
-        private static void JsonSerializeFigur(string path, Shape[] shapes)
+        private static void JsonSerializeFigur(string path, Shape[] shapes, JsonSerializerSettings jset)
         {
             Console.WriteLine("Сериализация");
-            var jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
-            using (FileStream fs = new FileStream((path + ".json"), FileMode.Create))
-            {
-                foreach (Shape shape in shapes)
-                {
-                    string json = JsonConvert.SerializeObject(shape, jset);
-                }
-            }
+            File.WriteAllText(path + ".json", JsonConvert.SerializeObject(shapes, jset));
             Console.WriteLine("================================");
         }
 
-        private static void JsonDeserializaFigur(string path, Shape[] shapes)
+        private static void JsonDeserializaFigur(string path, Shape[] shapes, JsonSerializerSettings jset)
         {
-            var jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
             Console.WriteLine("Десериализация");
             JsonConvert.DeserializeObject<Shape[]>(File.ReadAllText(path + ".json"), jset);
             foreach (Shape shape in shapes)
             {
-                Console.WriteLine($"Фигура {shape}");
+                Console.WriteLine($"Фигура {shape} и её объём равен: {shape.Volume()}");
             }
-            Console.WriteLine("================================"); 
+            Console.WriteLine("================================");
         }
-    
+
 
         private static void Main(string[] args)
         {
-            string path = CreateDirectory(@"D:\test2", "figure2");
+            JsonSerializerSettings jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
+            Console.WriteLine("Введите название файла");
+            string fileName = Console.ReadLine();
+            string path = CreateDirectory(@"D:\Figures",fileName);
             //Console.WriteLine("Укажите место создаваемой директории");
             //string directory = Console.ReadLine();
-            //Console.WriteLine("Введите название файла");
-            //string fileName = Console.ReadLine();
+            Console.Clear();
             //string path = CreateDirectory(directory, fileName);
-            //Console.Clear();
-            //Encoding utf8 = Encoding.UTF8;
             Shape[] shapes = CreateFigure.GetShapes();
             Console.WriteLine("Работа с файлами типа XML");
             XmlSerializeFigur(path, shapes);
             XmlDeserializaFigur(path, shapes);
             Console.WriteLine("Работа с файлами типа JSON");
-            JsonSerializeFigur(path, shapes);
-            JsonDeserializaFigur(path, shapes);
+            JsonSerializeFigur(path, shapes, jset);
+            JsonDeserializaFigur(path, shapes, jset);
             Console.ReadKey();
         }
 
