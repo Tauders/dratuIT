@@ -61,12 +61,12 @@ namespace CreateFiles
         {
             var jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
             Console.WriteLine("Десериализация");
-            JsonConvert.DeserializeObject<Shape[]>(File.ReadAllText(path), jset);
+            JsonConvert.DeserializeObject<Shape[]>(File.ReadAllText(path + ".json"), jset);
             foreach (Shape shape in shapes)
             {
                 Console.WriteLine($"Фигура {shape}");
             }
-            Console.WriteLine("==================="); 
+            Console.WriteLine("================================"); 
         }
     
 
@@ -86,7 +86,6 @@ namespace CreateFiles
             XmlDeserializaFigur(path, shapes);
             Console.WriteLine("Работа с файлами типа JSON");
             JsonSerializeFigur(path, shapes);
-            Console.WriteLine("================================");
             JsonDeserializaFigur(path, shapes);
             Console.ReadKey();
         }
