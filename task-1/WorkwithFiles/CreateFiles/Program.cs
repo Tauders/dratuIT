@@ -3,7 +3,10 @@ using System.IO;
 using LibShapes;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
-
+using CsvHelper;
+using System.Text;
+using CsvHelper.Configuration;
+using System.Globalization;
 
 namespace CreateFiles
 {
@@ -66,7 +69,7 @@ namespace CreateFiles
 
         private static void Main(string[] args)
         {
-            JsonSerializerSettings jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
+            //JsonSerializerSettings jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
             //Console.WriteLine("Введите название файла");
             string fileName = "tester"; //Console.ReadLine();
             string path = CreateDirectory(@"D:\Figures",fileName);
@@ -75,12 +78,43 @@ namespace CreateFiles
             //Console.Clear();
             //string path = CreateDirectory(directory, fileName);
             Shape[] shapes = CreateFigure.GetShapes();
-            Console.WriteLine("Работа с файлами типа XML");
-            XmlSerializeFigur(path, shapes);
-            XmlDeserializaFigur(path, shapes);
-            Console.WriteLine("Работа с файлами типа JSON");
-            JsonSerializeFigur(path, shapes, jset);
-            JsonDeserializaFigur(path, shapes, jset);
+            //Console.WriteLine("Работа с файлами типа XML");
+            //XmlSerializeFigur(path, shapes);
+            //XmlDeserializaFigur(path, shapes);
+            //Console.WriteLine("Работа с файлами типа JSON");
+            //JsonSerializeFigur(path, shapes, jset);
+            //JsonDeserializaFigur(path, shapes, jset);
+
+            CsvConfiguration config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+
+                IgnoreBlankLines = false,
+                HasHeaderRecord = true,
+                Delimiter = ";"
+            };
+
+            using (StreamWriter sw = new StreamWriter(path + ".csv"))
+            using (CsvWriter csv = new CsvWriter(sw, config))
+            {
+                csv.WriteRecords(shapes);
+                Console.WriteLine("Файл создан");
+            }
+
+            //using (StreamReader sr = new StreamReader(path + ".csv"))
+            //using (CsvReader csv = new CsvReader(sr, config))
+            //{
+            //    var records = csv.GetRecords<Shape[]>();
+            //    Console.WriteLine(records);
+            //}
+
+
+
+
+
+
+
+
+
             Console.ReadKey();
         }
 

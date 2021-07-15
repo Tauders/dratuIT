@@ -5,8 +5,6 @@ namespace LibShapes
     [Serializable]
     public class Prism : Shape
     {
-        public double H { get; set; }
-
         public Prism(double h)
         {
             H = h;

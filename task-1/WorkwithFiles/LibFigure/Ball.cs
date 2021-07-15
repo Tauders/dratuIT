@@ -1,19 +1,15 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 
 namespace LibShapes
 {
     [Serializable]
     public class Ball : Shape
     {
-        
-        public double R { get; set; }
-        
         public Ball(double r)
         {
            R = r;
         }
-
-        
 
         public Ball()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -15,9 +16,20 @@ namespace LibShapes
 
     public abstract class Shape
     {
+        [Name("Name")]
         public string Name { get; set; }
-        public abstract double Volume();
 
+        [Name("Radius")]
+        public double R { get; set; }
+
+        [Name("Height")]
+        public double H { get; set; }
+
+        [Name("Area")]
+        public double S { get; set; }
+
+        
+        public abstract double Volume();
         public Shape()
         {
 
