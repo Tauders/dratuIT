@@ -27,9 +27,10 @@ namespace LibShapes
 
         [Name("Area")]
         public double S { get; set; }
-
         
         public abstract double Volume();
+
+
         public Shape()
         {
 

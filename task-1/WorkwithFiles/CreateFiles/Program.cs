@@ -32,19 +32,15 @@ namespace CreateFiles
             Console.WriteLine("================================");
         }
 
-        private static void XmlDeserializaFigur(string path, Shape[] shapes)
+        private static Shape[] XmlDeserializeFigur(string path)
         {
             Console.WriteLine("Десериализация");
             XmlSerializer serializer = new XmlSerializer(typeof(Shape[]));
             using (FileStream fs = new FileStream(path + ".xml", FileMode.Open))
             {
-                shapes = (Shape[])serializer.Deserialize(fs);
-                foreach (Shape shape in shapes)
-                {
-                    Console.WriteLine($"Фигура {shape} и её объём равен: {shape.Volume()}");
-                }
+                Shape[] shapes = (Shape[])serializer.Deserialize(fs);
+                return shapes;
             }
-            Console.WriteLine("================================");
         }
 
         private static void JsonSerializeFigur(string path, Shape[] shapes, JsonSerializerSettings jset)
@@ -55,63 +51,102 @@ namespace CreateFiles
             Console.WriteLine("================================");
         }
 
-        private static void JsonDeserializaFigur(string path, Shape[] shapes, JsonSerializerSettings jset)
+        private static Shape[] JsonDeserializeFigur(string path, JsonSerializerSettings jset)
         {
             Console.WriteLine("Десериализация");
-            JsonConvert.DeserializeObject<Shape[]>(File.ReadAllText(path + ".json"), jset);
+            Shape[] shapes = JsonConvert.DeserializeObject<Shape[]>(File.ReadAllText(path + ".json"), jset);
+            return shapes;
+        }
+
+        private static void CsvSerializeFigur(string path, Shape[] shapes, CsvConfiguration config)
+        {
+            Console.WriteLine("Сериализация");
+            using (StreamWriter sw = new StreamWriter(path + ".csv"))
+            {
+                using (CsvWriter csv = new CsvWriter(sw, config))
+                {
+                    csv.WriteRecords(shapes);
+                }
+                Console.WriteLine("Объект создан");
+            }
+            Console.WriteLine("================================");
+        }
+
+        private static Shape[] CsvDeserializeFigur(string path, CsvConfiguration config)
+        {
+            Console.WriteLine("Десериализация");
+            using (StreamReader sr = new StreamReader(path + ".csv"))
+            {
+                using (CsvReader csv = new CsvReader(sr, config))
+                {
+                    var shapes = csv.GetRecords<Shape[]>();
+                    return (Shape[])shapes;
+                }
+            }
+            
+        }
+
+        private static void Test(Shape[] shapes)
+        {
             foreach (Shape shape in shapes)
             {
                 Console.WriteLine($"Фигура {shape} и её объём равен: {shape.Volume()}");
             }
-            Console.WriteLine("================================");
+            Console.WriteLine("======================================================");
         }
 
 
         private static void Main(string[] args)
         {
-            //JsonSerializerSettings jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
+            CsvConfiguration config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                Encoding = Encoding.UTF8,
+                IgnoreBlankLines = false,
+                HasHeaderRecord = false,
+                Delimiter = ";"
+            };
+            JsonSerializerSettings jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
             //Console.WriteLine("Введите название файла");
             string fileName = "tester"; //Console.ReadLine();
-            string path = CreateDirectory(@"D:\Figures",fileName);
+            string path = CreateDirectory(@"D:/Figures",fileName);
             //Console.WriteLine("Укажите место создаваемой директории");
             //string directory = Console.ReadLine();
             //Console.Clear();
             //string path = CreateDirectory(directory, fileName);
             Shape[] shapes = CreateFigure.GetShapes();
-            //Console.WriteLine("Работа с файлами типа XML");
-            //XmlSerializeFigur(path, shapes);
-            //XmlDeserializaFigur(path, shapes);
-            //Console.WriteLine("Работа с файлами типа JSON");
-            //JsonSerializeFigur(path, shapes, jset);
-            //JsonDeserializaFigur(path, shapes, jset);
+            Console.WriteLine("Работа с файлами типа XML");
+            XmlSerializeFigur(path, shapes);
+            Shape[] XmlShapes = XmlDeserializeFigur(path);
+            Console.WriteLine("Работа с файлами типа JSON");
+            JsonSerializeFigur(path, shapes, jset);
+            Shape[] JsonShapes = JsonDeserializeFigur(path, jset);
+            Console.WriteLine("Работа с файлами типа CSV");
+            CsvSerializeFigur(path, shapes, config);
+            Test(XmlShapes);
+            Test(JsonShapes);
+            //CsvDeserializeFigur(path, config);
 
-            CsvConfiguration config = new CsvConfiguration(CultureInfo.InvariantCulture)
-            {
 
-                IgnoreBlankLines = false,
-                HasHeaderRecord = true,
-                Delimiter = ";"
-            };
 
-            using (StreamWriter sw = new StreamWriter(path + ".csv"))
-            using (CsvWriter csv = new CsvWriter(sw, config))
-            {
-                csv.WriteRecords(shapes);
-                Console.WriteLine("Файл создан");
-            }
+
+           
+
+            //using (StreamWriter sw = new StreamWriter(path + ".csv"))
+            //{
+            //    using (CsvWriter csv = new CsvWriter(sw, config))
+            //    {
+            //        csv.WriteRecords(shapes);
+            //    }
+            //}
+            //Console.WriteLine("=====================================");
 
             //using (StreamReader sr = new StreamReader(path + ".csv"))
-            //using (CsvReader csv = new CsvReader(sr, config))
             //{
-            //    var records = csv.GetRecords<Shape[]>();
-            //    Console.WriteLine(records);
+            //    using (CsvReader csv = new CsvReader(sr, config))
+            //    {
+            //        var shapes = csv.GetRecords<Shape[]>();
+            //    }
             //}
-
-
-
-
-
-
 
 
 
