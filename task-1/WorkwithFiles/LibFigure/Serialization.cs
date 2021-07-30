@@ -43,9 +43,13 @@ namespace LibShapes
         public static void CsvSerializeFigur(string path, Shape[] shapes, CsvConfiguration config)
         {
             Console.WriteLine("Сериализация");
-            using (FileStream fs = new FileStream((path + ".csv"), FileMode.Create))
+
+            using (StreamWriter sw = new StreamWriter((path + ".csv")))
             {
-                
+                using(CsvWriter csv = new CsvWriter(sw, config))
+                {
+                    csv.WriteRecords(shapes);
+                }
             }
             Console.WriteLine("Объект создан");
             Console.WriteLine("================================");

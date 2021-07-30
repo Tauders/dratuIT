@@ -26,6 +26,7 @@ namespace CreateFiles
             }
         }
 
+
         private static void Main(string[] args)
         {
             CsvConfiguration config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -35,17 +36,17 @@ namespace CreateFiles
                 HasHeaderRecord = false,
                 Delimiter = ";"
             };
-            JsonSerializerSettings jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
+            //JsonSerializerSettings jset = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
             //Console.WriteLine("Введите название файла");
             string fileName = "tester"; //Console.ReadLine();
-            string path = Serialization.CreateDirectory(@"D:/Figures",fileName);
+            string path = Serialization.CreateDirectory(@"D:/Figures", fileName);
             Shape[] shapes = CreateFigure.GetShapes();
-            Console.WriteLine("Работа с файлами типа XML");
-            Serialization.XmlSerializeFigur(path, shapes);
-            Shape[] XmlShapes = Deserialization.XmlDeserializeFigur(path);
-            Console.WriteLine("Работа с файлами типа JSON");
-            Serialization.JsonSerializeFigur(path, shapes, jset);
-            Shape[] JsonShapes = Deserialization.JsonDeserializeFigur(path, jset);
+            //Console.WriteLine("Работа с файлами типа XML");
+            //Serialization.XmlSerializeFigur(path, shapes);
+            //Shape[] XmlShapes = Deserialization.XmlDeserializeFigur(path);
+            //Console.WriteLine("Работа с файлами типа JSON");
+            //Serialization.JsonSerializeFigur(path, shapes, jset);
+            //Shape[] JsonShapes = Deserialization.JsonDeserializeFigur(path, jset);
             Console.WriteLine("Работа с файлами типа CSV");
             Serialization.CsvSerializeFigur(path, shapes, config);
             //CsvDeserializeFigur(path, config);
