@@ -1,6 +1,7 @@
 ﻿using System;
 using LibShapes;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace WorkwithFiles
 {
@@ -16,21 +17,24 @@ namespace WorkwithFiles
             double xmlresult = 0;
             double jsonresult = 0;
 
+            Dictionary<string ,Shape> test = new Dictionary<string, Shape>();
+
             for (int i = 0; i<Xmlshapes.Length; i++)
             {
-                xmlresult += Xmlshapes[i].Volume();
-                Console.WriteLine(Xmlshapes[i].Volume());
+                test.Add();
                 
+                //xmlresult += Xmlshapes[i].Volume();
+                //Console.WriteLine(Xmlshapes[i].Volume());
             }
-            Console.WriteLine(xmlresult);
+            //Console.WriteLine(xmlresult);
             Console.WriteLine("=======================================");
-            for (int i = 0; i < Jsonshapes.Length; i++)
-            {
-                jsonresult += Jsonshapes[i].Volume();
-                Console.WriteLine(Jsonshapes[i].Volume());
+            //for (int i = 0; i < Jsonshapes.Length; i++)
+            //{
+            //    //jsonresult += Jsonshapes[i].Volume();
+            //    //Console.WriteLine(Jsonshapes[i].Volume());
 
-            }
-            Console.WriteLine(jsonresult);
+            //}
+            //Console.WriteLine(jsonresult);
 
 
             Console.ReadKey();
