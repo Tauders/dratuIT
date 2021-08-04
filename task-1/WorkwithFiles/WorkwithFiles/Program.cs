@@ -17,17 +17,46 @@ namespace WorkwithFiles
             double xmlresult = 0;
             double jsonresult = 0;
 
-            Dictionary<string ,Shape> test = new Dictionary<string, Shape>();
+            Dictionary<Type, List<Shape>> test = new Dictionary<Type, List<Shape>>();
 
-            for (int i = 0; i<Xmlshapes.Length; i++)
+            foreach (Shape shape in Xmlshapes)
             {
-                test.Add();
-                
-                //xmlresult += Xmlshapes[i].Volume();
-                //Console.WriteLine(Xmlshapes[i].Volume());
+                if (test.ContainsKey(shape.GetType()))
+                {
+                    test[shape.GetType()].Add(shape);
+                }
+                else
+                {
+                    test.Add(shape.GetType(), new List<Shape>(){shape});
+                }
             }
+
+            foreach (List<Shape> shapes in test.Values)
+            {
+                if (shapes.Count > 1)
+                {
+                    for (int i = 0; i < shapes.Count; i++)
+                    {
+                        Console.WriteLine($"Кол-во фигур в списке {shapes.Count}. Имя фигур в списке {shapes[i].Name} - {shapes[i].Volume()} и суммарный объем фигур равен {shapes[i].Volume() * shapes.Count}");
+                    }
+                }
+
+                else 
+                {
+                    Console.WriteLine($"Кол-во фигур в списке {shapes.Count}. Имя фигур в списке {shapes[0].Name} - {shapes[0].Volume()} и суммарный объем фигур равен {shapes[0].Volume() * shapes.Count}");
+                }
+
+            }
+
+
+
+
+
+
+            //Console.WriteLine(test.Values);
+
             //Console.WriteLine(xmlresult);
-            Console.WriteLine("=======================================");
+            //Console.WriteLine(new string('=', 20));
             //for (int i = 0; i < Jsonshapes.Length; i++)
             //{
             //    //jsonresult += Jsonshapes[i].Volume();
