@@ -31,23 +31,21 @@ namespace Subtask_1
             while (s != "X")
             {
                 int a;
-                try
+                bool result = int.TryParse(s, out a);
+                if (result == true)
                 {
-                    a = Convert.ToInt32(s);
+                    try
+                    {
+                        Console.WriteLine(cosmo[a]);
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Ошибка! Не найден индекс массива");
+                    }
                 }
-                catch (Exception)
+                else
                 {
                     Console.WriteLine("Вы ввели неверный номер элемента массива");
-                    s = Console.ReadLine();
-                    continue;
-                }
-                try
-                {
-                    Console.WriteLine(cosmo[a]);
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Ошибка! Не найден индекс массива");
                 }
                 s = Console.ReadLine();
             }
