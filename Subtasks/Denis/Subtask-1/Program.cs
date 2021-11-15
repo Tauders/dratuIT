@@ -21,7 +21,6 @@ namespace Subtask_1
                     Console.WriteLine("Введите числовое значение");
                 }
             }
-            
 
             string[] words = new string[n];
             Console.WriteLine($"Ваш массив будет состоять из {n} элементов");
@@ -40,7 +39,7 @@ namespace Subtask_1
                     if (value != "X")
                     {
                         int index = Convert.ToInt32(value);
-                        if (index < n)
+                        if (index < words.Length)
                         {
                             Console.WriteLine(words[index]);
                         }
@@ -59,7 +58,7 @@ namespace Subtask_1
 
                 catch
                 {
-                    Console.WriteLine("Указаны не верные данные");
+                    Console.WriteLine("Указаны неверные данные");
                 }
             }
 
