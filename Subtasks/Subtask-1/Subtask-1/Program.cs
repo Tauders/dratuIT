@@ -21,10 +21,13 @@ namespace Subtask_1
                     Console.WriteLine("Введите числовое значение");
                 }
             }
+            
 
             string[] words = new string[n];
+            Console.WriteLine($"Ваш массив будет состоять из {n} элементов");
             for (int i = 0; i < n; i++)
             {
+                Console.WriteLine($"Введите {i+1} элемент массива");
                 words[i] = Console.ReadLine();
             }
             Console.WriteLine("Все строки введены, выберите строку для отображения");
