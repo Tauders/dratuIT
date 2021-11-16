@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Subtask_2
 {
@@ -8,13 +9,13 @@ namespace Subtask_2
 
         static void Main(string[] args)
         {
-            int Actions(string action, int[] volumes)
+            int Actions(string action, List<int> volumes)
             {
                 int result = 0;
 
                 if (action == "+")
                 {
-                    for (int i=0; i<volumes.Length; i++)
+                    for (int i=0; i<volumes.Count; i++)
                     {
                         result += volumes[i]; 
                     }
@@ -23,7 +24,7 @@ namespace Subtask_2
 
                 else if (action == "-")
                 {
-                    for (int i = 0; i < volumes.Length; i++)
+                    for (int i = 0; i < volumes.Count; i++)
                     {
                         result -= volumes[i];
                     }
@@ -31,7 +32,7 @@ namespace Subtask_2
 
                 else if (action == "*")
                 {
-                    for (int i = 0; i < volumes.Length; i++)
+                    for (int i = 0; i < volumes.Count; i++)
                     {
                         result *= volumes[i];
                     }
@@ -39,7 +40,7 @@ namespace Subtask_2
 
                 else if (action == "/")
                 {
-                    for (int i = 0; i < volumes.Length; i++)
+                    for (int i = 0; i < volumes.Count; i++)
                     {
                         result /= volumes[i];
                     }
@@ -68,15 +69,15 @@ namespace Subtask_2
             Console.WriteLine();
 
             int index = 0;
-            int counter = 0;
+            List<int> volumes = new List<int>();
             while (true)
             {
                 string input = Console.ReadLine();
 
                 if ((Int32.TryParse(input, out index)) & (index < numbers.Length))
                 {
-                    Console.WriteLine($"Под индексом {index} находится число {numbers[index]}");
-                    counter++;
+                    Console.WriteLine($"Выбранное вами число: {numbers[index]}");
+                    volumes.Add(numbers[index]);
                 }
 
                 else if (index >= numbers.Length)
@@ -94,13 +95,24 @@ namespace Subtask_2
                     Console.WriteLine("Не корректный ввод");
                 }
             }
-
-            Console.Clear();
-            int[] volumes = new int[counter];
+            
+            Console.WriteLine("Числа выбраны, введите необходимое действие: +, -, *, /");
             string action = Console.ReadLine();
+            while (true)
+            {
+                if ((action == "+") | (action == "-") | (action == "*") | (action == "/"))
+                {
+                    break;
+                }
+
+                else
+                {
+                    Console.WriteLine("Действие не выбрано");
+                }
+            }
             int result = Actions(action, volumes);
 
-            Console.WriteLine();
+            Console.WriteLine(result);
             Console.ReadKey();
         }
     }
