@@ -11,28 +11,26 @@ namespace Subtask_2
         {
             int Actions(string action, List<int> volumes)
             {
-                int result = 0;
-
+                int result = volumes[0];
                 if (action == "+")
                 {
-                    for (int i=0; i<volumes.Count; i++)
+                    for (int i=1; i<volumes.Count; i++)
                     {
-                        result += volumes[i]; 
+                        result += volumes[i];
                     }
-
                 }
 
                 else if (action == "-")
                 {
-                    for (int i = 0; i < volumes.Count; i++)
-                    {
+                    for (int i = 1; i < volumes.Count; i++)
+                    { 
                         result -= volumes[i];
                     }
                 }
 
                 else if (action == "*")
                 {
-                    for (int i = 0; i < volumes.Count; i++)
+                    for (int i = 1; i < volumes.Count; i++)
                     {
                         result *= volumes[i];
                     }
@@ -40,7 +38,7 @@ namespace Subtask_2
 
                 else if (action == "/")
                 {
-                    for (int i = 0; i < volumes.Count; i++)
+                    for (int i = 1; i < volumes.Count; i++)
                     {
                         result /= volumes[i];
                     }
