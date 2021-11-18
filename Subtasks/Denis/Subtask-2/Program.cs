@@ -3,51 +3,51 @@ using System.Collections.Generic;
 
 namespace Subtask_2
 {
+    
     class Program
     {
+        int Actions(string action, List<int> volumes)
+        {
+            int result = volumes[0];
+            if (action == "+")
+            {
+                for (int i = 1; i < volumes.Count; i++)
+                {
+                    result += volumes[i];
+                }
+            }
+
+            else if (action == "-")
+            {
+                for (int i = 1; i < volumes.Count; i++)
+                {
+                    result -= volumes[i];
+                }
+            }
+
+            else if (action == "*")
+            {
+                for (int i = 1; i < volumes.Count; i++)
+                {
+                    result *= volumes[i];
+                }
+            }
+
+            else if (action == "/")
+            {
+                for (int i = 1; i < volumes.Count; i++)
+                {
+                    result /= volumes[i];
+                }
+            }
+
+            return result;
+        }
 
 
         static void Main(string[] args)
         {
-            int Actions(string action, List<int> volumes)
-            {
-                int result = volumes[0];
-                if (action == "+")
-                {
-                    for (int i = 1; i < volumes.Count; i++)
-                    {
-                        result += volumes[i];
-                    }
-                }
-
-                else if (action == "-")
-                {
-                    for (int i = 1; i < volumes.Count; i++)
-                    {
-                        result -= volumes[i];
-                    }
-                }
-
-                else if (action == "*")
-                {
-                    for (int i = 1; i < volumes.Count; i++)
-                    {
-                        result *= volumes[i];
-                    }
-                }
-
-                else if (action == "/")
-                {
-                    for (int i = 1; i < volumes.Count; i++)
-                    {
-                        result /= volumes[i];
-                    }
-                }
-
-                return result;
-            }
-
-
+            
             Random rnd = new Random();
             int n = rnd.Next(3, 7);
             int[] numbers = new int[n];
@@ -67,7 +67,7 @@ namespace Subtask_2
             Console.WriteLine();
 
             int index = 0;
-            List<int> volumes = new List<int>();
+            List<int> valuesOfNumbers = new List<int>();
             while (true)
             {
                 
@@ -78,9 +78,9 @@ namespace Subtask_2
                     counter++;
 
                     Console.WriteLine($"Выбранное вами число: {numbers[index]}");
-                    volumes.Add(numbers[index]);
+                    valuesOfNumbers.Add(numbers[index]);
 
-                    if (volumes.Count == numbers.Length)
+                    if (valuesOfNumbers.Count == numbers.Length)
                     {
                         Console.WriteLine("Вы выбрали все числа из списка");
                         break;
@@ -97,11 +97,9 @@ namespace Subtask_2
                     break;
                 }
 
-               
-
                 else
                 {
-                    Console.WriteLine("Не корректный ввод");
+                    Console.WriteLine("Некорректный ввод");
                 }
             }
 
@@ -119,7 +117,7 @@ namespace Subtask_2
                     Console.WriteLine("Действие не выбрано");
                 }
             }
-            int result = Actions(action, volumes);
+            int result = Actions(action, valuesOfNumbers);
 
             Console.WriteLine(result);
             Console.ReadKey();
