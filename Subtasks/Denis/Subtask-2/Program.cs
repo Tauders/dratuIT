@@ -70,12 +70,21 @@ namespace Subtask_2
             List<int> volumes = new List<int>();
             while (true)
             {
+                
                 string input = Console.ReadLine();
-
+                int counter = 0;
                 if ((Int32.TryParse(input, out index)) & (index < numbers.Length))
                 {
+                    counter++;
+
                     Console.WriteLine($"Выбранное вами число: {numbers[index]}");
                     volumes.Add(numbers[index]);
+
+                    if (volumes.Count == numbers.Length)
+                    {
+                        Console.WriteLine("Вы выбрали все числа из списка");
+                        break;
+                    }
                 }
 
                 else if (index >= numbers.Length)
@@ -87,6 +96,8 @@ namespace Subtask_2
                 {
                     break;
                 }
+
+               
 
                 else
                 {
