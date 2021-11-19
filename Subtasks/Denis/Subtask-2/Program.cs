@@ -9,65 +9,81 @@ namespace Subtask_2
         public static int GetAction(string action, List<int> valuesOfNumbers)
         {
             int result = valuesOfNumbers[0];
-            if (action == "+")
+            switch (action) 
             {
-                for (int i = 1; i < valuesOfNumbers.Count; i++)
-                {
-                    result += valuesOfNumbers[i];
-                }
-            }
-
-            else if (action == "-")
-            {
-                for (int i = 1; i < valuesOfNumbers.Count; i++)
-                {
-                    result -= valuesOfNumbers[i];
-                }
-            }
-
-            else if (action == "*")
-            {
-                for (int i = 1; i < valuesOfNumbers.Count; i++)
-                {
-                    result *= valuesOfNumbers[i];
-                }
-            }
-
-            else if (action == "/")
-            {
-                for (int i = 1; i < valuesOfNumbers.Count; i++)
-                {
-                    if (valuesOfNumbers[i] == 0)
+                case "+":
+                    for (int i = 1; i < valuesOfNumbers.Count; i++)
                     {
-                        Console.WriteLine("Делить на 0 нельзя");
+                        result += valuesOfNumbers[i];
                     }
+                    break;
 
-                    else 
+                case "-":
+                    for (int i = 1; i < valuesOfNumbers.Count; i++)
                     {
-                        result /= valuesOfNumbers[i];
+                        result -= valuesOfNumbers[i];
                     }
-                }
-            }
+                    break;
 
+                case "*":
+                    for (int i = 1; i < valuesOfNumbers.Count; i++)
+                    {
+                        result *= valuesOfNumbers[i];
+                    }
+                    break;
+
+                case "/":
+                    for (int i = 1; i < valuesOfNumbers.Count; i++)
+                    {
+                        if (valuesOfNumbers[i] == 0)
+                        {
+                            Console.WriteLine("Делить на 0 нельзя");
+                        }
+
+                        else
+                        {
+                            result /= valuesOfNumbers[i];
+                        }
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("Введено некорректное действие");
+                    break;
+            }
             return result;
         }
 
 
         static void Main(string[] args)
         {
-            
+
             Random rnd = new Random();
             int n = rnd.Next(3, 7);
             int[] numbers = new int[n];
-            for (int i = 0; i < n; i++)
-            {
-                numbers[i] = rnd.Next(1, 10);
-            }
-
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
+            int number =0;
+            int i = 0;
+            while (i < n)
+            {
+                string inputNumber = Console.ReadLine();
+                if (Int32.TryParse(inputNumber, out number))
+                {
+                    for (; i < numbers.Length; i++)
+                    {
+                        numbers[i] = number;
+                    }
+                }
+
+                else
+                {
+                    Console.WriteLine("Введено некорректное число");
+                }
+            }
+            
 
             Console.Write($"Числа введены, выберите доступные: ");
-            foreach (int number in numbers)
+            for (; i < numbers.Length; i++)
             {
                 Console.Write(number + " ");
             }
@@ -79,30 +95,11 @@ namespace Subtask_2
             while (true)
             {
                 string input = Console.ReadLine();
-                if ((Int32.TryParse(input, out index)) & (index < numbers.Length))
+                if ((Int32.TryParse(input, out index)) && (index < numbers.Length))
                 {
                     Console.WriteLine($"Выбранное вами число: {numbers[index]}");
                     valuesOfNumbers.Add(numbers[index]);
-                    if (numbers[index] == valuesOfNumbers[index])
-                    {
-                        Console.WriteLine("Это число вы уже выбрали");
-                    }
 
-                    else
-                    {
-                        
-                    }
-
-                    if (valuesOfNumbers.Count == numbers.Length)
-                    {
-                        Console.WriteLine("Вы выбрали все числа из списка");
-                        break;
-                    }
-                }
-
-                else if (index >= numbers.Length)
-                {
-                    Console.WriteLine("Вы ввели значение за пределами массива");
                 }
 
                 else if (input == "X")
@@ -120,7 +117,7 @@ namespace Subtask_2
             string action = Console.ReadLine();
             while (true)
             {
-                if ((action == "+") | (action == "-") | (action == "*") | (action == "/"))
+                if ((action == "+") || (action == "-") || (action == "*") || (action == "/"))
                 {
                     break;
                 }
@@ -128,12 +125,13 @@ namespace Subtask_2
                 else
                 {
                     Console.WriteLine("Действие не выбрано");
+                    break;
                 }
             }
 
             int result = GetAction(action, valuesOfNumbers);
 
-            Console.WriteLine(result);
+            Console.WriteLine($"Действие выбрано, результат - {result}");
             Console.ReadKey();
         }
     }
