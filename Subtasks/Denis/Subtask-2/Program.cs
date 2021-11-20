@@ -112,25 +112,23 @@ namespace Subtask_2
             }
 
             Console.WriteLine("Числа выбраны, введите необходимое действие: +, -, *, /");
-            string action = Console.ReadLine();
             while (true)
             {
+                string action = Console.ReadLine();
                 if ((action == "+") || (action == "-") || (action == "*") || (action == "/"))
                 {
+                    int result = GetResult(action, valuesOfNumbers);
+                    Console.WriteLine($"Действие выбрано, результат - {result}");
                     break;
                 }
 
                 else
                 {
                     Console.WriteLine("Действие не выбрано");
-                    break;
                 }
             }
-
-            int result = GetResult(action, valuesOfNumbers);
-
-            Console.WriteLine($"Действие выбрано, результат - {result}");
             Console.WriteLine("Завершение работы");
+            Console.ReadKey();
         }
     }
 }
