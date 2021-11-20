@@ -6,7 +6,7 @@ namespace Subtask_2
     
     class Program
     {
-        public static int GetAction(string action, List<int> valuesOfNumbers)
+        public static int GetResult (string action, List<int> valuesOfNumbers)
         {
             int result = valuesOfNumbers[0];
             switch (action) 
@@ -62,34 +62,33 @@ namespace Subtask_2
             int n = rnd.Next(3, 7);
             int[] numbers = new int[n];
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
-            int number =0;
-            int i = 0;
-            while (i < n)
+
+            int number = 0;
+            for (int i = 0; i < numbers.Length; i++)
             {
                 string inputNumber = Console.ReadLine();
                 if (Int32.TryParse(inputNumber, out number))
                 {
-                    for (; i < numbers.Length; i++)
-                    {
-                        numbers[i] = number;
-                    }
+                    numbers[i] = number; ;
                 }
 
                 else
                 {
-                    Console.WriteLine("Введено некорректное число");
+                    Console.WriteLine("Некорректный ввод");
+                    if (i >= 0)
+                    {
+                        i--;
+                    }
                 }
             }
-            
 
             Console.Write($"Числа введены, выберите доступные: ");
-            for (; i < numbers.Length; i++)
+            for (int i =0; i < numbers.Length; i++)
             {
-                Console.Write(number + " ");
+                Console.Write(numbers[i] + " ");
             }
 
             Console.WriteLine();
-
             int index = 0;
             List<int> valuesOfNumbers = new List<int>();
             while (true)
@@ -99,7 +98,6 @@ namespace Subtask_2
                 {
                     Console.WriteLine($"Выбранное вами число: {numbers[index]}");
                     valuesOfNumbers.Add(numbers[index]);
-
                 }
 
                 else if (input == "X")
@@ -129,10 +127,10 @@ namespace Subtask_2
                 }
             }
 
-            int result = GetAction(action, valuesOfNumbers);
+            int result = GetResult(action, valuesOfNumbers);
 
             Console.WriteLine($"Действие выбрано, результат - {result}");
-            Console.ReadKey();
+            Console.WriteLine("Завершение работы");
         }
     }
 }
