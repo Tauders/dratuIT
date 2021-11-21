@@ -56,39 +56,35 @@ namespace Subtask_2
 
         static void Main(string[] args)
         {
-
             Random rnd = new Random();
             int n = rnd.Next(3, 7);
             int[] numbers = new int[n];
             
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
-            for (int i = 0; i < numbers.Length; i++)
+            string inputNumber = Console.ReadLine();
+
+            for (int i = 0, j = 0; i < inputNumber.Length; i++)
             {
-                int number = 0;
-                string inputNumber = Console.ReadLine();
-                if (Int32.TryParse(inputNumber, out number))
+                if (Char.IsDigit(inputNumber[i]))
                 {
-                    numbers[i] = number;
+                    string value = Convert.ToString(inputNumber[i]);
+                    int number = Convert.ToInt32(value);
+                    numbers[j] = number;
                 }
                 else
-                {
-                    Console.WriteLine("Некорректный ввод");
-                    if (i >= 0)
-                    {
-                        i--;
-                    }
+                { 
+                    j++;
                 }
             }
-            
-            
+
             Console.Write($"Числа введены, выберите доступные: ");
-            for (int i =0; i < numbers.Length; i++)
+            for (int i = 0; i < numbers.Length; i++)
             {
                 Console.Write(numbers[i] + " ");
             }
 
             Console.WriteLine();
-            
+
             List<int> valuesOfNumbers = new List<int>();
             while (true)
             {
