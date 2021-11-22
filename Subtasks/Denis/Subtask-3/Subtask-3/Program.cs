@@ -16,7 +16,6 @@ namespace Subtask_3
                 {
                     words.Add(word);
                 }
-
                 else
                 {
                     break;
