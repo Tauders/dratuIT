@@ -24,24 +24,28 @@ namespace Subtask_3
             }
             Console.WriteLine("Данные введены, выберите способ сортировки (asc, desc)");
             string method = Console.ReadLine();
-            if (method = "asc")
+            if (method == "asc")
             {
                 words.Sort();
+                foreach (string word in words)
+                {
+                    Console.WriteLine(word);    
+                }
             }
-            else if (method = "desc")
+            else if (method == "desc")
             {
-
+                words.Sort();
+                foreach (string word in words)
+                {
+                    Console.WriteLine(word);
+                }
             }
             else
             {
                 Console.WriteLine("Данное действие не поддерживается");
             }
 
-            for (int i =0; i< words.Count; i++)
-            {
-                Console.WriteLine(words[i]);
-            }
-
+            Console.WriteLine("Все значения выведены");
             Console.ReadKey();
         }
     }
