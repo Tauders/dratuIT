@@ -35,6 +35,7 @@ namespace Subtask_3
             else if (method == "desc")
             {
                 words.Sort();
+                words.Reverse();
                 foreach (string word in words)
                 {
                     Console.WriteLine(word);
