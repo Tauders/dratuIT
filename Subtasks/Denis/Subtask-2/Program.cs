@@ -62,19 +62,12 @@ namespace Subtask_2
             
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
             string inputNumber = Console.ReadLine();
+            string[] tempNumbers = inputNumber.Split(' ');
 
-            for (int i = 0, j = 0; i < inputNumber.Length; i++)
+            for(int i = 0, j = 0; i < tempNumbers.Length; i++, j++)
             {
-                if (Char.IsDigit(inputNumber[i]))
-                {
-                    string value = Convert.ToString(inputNumber[i]);
-                    int number = Convert.ToInt32(value);
-                    numbers[j] = number;
-                }
-                else
-                { 
-                    j++;
-                }
+                int number = Convert.ToInt32(tempNumbers[i]);
+                numbers[j] = number;
             }
 
             Console.Write($"Числа введены, выберите доступные: ");
@@ -90,19 +83,28 @@ namespace Subtask_2
             {
                 string input = Console.ReadLine();
                 int index = 0;
-                if ((Int32.TryParse(input, out index)) && (index < numbers.Length))
+                if (String.IsNullOrEmpty(input))
                 {
-                    Console.WriteLine($"Выбранное вами число: {numbers[index]}");
-                    valuesOfNumbers.Add(numbers[index]);
-                }
-                else if (input == "X")
-                {
-                    break;
+                    Console.WriteLine("Вы ничего не ввели");
                 }
                 else
                 {
-                    Console.WriteLine("Некорректный ввод");
+                    if ((Int32.TryParse(input, out index)) && (index < numbers.Length))
+                    {
+                        Console.WriteLine($"Выбранное вами число: {numbers[index]}");
+                        valuesOfNumbers.Add(numbers[index]);
+                    }
+                    else if (input == "X")
+                    {
+                        break;
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("Некорректный ввод");
+                    }
                 }
+                
             }
 
             Console.WriteLine("Числа выбраны, введите необходимое действие: +, -, *, /");
