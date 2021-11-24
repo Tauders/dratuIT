@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+#nerpa {
+    background-color: #000;
+    width: 100%;
+    background-size: 100%;
+    max-width: 1920px;
+    margin: auto;
+}
+
+#container {
+    background-image: url('./images/background.png');
+    background-repeat: no-repeat;
+    background-size: 500px;
+    max-width: 1920px;
+    height: 890px;
+    background-position: right;
+    opacity: 0.7;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: cursive;
+}
+
+#container:after {
+    content: '';
+    background-image: url('./images/background-2.png');
+    background-size: 500px;
+    position: absolute;
+    background-position: left;
+    max-width: 1920px;
+    width: 100%;
+    left: 0;
+    height: 890px;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+h1.forma_heading {
+    text-align: center;
+    color: #25ffe0;
+    font-size: 50px;
+    margin-top: 200px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    flex-direction: column;
+}
+
+input#forData {
+    font-size: 32px;
+    text-align: center;
+    background: transparent;
+    border-radius: 10px;
+    padding: 20px;
+    color: #666;
+}
+
+input#forData:focus-visible,
+input#forData:focus-within,
+input#forData:hover {
+    border: 1px solid #25eef0;
+    cursor: pointer;
+}
+
+button.forma_btn {
+    position: relative;
+    font-size: 32px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px;
+    color: #666;
+    width: 190px;
+    height: 80px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #25ffe0;
+    outline: none;
+    transition: 1s ease-in-out;
+}
+
+svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #25ffe0;
+    stroke-dasharray: 405 410;
+    stroke-dashoffset: 140;
+    transition: 1s ease-in-out;
+    border-radius: 10px;
+}
+
+.forma_btn:hover {
+    transition: 1s ease-in-out;
+    background: transparent;
+}
+
+.forma_btn:hover svg {
+    stroke-dashoffset: -343;
+}
+
+@media screen and (max-width:1280px) {
+    #container:after {
+        background: none;
+    }
+    #container {
+        align-items: flex-start;
+        margin-left: 40px;
+    }
+    .form {
+        align-items: flex-start;
+    }
+}
