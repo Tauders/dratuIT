@@ -61,14 +61,29 @@ namespace Subtask_2
             int[] numbers = new int[n];
             
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
-            string inputNumber = Console.ReadLine();
-            string[] tempNumbers = inputNumber.Split(' ');
+            
 
-            for(int i = 0, j = 0; i < tempNumbers.Length; i++, j++)
+            while (true)
             {
-                int number = Convert.ToInt32(tempNumbers[i]);
-                numbers[j] = number;
+                string inputNumber = Console.ReadLine();
+                string[] tempNumbers = inputNumber.Split(' ');
+                if(String.IsNullOrEmpty(inputNumber) || String.IsNullOrWhiteSpace(inputNumber))
+                {
+                    Console.WriteLine("Вы ничего не ввели");
+                }
+                else
+                {
+                    for (int i = 0, j = 0; i < tempNumbers.Length; i++, j++)
+                    {
+                        int number = Convert.ToInt32(tempNumbers[i]);
+                        numbers[j] = number;
+                    }
+                    break;
+                }
+
+                
             }
+            
 
             Console.Write($"Числа введены, выберите доступные: ");
             for (int i = 0; i < numbers.Length; i++)
