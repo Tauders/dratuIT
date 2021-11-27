@@ -56,6 +56,7 @@ namespace Subtask_2
 
         static void Main(string[] args)
         {
+            int j = 0;
             Random rnd = new Random();
             int n = rnd.Next(3, 7);
             int[] numbers = new int[n];
@@ -63,7 +64,7 @@ namespace Subtask_2
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
             
 
-            while (true)
+            while (j < numbers.Length)
             {
                 string inputNumber = Console.ReadLine();
                 string[] tempNumbers = inputNumber.Split(' ');
@@ -73,15 +74,12 @@ namespace Subtask_2
                 }
                 else
                 {
-                    for (int i = 0, j = 0; i < tempNumbers.Length; i++, j++)
+                    for (int i = 0; i < tempNumbers.Length; i++, j++)
                     {
                         int number = Convert.ToInt32(tempNumbers[i]);
                         numbers[j] = number;
                     }
-                    break;
                 }
-
-                
             }
             
 
@@ -92,11 +90,11 @@ namespace Subtask_2
             }
 
             Console.WriteLine();
-
+            string input = null;
             List<int> valuesOfNumbers = new List<int>();
-            while (true)
+            while (input != "X")
             {
-                string input = Console.ReadLine();
+                input = Console.ReadLine();
                 int index = 0;
                 if (String.IsNullOrEmpty(input))
                 {
@@ -104,33 +102,29 @@ namespace Subtask_2
                 }
                 else
                 {
-                    if ((Int32.TryParse(input, out index)) && (index < numbers.Length))
+                    if (((Int32.TryParse(input, out index)) && (index < numbers.Length)))
                     {
                         Console.WriteLine($"Выбранное вами число: {numbers[index]}");
                         valuesOfNumbers.Add(numbers[index]);
                     }
                     else if (input == "X")
                     {
-                        break;
+                        Console.WriteLine("Числа выбраны, введите необходимое действие: +, -, *, /");
                     }
                     else
                     {
-
                         Console.WriteLine("Некорректный ввод");
                     }
                 }
-                
             }
-
-            Console.WriteLine("Числа выбраны, введите необходимое действие: +, -, *, /");
-            while (true)
+            string action = null;
+            while ((action != "+") || (action != "-") || (action != "*") || (action != "/"))
             {
-                string action = Console.ReadLine();
+                action = Console.ReadLine();
                 if ((action == "+") || (action == "-") || (action == "*") || (action == "/"))
                 {
                     int result = GetResult(action, valuesOfNumbers);
                     Console.WriteLine($"Действие выбрано, результат - {result}");
-                    break;
                 }
                 else
                 {
