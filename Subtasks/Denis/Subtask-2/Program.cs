@@ -62,7 +62,6 @@ namespace Subtask_2
             int[] numbers = new int[n];
             
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
-            
 
             while (j < numbers.Length)
             {
