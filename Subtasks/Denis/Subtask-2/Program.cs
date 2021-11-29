@@ -57,9 +57,11 @@ namespace Subtask_2
         static void Main(string[] args)
         {
             int numbersIndex = 0;
+            int tempIndex = 0;
             Random rnd = new Random();
             int n = rnd.Next(3, 7);
             int[] numbers = new int[n];
+            
             
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
 
@@ -67,17 +69,21 @@ namespace Subtask_2
             {
                 string inputNumber = Console.ReadLine();
                 string[] tempNumbers = inputNumber.Split(' ');
+                int number = 0;
                 if(String.IsNullOrWhiteSpace(inputNumber))
                 {
                     Console.WriteLine("Вы ничего не ввели");
                 }
+                else if (Int32.TryParse(tempNumbers[tempIndex], out number))
+                {
+                    for (int i = 0; tempIndex < tempNumbers.Length; tempIndex++, numbersIndex++, i++)
+                    {
+                        numbers[numbersIndex] = Convert.ToInt32(tempNumbers[tempIndex]);
+                    }
+                }
                 else
                 {
-                    for (int i = 0; i < tempNumbers.Length; i++, numbersIndex++)
-                    {
-                        int number = Convert.ToInt32(tempNumbers[i]);
-                        numbers[numbersIndex] = number;
-                    }
+                    Console.WriteLine("Некорректный ввод");
                 }
             }
 
@@ -115,12 +121,14 @@ namespace Subtask_2
                     }
                 }
             }
+
             string action = null;
-            while ((action != "+") || (action != "-") || (action != "*") || (action != "/"))
+            while (action == null)
             {
-                action = Console.ReadLine();
-                if ((action == "+") || (action == "-") || (action == "*") || (action == "/"))
+                string inputAction = Console.ReadLine();
+                if ((inputAction == "+") || (inputAction == "-") || (inputAction == "*") || (inputAction == "/"))
                 {
+                    action = inputAction;
                     int result = GetResult(action, valuesOfNumbers);
                     Console.WriteLine($"Действие выбрано, результат - {result}");
                 }
