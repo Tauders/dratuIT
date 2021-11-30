@@ -8,24 +8,24 @@
 
 </head>
 
-<body id="nerpa">
+<body id="form_page">
     <main id="container">
-        <h1 class="forma_heading">
+        <h1 class="page_heading">
             Запрос тюленя
         </h1>
-        <div class="form">
+        <form action="#" class="form">
             <div class="form_item">
-                <input class="forma_data" id="forData" type="text" name="data" placeholder="что-то на тюленьем" onkeyup="start()">
+                <input class="form_data" type="text" placeholder="что-то на тюленьем" >
 
             </div>
-            <button class="forma_btn" type="submit" id="submitData">
-                    <svg width="190px" height="80px" viewBox="0 0 190 80" class="border">
+            <button class="form_btn" type="submit">
+                    <svg viewBox="0 0 190 80" class="border">
                         <polyline points="189,1 189,79 1,79 1,1 189,1" class="bg-line" />
                         <polyline points="189,1 189,79 1,79 1,1 189,1" class="hl-line" />
                       </svg>
                      Клик-клак
-                </button>
-        </div>
+            </button>
+        </form>
     </main>
     <script src="main.js"></script>
 </body>
