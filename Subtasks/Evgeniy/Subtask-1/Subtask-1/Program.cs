@@ -7,24 +7,27 @@ namespace Subtask_1
         static void Main(string[] args)
         {
             Console.WriteLine("Введите число строк");
+            string g = Console.ReadLine();
             int N;
             while (true)
             {
-                try
+                bool check = int.TryParse(g, out N);
+                if (check == true && N >= 0)
                 {
-                    N = Convert.ToInt32(Console.ReadLine());
+                    
                     break;
                 }
-                catch (Exception)
+                else
                 {
                     Console.WriteLine("Ошибка, введите число");
+                    g = Console.ReadLine();
                 }
             }
-            string[] cosmo = new string[N];
+            string[] items = new string[N];
             Console.WriteLine("Введите строки количество которых указали ранее");
             for (int i = 0; i < N; i++)
             {
-                cosmo[i] = Console.ReadLine();
+                items[i] = Console.ReadLine();
             }
             Console.WriteLine("Все строки введены, выберите строку для отображения");
             string s = Console.ReadLine();
@@ -32,20 +35,17 @@ namespace Subtask_1
             {
                 int a;
                 bool result = int.TryParse(s, out a);
-                if (result == true)
+                if (result == true && a < N && a >= 0)
                 {
-                    try
-                    {
-                        Console.WriteLine(cosmo[a]);
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Ошибка! Не найден индекс массива");
-                    }
+                    Console.WriteLine(items[a]);
+                }
+                else if (a >= N)
+                {
+                    Console.WriteLine("Вы ввели неверный номер элемента массива");
                 }
                 else
                 {
-                    Console.WriteLine("Вы ввели неверный номер элемента массива");
+                    Console.WriteLine("Ошибка! Не найден индекс массива");
                 }
                 s = Console.ReadLine();
             }
