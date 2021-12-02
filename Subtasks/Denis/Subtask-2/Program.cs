@@ -79,9 +79,21 @@ namespace Subtask_2
                         }
                         else
                         {
-                            Console.WriteLine($"Вы указали неверные данный, повторите ввод {numbersIndex + 1} -го числа");
-                            number = Convert.ToInt32(Console.ReadLine());
-                            numbers[numbersIndex] = number;
+                            while (!Int32.TryParse(tempNumbers[tempIndex], out number))
+                            {
+                                
+                                Console.WriteLine($"Вы указали неверные данный, повторите ввод {numbersIndex + 1} -го числа");
+                                inputNumber = Console.ReadLine();
+                                if (Int32.TryParse(inputNumber, out number))
+                                {
+                                    tempNumbers[tempIndex] = Convert.ToString(number);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Некорректный ввод");
+                                }
+                                numbers[numbersIndex] = number;
+                            }
                         }
                     }
                 }
