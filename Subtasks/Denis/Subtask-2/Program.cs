@@ -62,31 +62,34 @@ namespace Subtask_2
             int n = rnd.Next(3, 7);
             int[] numbers = new int[n];
             
-            
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
 
             while (numbersIndex < numbers.Length)
             {
-                string inputNumber = Console.ReadLine();
-                string[] tempNumbers = inputNumber.Split(' ');
                 int number = 0;
-                if(String.IsNullOrWhiteSpace(inputNumber))
+                string inputNumber = Console.ReadLine();
+                string[] tempNumbers = inputNumber.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (!String.IsNullOrWhiteSpace(inputNumber))
                 {
-                    Console.WriteLine("Вы ничего не ввели");
-                }
-                else if (Int32.TryParse(tempNumbers[tempIndex], out number))
-                {
-                    for (int i = 0; tempIndex < tempNumbers.Length; tempIndex++, numbersIndex++, i++)
+                    for (; tempIndex < tempNumbers.Length; tempIndex++, numbersIndex++)
                     {
-                        numbers[numbersIndex] = Convert.ToInt32(tempNumbers[tempIndex]);
+                        if (Int32.TryParse(tempNumbers[tempIndex], out number))
+                        {
+                            numbers[numbersIndex] = number;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Вы указали неверные данный, повторите ввод {numbersIndex + 1} -го числа");
+                            number = Convert.ToInt32(Console.ReadLine());
+                            numbers[numbersIndex] = number;
+                        }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Некорректный ввод");
+                    Console.WriteLine("Вы ничего не ввели");
                 }
             }
-
             Console.Write($"Числа введены, выберите доступные: ");
             for (int i = 0; i < numbers.Length; i++)
             {
