@@ -57,7 +57,6 @@ namespace Subtask_2
         static void Main(string[] args)
         {
             int numbersIndex = 0;
-            int tempIndex = 0;
             Random rnd = new Random();
             int n = rnd.Next(3, 7);
             int[] numbers = new int[n];
@@ -71,7 +70,7 @@ namespace Subtask_2
                 string[] tempNumbers = inputNumber.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 if (!String.IsNullOrWhiteSpace(inputNumber))
                 {
-                    for (; tempIndex < tempNumbers.Length; tempIndex++, numbersIndex++)
+                    for (int tempIndex = 0; tempIndex < tempNumbers.Length; tempIndex++, numbersIndex++)
                     {
                         if (Int32.TryParse(tempNumbers[tempIndex], out number))
                         {
