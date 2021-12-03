@@ -39,7 +39,7 @@ namespace Subtask_1
                 {
                     Console.WriteLine(items[selectedElementOfArray]);
                 }
-                else if (selectedElementOfArray >= numberOfStrings)
+                else if (selectedElementOfArray >= numberOfStrings || selectedElementOfArray < 0)
                 {
                     Console.WriteLine("Вы ввели неверный номер элемента массива");
                 }
