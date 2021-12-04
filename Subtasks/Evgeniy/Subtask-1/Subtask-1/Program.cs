@@ -44,7 +44,7 @@ namespace Subtask_1
                 }
                 else
                 {
-                    Console.WriteLine("Ошибка! Не найден индекс массива");
+                    Console.WriteLine("Ошибка! Некорректный ввод");
                 }
                 choosenStringToShow = Console.ReadLine();
             }
