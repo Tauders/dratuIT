@@ -7,22 +7,21 @@ namespace Subtask_1
         static void Main(string[] args)
         {
             Console.WriteLine("Введите число строк");
-            string numberOfStringsUserInput = Console.ReadLine();
-            int numberOfStrings;
-            while (true)
-            {
-                bool check = int.TryParse(numberOfStringsUserInput, out numberOfStrings);
-                if (check == true && numberOfStrings >= 0)
-                {
-                    
-                    break;
-                }
-                else
+            
+            int numberOfStrings = 0;
+            bool check = false;
+            
+              while (check == false)
+              {
+                string numberOfStringsUserInput = Console.ReadLine();
+                check = int.TryParse(numberOfStringsUserInput, out numberOfStrings);
+                check = check && numberOfStrings > 0;
+
+                if (check == false)
                 {
                     Console.WriteLine("Ошибка, введите положительное число");
-                    numberOfStringsUserInput = Console.ReadLine();
                 }
-            }
+              }
             string[] items = new string[numberOfStrings];
             Console.WriteLine("Введите строки количество которых указали ранее");
             for (int i = 0; i < numberOfStrings; i++)
