@@ -78,7 +78,8 @@ namespace Subtask_2
                 {
                     for (int i = 0; tempIndex < tempNumbers.Length; tempIndex++, numbersIndex++, i++)
                     {
-                        numbers[numbersIndex] = Convert.ToInt32(tempNumbers[tempIndex]);
+                        numbers[numbersIndex] = number;
+
                     }
                 }
                 else
