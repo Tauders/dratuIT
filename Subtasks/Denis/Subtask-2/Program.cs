@@ -80,18 +80,16 @@ namespace Subtask_2
                         {
                             while (!Int32.TryParse(tempNumbers[tempIndex], out number))
                             {
-                                
                                 Console.WriteLine($"Вы указали неверные данный, повторите ввод {numbersIndex + 1} -го числа");
-                                inputNumber = Console.ReadLine();
-                                if (Int32.TryParse(inputNumber, out number))
+                                tempNumbers[tempIndex] = Console.ReadLine();
+                                if (Int32.TryParse(tempNumbers[tempIndex], out number))
                                 {
-                                    tempNumbers[tempIndex] = Convert.ToString(number);
+                                    numbers[numbersIndex] = number;
                                 }
                                 else
                                 {
                                     Console.WriteLine("Некорректный ввод");
                                 }
-                                numbers[numbersIndex] = number;
                             }
                         }
                     }
