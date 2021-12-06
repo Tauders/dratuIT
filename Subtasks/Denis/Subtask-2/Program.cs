@@ -78,7 +78,7 @@ namespace Subtask_2
                         }
                         else
                         {
-                            while (!Int32.TryParse(tempNumbers[tempIndex], out number))
+                            while (!Int32.TryParse(tempNumbers[tempIndex], out _))
                             {
                                 Console.WriteLine($"Вы указали неверные данный, повторите ввод {numbersIndex + 1} -го числа");
                                 tempNumbers[tempIndex] = Console.ReadLine();
@@ -89,6 +89,7 @@ namespace Subtask_2
                                 else
                                 {
                                     Console.WriteLine("Некорректный ввод");
+                                    
                                 }
                             }
                         }
