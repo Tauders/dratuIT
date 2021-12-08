@@ -53,16 +53,13 @@ namespace Subtask_2
             return result;
         }
 
-
         static void Main(string[] args)
         {
             int numbersIndex = 0;
             Random rnd = new Random();
             int n = rnd.Next(3, 7);
             int[] numbers = new int[n];
-            
             Console.WriteLine($"Программа сгенерировала список из {n} чисел");
-
             while (numbersIndex < numbers.Length)
             {
                 int number = 0;
