@@ -78,18 +78,16 @@ namespace Subtask_2
                         }
                         else
                         {
-                            while (!Int32.TryParse(tempNumbers[tempIndex], out _))
+                            bool isDigit = false;
+
+                            while (!isDigit)
                             {
                                 Console.WriteLine($"Вы указали неверные данный, повторите ввод {numbersIndex + 1} -го числа");
                                 tempNumbers[tempIndex] = Console.ReadLine();
                                 if (Int32.TryParse(tempNumbers[tempIndex], out number))
                                 {
+                                    isDigit = true;
                                     numbers[numbersIndex] = number;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Некорректный ввод");
-                                    
                                 }
                             }
                         }
@@ -135,14 +133,14 @@ namespace Subtask_2
                 }
             }
 
-            string action = null;
-            while (action == null)
+            bool isAction = false;
+            while (!isAction)
             {
                 string inputAction = Console.ReadLine();
                 if ((inputAction == "+") || (inputAction == "-") || (inputAction == "*") || (inputAction == "/"))
                 {
-                    action = inputAction;
-                    int result = GetResult(action, valuesOfNumbers);
+                    isAction = true;
+                    int result = GetResult(inputAction, valuesOfNumbers);
                     Console.WriteLine($"Действие выбрано, результат - {result}");
                 }
                 else
