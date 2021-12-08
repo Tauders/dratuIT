@@ -79,7 +79,6 @@ namespace Subtask_2
                         else
                         {
                             bool isDigit = false;
-
                             while (!isDigit)
                             {
                                 Console.WriteLine($"Вы указали неверные данный, повторите ввод {numbersIndex + 1} -го числа");
@@ -121,7 +120,7 @@ namespace Subtask_2
                     {
                         Console.WriteLine("Числа выбраны, введите необходимое действие: +, -, *, /");
                     }
-                    else if (((Int32.TryParse(input, out index)) && (index < numbers.Length)))
+                    else if (((Int32.TryParse(input, out index)) && (index < numbers.Length) && (index >= 0)))
                     {
                         Console.WriteLine($"Выбранное вами число: {numbers[index]}");
                         valuesOfNumbers.Add(numbers[index]);
