@@ -8,5 +8,6 @@ namespace Subtask_4
 {
     internal class Sport
     {
+        public string Name { get; set; }
     }
 }
