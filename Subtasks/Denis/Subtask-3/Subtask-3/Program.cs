@@ -50,7 +50,7 @@ namespace Subtask_3
             while (!isSelect)
             {
                 string method = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(method))
+                if (string.IsNullOrWhiteSpace(method))
                 {
                     Console.WriteLine("Вы ничего не ввели");
                 }
