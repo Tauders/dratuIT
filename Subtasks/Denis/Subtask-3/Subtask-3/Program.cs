@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Subtask_3
 {
-    
-    internal class Program
+
+    class Program
     {
-        public static List<string> GetSort(List<string> words, string method)
+        public static List<string> GetSort(string method, List<string> words)
         {
             switch (method)
             {
@@ -22,11 +22,12 @@ namespace Subtask_3
             }
             return words;
         }
+
         static void Main(string[] args)
         {
+            Console.WriteLine("Введите любое количество слов, для остановки введите X");
             bool isExit = false;
             List<string> words = new List<string>();
-            Console.WriteLine("Введите любое количество слов, для остановки введите X");
             while (!isExit)
             {
                 string input = Console.ReadLine();
@@ -35,23 +36,32 @@ namespace Subtask_3
                     isExit = true;
                     Console.WriteLine("Данные введены, выберите способ сортировки (asc, desc)");
                 }
+                else if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Вы ничего не ввели");
+                }
                 else
                 {
                     words.Add(input);
                 }
             }
+
             bool isSelect = false;
             while (!isSelect)
             {
                 string method = Console.ReadLine();
-                if ((method == "asc") || (method == "desc"))
+                if (string.IsNullOrWhiteSpace(method))
                 {
-                    GetSort(words, method);
+                    Console.WriteLine("Вы ничего не ввели");
+                }
+                else if ((method == "asc") || (method == "desc"))
+                {
+                    GetSort(method, words);
                     isSelect = true;
                 }
                 else
                 {
-                    Console.WriteLine("Данное действие не поддерживается");
+                    Console.WriteLine("Некорректный ввод");
                 }
             }
             foreach (string word in words)
