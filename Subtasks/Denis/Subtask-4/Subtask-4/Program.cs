@@ -8,8 +8,8 @@ namespace Subtask_4
     {
         static void Main(string[] args)
         {
-            //Dictionary<Sport, Person> sports = new Dictionary<Sport,Person>();
-            Dictionary<string, string> sports = new Dictionary<string, string>();
+            //Dictionary<Group, Person> sports = new Dictionary<Group, Person>();
+            Dictionary<string, string> groups = new Dictionary<string, string>();
             bool isExit = false;
             Console.WriteLine("Введите данные в формате \"имя группа\", имя и группа  - одно слово ");
             while (!isExit)
@@ -18,8 +18,8 @@ namespace Subtask_4
                 string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 //Sport sport = new Sport();
                 //Person person = new Person();
-                
-                
+
+
                 if (input == "X")
                 {
                     isExit = true;
@@ -39,15 +39,15 @@ namespace Subtask_4
                             group = temp[i];
                         }
                     }
-                    sports.Add(group, name);
+                    groups.Add(group, name);
                 }
 
-                
+
                 //sports.Add(sport, person);
             }
 
-            Console.WriteLine(sports.Count);
-            foreach (string name in sports.Values)
+            Console.WriteLine(groups.Count);
+            foreach (string name in groups.Values)
             {
                 Console.WriteLine(name);
             }

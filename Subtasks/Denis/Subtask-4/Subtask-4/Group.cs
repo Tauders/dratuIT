@@ -1,7 +1,6 @@
-﻿
-namespace Subtask_4
+﻿namespace Subtask_4
 {
-    internal class Person
+    internal class Group
     {
         public string Name { get; set; }
     }
