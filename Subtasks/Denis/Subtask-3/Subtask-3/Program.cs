@@ -6,7 +6,7 @@ namespace Subtask_3
     internal class Program
     {
 
-        public static List<string> GetSortedList(string method, List<string> words)
+        public static void SortListByMethod(string method, List<string> words)
         {
             switch (method)
             {
@@ -21,7 +21,6 @@ namespace Subtask_3
                 default:
                     break;
             }
-            return words;
         }
 
         static void Main(string[] args)
@@ -49,7 +48,7 @@ namespace Subtask_3
                 string method = Console.ReadLine();
                 if ((method == "asc") || (method == "desc"))
                 {
-                    GetSortedList(method, words);
+                    SortListByMethod(method, words);
                     isSelect = true;
                 }
                 else
