@@ -38,7 +38,6 @@ namespace Subtask_4
                 }
                 
             }
-
             Console.WriteLine(groups.Count);
             foreach (Person name in groups.Values)
             {
