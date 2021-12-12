@@ -53,7 +53,7 @@ namespace Subtask_3
                 }
                 else
                 {
-                    Console.WriteLine("Данное действие не поддерживается");
+                    Console.WriteLine("Введите действие ещё раз");
                 }
             }
             foreach (string word in words)
