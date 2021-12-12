@@ -15,28 +15,26 @@ namespace Subtask_4
             {
                 string input = Console.ReadLine();
                 string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                
                 if (input == "X")
                 {
                     isExit = true;
                 }
                 else
                 {
-                    
+                    Group group = new Group();
+                    Person person = new Person();
                     for (int i = 0; i < temp.Length; i++)
                     {
-                        Group group = new Group();
-                        Person person = new Person();
                         if (i % 2 == 0)
-                        {
-                            group.Name = temp[i];
-                        }
-                        else if (i % 2 == 1)
                         {
                             person.Name = temp[i];
                         }
-                        groups.Add(group, person);
+                        else
+                        {
+                            group.Name = temp[i];
+                        }
                     }
+                    groups.Add(group, person);
                 }
                 
             }
