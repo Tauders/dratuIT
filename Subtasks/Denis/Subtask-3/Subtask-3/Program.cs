@@ -5,52 +5,60 @@ namespace Subtask_3
 {
     internal class Program
     {
+
+        public static void GetSortList(string method, List<string> words)
+        {
+            switch (method)
+            {
+                case "asc":
+                    words.Sort();
+                    break;
+                case "desc":
+                    words.Sort();
+                    words.Reverse();
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+
         static void Main(string[] args)
         {
-            string tempInput = null;
             List<string> words = new List<string>();
             Console.WriteLine("Введите любое количество слов, для остановки введите X");
-            while (tempInput == null)
+            bool isExit = false;
+            while (!isExit)
             {
                 string input = Console.ReadLine();
-                if (input != "X")
+                if (input == "X")
                 {
-                    words.Add(input);
+                    Console.WriteLine("Данные введены, выберите способ сортировки (asc, desc)");
+                    isExit = true;
                 }
                 else
                 {
-                    tempInput = "X";
+                    words.Add(input);
                 }
             }
-            Console.WriteLine("Данные введены, выберите способ сортировки (asc, desc)");
 
-            string method = null;
-            string tempMethod = null;
-            while (method == null)
+            bool isSelect = false;
+            while (!isSelect)
             {
-                method = Console.ReadLine();
+                string method = Console.ReadLine();
                 if ((method == "asc") || (method == "desc"))
                 {
-                    tempMethod = method;
-                    if (tempMethod == "asc")
-                    {
-                        words.Sort();
-                    }
-                    else if (tempMethod == "desc")
-                    {
-                        words.Sort();
-                        words.Reverse();
-                    }
-
-                    foreach (string word in words)
-                    {
-                        Console.WriteLine(word);
-                    }
+                    GetSortList(method, words);
+                    isSelect = true;
                 }
                 else
                 {
                     Console.WriteLine("Данное действие не поддерживается");
                 }
+            }
+            foreach (string word in words)
+            {
+                Console.WriteLine(word);
             }
 
             Console.WriteLine("Все значения выведены");
