@@ -101,11 +101,11 @@ namespace Subtask_2
             }
 
             Console.WriteLine();
-            string input = null;
+            bool isExit = false;
             List<int> valuesOfNumbers = new List<int>();
-            while (input != "X")
+            while (!isExit)
             {
-                input = Console.ReadLine();
+                string input = Console.ReadLine();
                 int index = 0;
                 if (String.IsNullOrWhiteSpace(input))
                 {
@@ -116,6 +116,7 @@ namespace Subtask_2
                     if (input == "X")
                     {
                         Console.WriteLine("Числа выбраны, введите необходимое действие: +, -, *, /");
+                        isExit = true;
                     }
                     else if (((Int32.TryParse(input, out index)) && (index < numbers.Length) && (index >= 0)))
                     {
