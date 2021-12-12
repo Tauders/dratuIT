@@ -8,49 +8,45 @@ namespace Subtask_4
     {
         static void Main(string[] args)
         {
-            //Dictionary<Group, Person> sports = new Dictionary<Group, Person>();
-            Dictionary<string, string> groups = new Dictionary<string, string>();
+            Dictionary<Group, Person> groups = new Dictionary<Group, Person>();
             bool isExit = false;
             Console.WriteLine("Введите данные в формате \"имя группа\", имя и группа  - одно слово ");
             while (!isExit)
             {
                 string input = Console.ReadLine();
                 string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                //Sport sport = new Sport();
-                //Person person = new Person();
-
-
+                
                 if (input == "X")
                 {
                     isExit = true;
                 }
                 else
                 {
-                    string name;
-                    string group;
+                    
                     for (int i = 0; i < temp.Length; i++)
                     {
+                        Group group = new Group();
+                        Person person = new Person();
                         if (i % 2 == 0)
                         {
-                            name = temp[i];
+                            group.Name = temp[i];
                         }
-                        else
+                        else if (i % 2 == 1)
                         {
-                            group = temp[i];
+                            person.Name = temp[i];
                         }
+                        groups.Add(group, person);
                     }
-                    groups.Add(group, name);
                 }
-
-
-                //sports.Add(sport, person);
+                
             }
 
             Console.WriteLine(groups.Count);
-            foreach (string name in groups.Values)
+            foreach (Person name in groups.Values)
             {
-                Console.WriteLine(name);
+                Console.WriteLine(name.Name);
             }
+            Console.ReadKey();
         }
     }
 }
