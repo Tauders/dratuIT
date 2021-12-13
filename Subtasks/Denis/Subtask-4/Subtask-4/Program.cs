@@ -8,7 +8,10 @@ namespace Subtask_4
     {
         static void Main(string[] args)
         {
-            Dictionary<Group, Person> groups = new Dictionary<Group, Person>();
+            //List<string> person = new List<string>();
+            //Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+            Dictionary<string, string> groups = new Dictionary<string, string>();
+            int index = 0;
             bool isExit = false;
             Console.WriteLine("Введите данные в формате \"имя группа\", имя и группа  - одно слово ");
             while (!isExit)
@@ -21,27 +24,40 @@ namespace Subtask_4
                 }
                 else
                 {
-                    Group group = new Group();
-                    Person person = new Person();
+                    //Group group = new Group();
+                    //Person person = new Person();
+                    string name = null;
+                    string group = null;
                     for (int i = 0; i < temp.Length; i++)
                     {
                         if (i % 2 == 0)
                         {
-                            person.Name = temp[i];
+                            //person.Name = temp[i];
+                            //person.Add(temp[i]);
+                            name = temp[i];
+
                         }
                         else
                         {
-                            group.Name = temp[i];
+                            //group.Name = temp[i];
+                            group = temp[i];
                         }
                     }
-                    groups.Add(group, person);
+                    groups.Add(group, name);
                 }
                 
             }
+            
+            //if (groups.ContainsKey())
+            //{
+            //    Console.WriteLine("Ключи словаря равны");
+            //    //groups.Add(groups.Keys, groups.Values); 
+            //}
+
             Console.WriteLine(groups.Count);
-            foreach (Person name in groups.Values)
+            foreach (string name in groups.Values)
             {
-                Console.WriteLine(name.Name);
+                Console.WriteLine(name);
             }
             Console.ReadKey();
         }
