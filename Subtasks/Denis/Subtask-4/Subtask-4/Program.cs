@@ -8,10 +8,7 @@ namespace Subtask_4
     {
         static void Main(string[] args)
         {
-            
             Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
-            //Dictionary<string, string> groups = new Dictionary<string, string>();
-            int index = 0;
             bool isExit = false;
             Console.WriteLine("Введите данные в формате \"имя группа\", имя и группа  - одно слово ");
             while (!isExit)
@@ -53,8 +50,6 @@ namespace Subtask_4
                     Console.WriteLine(value);
                 }
             }
-            
-
             Console.ReadKey();
         }
     }
