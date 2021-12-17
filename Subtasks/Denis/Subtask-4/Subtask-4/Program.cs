@@ -8,9 +8,9 @@ namespace Subtask_4
     {
         static void Main(string[] args)
         {
-            //List<string> person = new List<string>();
-            //Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
-            Dictionary<string, string> groups = new Dictionary<string, string>();
+            
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+            //Dictionary<string, string> groups = new Dictionary<string, string>();
             int index = 0;
             bool isExit = false;
             Console.WriteLine("Введите данные в формате \"имя группа\", имя и группа  - одно слово ");
@@ -18,47 +18,43 @@ namespace Subtask_4
             {
                 string input = Console.ReadLine();
                 string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                if (input == "X")
+                if (input == "X" || input == "x")
                 {
                     isExit = true;
                 }
                 else
                 {
-                    //Group group = new Group();
-                    //Person person = new Person();
                     string name = null;
-                    string group = null;
+                    string key = null;
                     for (int i = 0; i < temp.Length; i++)
                     {
-                        if (i % 2 == 0)
+                        if (i % 2 == 1)
                         {
-                            //person.Name = temp[i];
-                            //person.Add(temp[i]);
-                            name = temp[i];
-
+                            key = temp[i];
                         }
-                        else
+                        else if (i % 2 == 0)
                         {
-                            //group.Name = temp[i];
-                            group = temp[i];
+                            name = temp[i];
                         }
                     }
-                    groups.Add(group, name);
+                    if (!groups.ContainsKey(key))
+                    {
+                        groups.Add(key, new List<string>());
+                    }
+                    groups[key].Add(name);
                 }
-                
+            }
+
+            foreach (string key in groups.Keys)
+            {
+                Console.WriteLine(key);
+                foreach (string value in groups[key])
+                {
+                    Console.WriteLine(value);
+                }
             }
             
-            //if (groups.ContainsKey())
-            //{
-            //    Console.WriteLine("Ключи словаря равны");
-            //    //groups.Add(groups.Keys, groups.Values); 
-            //}
 
-            Console.WriteLine(groups.Count);
-            foreach (string name in groups.Values)
-            {
-                Console.WriteLine(name);
-            }
             Console.ReadKey();
         }
     }
