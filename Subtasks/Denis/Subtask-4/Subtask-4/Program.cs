@@ -42,12 +42,17 @@ namespace Subtask_4
                 }
             }
 
-            foreach (string key in groups.Keys)
+            Console.WriteLine(groups.Count);
+            Console.WriteLine(groups.Keys.Count);
+            Console.WriteLine(groups.Values.Count);
+
+            foreach (KeyValuePair<string, List<string>> test in groups)
             {
-                Console.WriteLine(key);
-                foreach (string value in groups[key])
+                Console.WriteLine($"Группа {test.Key}");
+                test.Value.Sort();
+                foreach (string test2 in test.Value)
                 {
-                    Console.WriteLine(value);
+                    Console.WriteLine(test2);
                 }
             }
             Console.ReadKey();
