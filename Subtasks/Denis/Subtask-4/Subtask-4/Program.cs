@@ -3,9 +3,39 @@ using System.Collections.Generic;
 
 namespace Subtask_4
 {
-
     class Program
     {
+        public static void Test(string method, Dictionary<string, List<string>> groups)
+        {
+            
+            switch (method) 
+            {
+                case "asc":
+                    foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
+                    {
+                        keyValuePair.Value.Sort();
+                        foreach (string value in keyValuePair.Value)
+                        {
+                            Console.WriteLine(value);
+                        }
+                    }
+                    break;
+                case "desc":
+                    foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
+                    {
+                        keyValuePair.Value.Sort();
+                        keyValuePair.Value.Reverse();
+                        foreach (string value in keyValuePair.Value)
+                        {
+                            Console.WriteLine(value);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
         static void Main(string[] args)
         {
             Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
@@ -42,19 +72,27 @@ namespace Subtask_4
                 }
             }
 
-            Console.WriteLine(groups.Count);
-            Console.WriteLine(groups.Keys.Count);
-            Console.WriteLine(groups.Values.Count);
+            string method = Console.ReadLine();
 
-            foreach (KeyValuePair<string, List<string>> test in groups)
-            {
-                Console.WriteLine($"Группа {test.Key}");
-                test.Value.Sort();
-                foreach (string test2 in test.Value)
-                {
-                    Console.WriteLine(test2);
-                }
-            }
+            Test(method, groups);
+
+            //foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
+            //{
+            //    Console.WriteLine($"Группа {keyValuePair.Key}");
+                
+            //    foreach (string value in keyValuePair.Value)
+            //    {
+            //            Console.WriteLine(value);
+            //    }
+            //}
+
+
+            //Console.WriteLine("Введите тип сортировки");
+            //string method = Console.ReadLine();
+
+            //Test(method, groups);
+
+
             Console.ReadKey();
         }
     }
