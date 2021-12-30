@@ -5,31 +5,16 @@ namespace Subtask_4
 {
     class Program
     {
-        public static void Test(string method, Dictionary<string, List<string>> groups)
+        public static void Test(string method, KeyValuePair<string, List<string>> groups)
         {
-            
             switch (method) 
             {
                 case "asc":
-                    foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
-                    {
-                        keyValuePair.Value.Sort();
-                        foreach (string value in keyValuePair.Value)
-                        {
-                            Console.WriteLine(value);
-                        }
-                    }
+                    groups.Value.Sort();
                     break;
                 case "desc":
-                    foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
-                    {
-                        keyValuePair.Value.Sort();
-                        keyValuePair.Value.Reverse();
-                        foreach (string value in keyValuePair.Value)
-                        {
-                            Console.WriteLine(value);
-                        }
-                    }
+                    groups.Value.Sort();
+                    groups.Value.Reverse();
                     break;
                 default:
                     break;
@@ -73,25 +58,15 @@ namespace Subtask_4
             }
 
             string method = Console.ReadLine();
-
-            Test(method, groups);
-
-            //foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
-            //{
-            //    Console.WriteLine($"Группа {keyValuePair.Key}");
-                
-            //    foreach (string value in keyValuePair.Value)
-            //    {
-            //            Console.WriteLine(value);
-            //    }
-            //}
-
-
-            //Console.WriteLine("Введите тип сортировки");
-            //string method = Console.ReadLine();
-
-            //Test(method, groups);
-
+            foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
+            {
+                Console.WriteLine($"Группа {keyValuePair.Key}");
+                Test(method, keyValuePair);
+                foreach (string value in keyValuePair.Value)
+                {
+                    Console.WriteLine(value);
+                }
+            }
 
             Console.ReadKey();
         }
