@@ -40,14 +40,8 @@ namespace Subtask_4
                     string key = null;
                     for (int i = 0; i < temp.Length; i++)
                     {
-                        if (i % 2 == 1)
-                        {
-                            key = temp[i];
-                        }
-                        else if (i % 2 == 0)
-                        {
-                            name = temp[i];
-                        }
+                        name = temp[0];
+                        key = temp[1];
                     }
                     if (!groups.ContainsKey(key))
                     {
