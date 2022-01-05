@@ -5,6 +5,14 @@ namespace Subtask_4
 {
     class Program
     {
+        public static void Test (string input)
+        {
+            if (input == "x")
+            {
+                input.ToUpper ();
+            }
+        }
+
         public static void SortingValues(string method, KeyValuePair<string, List<string>> groups)
         {
             switch (method) 
@@ -29,13 +37,14 @@ namespace Subtask_4
             while (!isExit)
             {
                 string input = Console.ReadLine();
-                string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                if (input == "X" || input == "x")
+                Test(input);
+                if (input == "X")
                 {
                     isExit = true;
                 }
                 else
                 {
+                    string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                     string name = null;
                     string key = null;
                     for (int i = 0; i < temp.Length; i++)
