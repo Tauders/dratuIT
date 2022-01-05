@@ -5,7 +5,7 @@ namespace Subtask_4
 {
     class Program
     {
-        public static void Test(string method, KeyValuePair<string, List<string>> groups)
+        public static void SortingValues(string method, KeyValuePair<string, List<string>> groups)
         {
             switch (method) 
             {
@@ -55,7 +55,7 @@ namespace Subtask_4
             foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
             {
                 Console.WriteLine($"Группа {keyValuePair.Key}");
-                Test(method, keyValuePair);
+                SortingValues(method, keyValuePair);
                 foreach (string value in keyValuePair.Value)
                 {
                     Console.WriteLine(value);
