@@ -37,8 +37,7 @@ namespace Subtask_4
             while (!isExit)
             {
                 string input = Console.ReadLine();
-                Test(input);
-                if (input == "X")
+                if (input.ToUpper() == "X")
                 {
                     isExit = true;
                 }
@@ -59,7 +58,7 @@ namespace Subtask_4
                     groups[key].Add(name);
                 }
             }
-
+            Console.WriteLine("Выбирите метод сортировки");
             string method = Console.ReadLine();
             foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
             {
