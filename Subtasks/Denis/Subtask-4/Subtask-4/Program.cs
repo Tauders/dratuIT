@@ -5,14 +5,6 @@ namespace Subtask_4
 {
     class Program
     {
-        public static void Test (string input)
-        {
-            if (input == "x")
-            {
-                input.ToUpper ();
-            }
-        }
-
         public static void SortingValues(string method, KeyValuePair<string, List<string>> groups)
         {
             switch (method) 
@@ -69,7 +61,6 @@ namespace Subtask_4
                     Console.WriteLine(value);
                 }
             }
-
             Console.ReadKey();
         }
     }
