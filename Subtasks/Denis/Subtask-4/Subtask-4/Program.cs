@@ -29,26 +29,58 @@ namespace Subtask_4
             while (!isExit)
             {
                 string input = Console.ReadLine();
-                if (input.ToUpper() == "X")
+                if (string.IsNullOrWhiteSpace(input))
                 {
-                    isExit = true;
+                    Console.WriteLine("Вы ничего не ввели");
                 }
                 else
                 {
-                    string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                    string name = null;
-                    string key = null;
-                    for (int i = 0; i < temp.Length; i++)
+                    if (input.ToUpper() == "X")
                     {
-                        name = temp[0];
-                        key = temp[1];
+                        isExit = true;
                     }
-                    if (!groups.ContainsKey(key))
+                    else
                     {
-                        groups.Add(key, new List<string>());
+                        string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                        string name = null;
+                        string key = null;
+                        for (int i = 0; i < temp.Length; i++)
+                        {
+                            if (string.IsNullOrWhiteSpace(name))
+                            {
+                                Console.WriteLine("вы не ввели значение");
+                            }
+                            else if (string.IsNullOrWhiteSpace(key))
+                            {
+                                Console.WriteLine("вы не ввели ключ");
+                            }
+                            else
+                            {
+                                name = temp[0];
+                                key = temp[1];
+                            }
+                           
+                        }
+
+                        if (string.IsNullOrWhiteSpace(key))
+                        {
+                            Console.WriteLine("Тест");
+                        }
+                        else
+                        {
+                            if (!groups.ContainsKey(key))
+                            {
+                                groups.Add(key, new List<string>());
+                            }
+                            groups[key].Add(name);
+                        }
+                        
+                        
                     }
-                    groups[key].Add(name);
                 }
+                    
+                
+                
             }
             Console.WriteLine("Выбирите метод сортировки");
             string method = Console.ReadLine();
