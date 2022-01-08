@@ -46,11 +46,11 @@ namespace Subtask_4
                         string key = null;
                         for (int i = 0; i < temp.Length; i++)
                         {
-                            if (string.IsNullOrWhiteSpace(name))
+                            if (string.IsNullOrWhiteSpace(temp[0]))
                             {
                                 Console.WriteLine("вы не ввели значение");
                             }
-                            else if (string.IsNullOrWhiteSpace(key))
+                            else if (string.IsNullOrWhiteSpace(temp[1]))
                             {
                                 Console.WriteLine("вы не ввели ключ");
                             }
@@ -59,7 +59,6 @@ namespace Subtask_4
                                 name = temp[0];
                                 key = temp[1];
                             }
-                           
                         }
 
                         if (string.IsNullOrWhiteSpace(key))
@@ -74,13 +73,8 @@ namespace Subtask_4
                             }
                             groups[key].Add(name);
                         }
-                        
-                        
                     }
-                }
-                    
-                
-                
+                }  
             }
             Console.WriteLine("Выбирите метод сортировки");
             string method = Console.ReadLine();
