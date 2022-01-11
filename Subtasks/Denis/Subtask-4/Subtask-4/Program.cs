@@ -41,29 +41,21 @@ namespace Subtask_4
                     }
                     else
                     {
-                        string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                         string name = null;
                         string key = null;
+                        string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                         for (int i = 0; i < temp.Length; i++)
                         {
-                            if (string.IsNullOrWhiteSpace(temp[0]))
+                            name = temp[0];
+                            if (temp.Length > 1)
                             {
-                                Console.WriteLine("вы не ввели значение");
-                            }
-                            else if (string.IsNullOrWhiteSpace(temp[1]))
-                            {
-                                Console.WriteLine("вы не ввели ключ");
-                            }
-                            else
-                            {
-                                name = temp[0];
                                 key = temp[1];
                             }
+                            
                         }
-
                         if (string.IsNullOrWhiteSpace(key))
                         {
-                            Console.WriteLine("Тест");
+                            Console.WriteLine("Вы не ввели ключ");
                         }
                         else
                         {
