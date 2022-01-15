@@ -5,7 +5,7 @@ namespace Subtask_4
 {
     class Program
     {
-        public static void SortingValues(string method, KeyValuePair<string, List<string>> groups)
+        public static void SortKeyValueValues(string method, KeyValuePair<string, List<string>> groups)
         {
             switch (method) 
             {
@@ -17,6 +17,7 @@ namespace Subtask_4
                     groups.Value.Reverse();
                     break;
                 default:
+                    Console.WriteLine("Такой команды нету");
                     break;
             }
         }
@@ -42,38 +43,38 @@ namespace Subtask_4
                     else
                     {
                         string name = null;
-                        string key = null;
+                        string group = null;
                         string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                         for (int i = 0; i < temp.Length; i++)
                         {
                             name = temp[0];
                             if (temp.Length > 1)
                             {
-                                key = temp[1];
+                                group = temp[1];
                             }
                             
                         }
-                        if (string.IsNullOrWhiteSpace(key))
+                        if (string.IsNullOrWhiteSpace(group))
                         {
                             Console.WriteLine("Вы не ввели ключ");
                         }
                         else
                         {
-                            if (!groups.ContainsKey(key))
+                            if (!groups.ContainsKey(group))
                             {
-                                groups.Add(key, new List<string>());
+                                groups.Add(group, new List<string>());
                             }
-                            groups[key].Add(name);
+                            groups[group].Add(name);
                         }
                     }
                 }  
             }
-            Console.WriteLine("Выбирите метод сортировки");
+            Console.WriteLine("Выберите метод сортировки");
             string method = Console.ReadLine();
             foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
             {
                 Console.WriteLine($"Группа {keyValuePair.Key}");
-                SortingValues(method, keyValuePair);
+                SortKeyValueValues(method, keyValuePair);
                 foreach (string value in keyValuePair.Value)
                 {
                     Console.WriteLine(value);
