@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CalculatorCMD": {
+      "commandName": "Project",
+      "commandLineArgs": "2 0 /"
+    }
+  }
+}
