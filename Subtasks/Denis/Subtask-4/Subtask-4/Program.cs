@@ -88,8 +88,7 @@ namespace Subtask_4
                 }
                 else
                 {
-                    Console.WriteLine("Такой команды не существует");
-                    Console.WriteLine("Введите метод повторно");
+                    Console.WriteLine("Такой команды не существует. Введите метод повторно");
                 }
             }
             Console.ReadKey();
