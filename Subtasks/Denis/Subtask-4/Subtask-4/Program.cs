@@ -17,7 +17,6 @@ namespace Subtask_4
                     groups.Value.Reverse();
                     break;
                 default:
-                    Console.WriteLine("Такой команды нету");
                     break;
             }
         }
@@ -71,14 +70,21 @@ namespace Subtask_4
             }
             Console.WriteLine("Выберите метод сортировки");
             string method = Console.ReadLine();
-            foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
+            if ((method == "asc") || (method == "desc") )
             {
-                Console.WriteLine($"Группа {keyValuePair.Key}");
-                SortKeyValueValues(method, keyValuePair);
-                foreach (string value in keyValuePair.Value)
+                foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
                 {
-                    Console.WriteLine(value);
+                    Console.WriteLine($"Группа {keyValuePair.Key}");
+                    SortKeyValueValues(method, keyValuePair);
+                    foreach (string value in keyValuePair.Value)
+                    {
+                        Console.WriteLine(value);
+                    }
                 }
+            }
+            else
+            {
+                Console.WriteLine("Такой команды не существует");
             }
             Console.ReadKey();
         }
