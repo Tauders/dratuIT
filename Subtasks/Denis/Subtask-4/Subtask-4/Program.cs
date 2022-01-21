@@ -23,7 +23,7 @@ namespace Subtask_4
             }
             else
             {
-                Console.WriteLine("Исходный вариант словаря");
+                Console.WriteLine("Данной команды не существует. \n Вывожу исходный вариант словаря");
             }
             foreach (KeyValuePair<string, List<string>> group in groups)
             {
