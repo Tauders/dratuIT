@@ -5,18 +5,47 @@ namespace Subtask_4
 {
     class Program
     {
-        public static void SortKeyValueValues(string method, KeyValuePair<string, List<string>> groups)
+        public enum SortingMethod
         {
-            switch (method) 
+            asc = 1,
+            desc
+        }
+
+        public static void PrintResult (string method, SortingMethod sorting, Dictionary<string, List<string>> groups)
+        {
+            if ((method == "asc") || (method == "1"))
             {
-                case "asc":
+                sorting = SortingMethod.asc;
+            }
+            else if ((method == "desc") || (method == "2"))
+            {
+                sorting = SortingMethod.desc;
+            }
+            else
+            {
+                Console.WriteLine("Исходный вариант словаря");
+            }
+            foreach (KeyValuePair<string, List<string>> group in groups)
+            {
+                Console.WriteLine($"Группа {group.Key}");
+                SortKeyValueValues(sorting, group);
+                foreach (string value in group.Value)
+                {
+                    Console.WriteLine(value);
+                }
+            }
+        }
+
+        public static void SortKeyValueValues(SortingMethod method, KeyValuePair<string, List<string>> groups)
+        {
+            switch (method)
+            {
+                case SortingMethod.asc:
                     groups.Value.Sort();
                     break;
-                case "desc":
+                case SortingMethod.desc:
                     groups.Value.Sort();
                     groups.Value.Reverse();
-                    break;
-                default:
                     break;
             }
         }
@@ -68,29 +97,10 @@ namespace Subtask_4
                     }
                 }  
             }
-            Console.WriteLine("Выберите метод сортировки");
-            bool isSelect = false;
-            while (!isSelect)
-            {
-                string method = Console.ReadLine();
-                if ((method == "asc") || (method == "desc"))
-                {
-                    foreach (KeyValuePair<string, List<string>> keyValuePair in groups)
-                    {
-                        Console.WriteLine($"Группа {keyValuePair.Key}");
-                        SortKeyValueValues(method, keyValuePair);
-                        foreach (string value in keyValuePair.Value)
-                        {
-                            Console.WriteLine(value);
-                        }
-                    }
-                    isSelect = true;
-                }
-                else
-                {
-                    Console.WriteLine("Такой команды не существует. Введите метод повторно");
-                }
-            }
+            Console.WriteLine("Выберите метод сортировки: \n1.asc \n2.desc");
+            SortingMethod sorting = 0; 
+            string method = Console.ReadLine();
+            PrintResult(method, sorting, groups);
             Console.ReadKey();
         }
     }
