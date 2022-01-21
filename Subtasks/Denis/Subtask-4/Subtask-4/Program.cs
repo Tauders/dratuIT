@@ -11,8 +11,9 @@ namespace Subtask_4
             desc
         }
 
-        public static void PrintResult (string method, SortingMethod sorting, Dictionary<string, List<string>> groups)
+        public static void PrintResult(string method, Dictionary<string, List<string>> groups)
         {
+            SortingMethod sorting = 0;
             if ((method == "asc") || (method == "1"))
             {
                 sorting = SortingMethod.asc;
@@ -98,9 +99,9 @@ namespace Subtask_4
                 }  
             }
             Console.WriteLine("Выберите метод сортировки: \n1.asc \n2.desc");
-            SortingMethod sorting = 0; 
+            
             string method = Console.ReadLine();
-            PrintResult(method, sorting, groups);
+            PrintResult(method, groups);
             Console.ReadKey();
         }
     }
