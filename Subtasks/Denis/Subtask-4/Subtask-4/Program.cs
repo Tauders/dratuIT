@@ -11,7 +11,7 @@ namespace Subtask_4
             desc
         }
 
-        public static void PrintResult(string method, Dictionary<string, List<string>> groups)
+        public static SortingMethod ConvertInput(string method)
         {
             SortingMethod sorting = 0;
             if ((method == "asc") || (method == "1"))
@@ -24,17 +24,9 @@ namespace Subtask_4
             }
             else
             {
-                Console.WriteLine("Данной команды не существует. \n Вывожу исходный вариант словаря");
+                Console.WriteLine("Данной команды не существует.\n Вывожу исходный вариант словаря");
             }
-            foreach (KeyValuePair<string, List<string>> group in groups)
-            {
-                Console.WriteLine($"Группа {group.Key}");
-                SortKeyValueValues(sorting, group);
-                foreach (string value in group.Value)
-                {
-                    Console.WriteLine(value);
-                }
-            }
+            return sorting;
         }
 
         public static void SortKeyValueValues(SortingMethod method, KeyValuePair<string, List<string>> groups)
@@ -99,9 +91,17 @@ namespace Subtask_4
                 }  
             }
             Console.WriteLine("Выберите метод сортировки: \n1.asc \n2.desc");
-            
             string method = Console.ReadLine();
-            PrintResult(method, groups);
+            SortingMethod sorting = ConvertInput(method);
+            foreach (KeyValuePair<string, List<string>> group in groups)
+            {
+                Console.WriteLine($"Группа {group.Key}");
+                SortKeyValueValues(sorting, group);
+                foreach (string value in group.Value)
+                {
+                    Console.WriteLine(value);
+                }
+            }
             Console.ReadKey();
         }
     }
