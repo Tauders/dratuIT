@@ -22,11 +22,24 @@ namespace Subtask_4
             {
                 sorting = SortingMethod.desc;
             }
-            else
-            {
-                Console.WriteLine("Данной команды не существует.\n Вывожу исходный вариант словаря");
-            }
             return sorting;
+        }
+
+        public static SortingMethod Undefined(SortingMethod method)
+        {
+            while (!isSelect)
+            {
+                input = Console.ReadLine();
+                if ((method == SortingMethod.asc) || (method == SortingMethod.desc))
+                {
+                    isSelect = true;
+                }
+                else
+                {
+                    Console.WriteLine("Данной команды не существует. Повторите ввод");
+                }
+            }
+            return method;
         }
 
         public static void SortKeyValueValues(SortingMethod method, KeyValuePair<string, List<string>> groups)
@@ -39,6 +52,8 @@ namespace Subtask_4
                 case SortingMethod.desc:
                     groups.Value.Sort();
                     groups.Value.Reverse();
+                    break;
+                default:
                     break;
             }
         }
@@ -93,6 +108,7 @@ namespace Subtask_4
             Console.WriteLine("Выберите метод сортировки: \n1.asc \n2.desc");
             string method = Console.ReadLine();
             SortingMethod sorting = ConvertInput(method);
+            Undefined(sorting);
             foreach (KeyValuePair<string, List<string>> group in groups)
             {
                 Console.WriteLine($"Группа {group.Key}");
