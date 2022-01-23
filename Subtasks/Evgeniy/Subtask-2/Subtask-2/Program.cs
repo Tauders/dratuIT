@@ -13,8 +13,14 @@ namespace Subtask_2
             string[] numbers = new string[value];
             string s = Console.ReadLine();
             numbers = s.Split(new char[] { ' ' });
+            while (numbers.Length > value)
+            {
+                Console.WriteLine("Вы ввели много данных, попробуйте снова");
+                s = Console.ReadLine();
+                numbers = s.Split(new char[] { ' ' });
+            }
             int i = 0;
-            while (i != (value - 1))
+            while (i < value)
             {
                 bool firstSuccess = int.TryParse(numbers[i], out int newNumbers);
                 if (firstSuccess)
@@ -51,6 +57,11 @@ namespace Subtask_2
                              Console.WriteLine("Неверно введён индекс массива: введите существующий индекс массива");
                          }
                     }
+            }
+            if (counter == 0)
+            {
+                Console.WriteLine("Выход из программы");
+                return;
             }
             Console.WriteLine("Числа выбраны, введите необходимое действие");
             string actions = Console.ReadLine();
