@@ -8,7 +8,9 @@ namespace Subtask_4
         public enum SortingMethod
         {
             asc = 1,
-            desc
+            desc,
+            exit,
+            undefined
         }
 
         public static SortingMethod ConvertInput(string method)
@@ -22,26 +24,31 @@ namespace Subtask_4
             {
                 sorting = SortingMethod.desc;
             }
+            else if ((method == "exit") || (method == "3"))
+            {
+                sorting = SortingMethod.exit;
+            }
+            else
+            {
+                sorting = SortingMethod.undefined;
+                Console.WriteLine("Указанный вами метод не существует. Поворите ввод");
+            }
             return sorting;
         }
 
-        public static SortingMethod Undefined(SortingMethod method)
+        public static void PrintResult(Dictionary<string, List<string>> groups, SortingMethod sorting)
         {
-            while (!isSelect)
+            foreach (KeyValuePair<string, List<string>> group in groups)
             {
-                input = Console.ReadLine();
-                if ((method == SortingMethod.asc) || (method == SortingMethod.desc))
+                Console.WriteLine($"Группа {group.Key}");
+                SortKeyValueValues(sorting, group);
+                foreach (string value in group.Value)
                 {
-                    isSelect = true;
-                }
-                else
-                {
-                    Console.WriteLine("Данной команды не существует. Повторите ввод");
+                    Console.WriteLine(value);
                 }
             }
-            return method;
         }
-
+        
         public static void SortKeyValueValues(SortingMethod method, KeyValuePair<string, List<string>> groups)
         {
             switch (method)
@@ -52,6 +59,9 @@ namespace Subtask_4
                 case SortingMethod.desc:
                     groups.Value.Sort();
                     groups.Value.Reverse();
+                    break;
+                case SortingMethod.exit:
+                    Console.WriteLine("Несортированный словарь");
                     break;
                 default:
                     break;
@@ -105,19 +115,15 @@ namespace Subtask_4
                     }
                 }  
             }
-            Console.WriteLine("Выберите метод сортировки: \n1.asc \n2.desc");
+            Console.WriteLine("Выберите метод сортировки: \n1. asc (сортировка по возрастанию) \n2. desc (сортировка по убыванию) \n3. exit (вывести исходный словарь)");
             string method = Console.ReadLine();
             SortingMethod sorting = ConvertInput(method);
-            Undefined(sorting);
-            foreach (KeyValuePair<string, List<string>> group in groups)
+            while (sorting == SortingMethod.undefined)
             {
-                Console.WriteLine($"Группа {group.Key}");
-                SortKeyValueValues(sorting, group);
-                foreach (string value in group.Value)
-                {
-                    Console.WriteLine(value);
-                }
+                sorting = ConvertInput(method);
+                //method = Console.ReadLine();
             }
+            //PrintResult(groups, sorting);
             Console.ReadKey();
         }
     }
