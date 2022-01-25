@@ -7,82 +7,80 @@ namespace Subtask_2
         static void Main(string[] args)
         {
             Random rnd = new Random();
-            int value = rnd.Next(3, 7);
-            int[] convertedNumbers = new int[value];
-            Console.WriteLine($"Программа сгенерировала случайное число, {value}");
-            string[] numbers = new string[value];
-            string s = Console.ReadLine();
-            numbers = s.Split(new char[] { ' ' });
-            while (numbers.Length > value)
+            int generatedNumber = rnd.Next(3, 7);
+            Console.WriteLine($"Программа сгенерировала случайное число, {generatedNumber}");
+            string userInput = Console.ReadLine();
+            string[] numbers = userInput.Split(new char[] { ' ' });
+            while (numbers.Length > generatedNumber)
             {
                 Console.WriteLine("Вы ввели много данных, попробуйте снова");
-                s = Console.ReadLine();
-                numbers = s.Split(new char[] { ' ' });
+                userInput = Console.ReadLine();
+                numbers = userInput.Split(new char[] { ' ' });
             }
-            int i = 0;
-            while (i < value)
+            int[] convertedNumbers = new int[generatedNumber];
+            int counter = 0;
+            while (counter < generatedNumber)
             {
-                bool firstSuccess = int.TryParse(numbers[i], out int newNumbers);
-                if (firstSuccess)
+                if (int.TryParse(numbers[counter], out int newNumbers))
                 {
-                    convertedNumbers[i] = newNumbers;
-                    i++;
+                    convertedNumbers[counter] = newNumbers;
+                    counter++;
                 }
                 else
                 {
                     Console.WriteLine("Некорректный ввод: Введите числовые значения");
-                    s = Console.ReadLine();
-                    numbers = s.Split(new char[] { ' ' });
-                    i = 0;
+                    userInput = Console.ReadLine();
+                    numbers = userInput.Split(new char[] { ' ' });
+                    counter = 0;
                 }
             }
             Console.WriteLine("Числа ввведены, выберите нужное из доступных. X - выход");
-            int[] choosenNumbers = new int[value];
+            int[] choosenNumbers = new int[generatedNumber];
             
-            int counter = 0;
+            counter = 0;
             string inputNumbers = "";
             while (inputNumbers != "X")
             {
                 inputNumbers = Console.ReadLine();
-                    if (inputNumbers != "X")
+                if (inputNumbers != "X")
+                {
+                    bool isParsingSuccessful = int.TryParse(inputNumbers, out int newInputNumbers);
+                    if (isParsingSuccessful && newInputNumbers < generatedNumber && newInputNumbers >= 0)
                     {
-                         bool secondSuccess = int.TryParse(inputNumbers, out int newInputNumbers);
-                         if (secondSuccess && newInputNumbers < value && newInputNumbers >= 0)
-                         {
-                              choosenNumbers[counter] = convertedNumbers[newInputNumbers];
-                              counter++;
-                         }
-                         else
-                         {
-                             Console.WriteLine("Неверно введён индекс массива: введите существующий индекс массива");
-                         }
+                        choosenNumbers[counter] = convertedNumbers[newInputNumbers];
+                        counter++;
                     }
+                    else
+                    {
+                        Console.WriteLine("Неверно введён индекс массива: введите существующий индекс массива");
+                    }
+                }
             }
             if (counter == 0)
             {
-                Console.WriteLine("Выход из программы");
+                Console.WriteLine("Выход из программы, так как вы ввели Х прежде, чем выбрали числа");
                 return;
             }
             Console.WriteLine("Числа выбраны, введите необходимое действие");
-            string actions = Console.ReadLine();
+            string action = Console.ReadLine();
             int total = choosenNumbers[0];
-            if (actions == "+")
+            if (action == "+")
             {
-                for (i = 1; i <= counter; i++)
+                for (int i = 1; i <= counter; i++)
                 {
                     total += choosenNumbers[i];
                 }
             }
-            else if (actions == "-")
+            else if (action == "-")
             {
-                for(i = 1; i <= counter; i++)
+                for(int i = 1; i <= counter; i++)
                 {
                     total -= choosenNumbers[i];
                 }
             }
-            else if (actions == "/")
+            else if (action == "/")
             {
-                for (i = 1; i <= counter; i++)
+                for (int i = 1; i <= counter; i++)
                 {
                     if (choosenNumbers[i] == 0)
                     {
@@ -91,9 +89,9 @@ namespace Subtask_2
                     total /= choosenNumbers[i];
                 }
             }
-            else if (actions == "*")
+            else if (action == "*")
             {
-                for (i = 1; i <= counter; i++)
+                for (int i = 1; i <= counter; i++)
                 {
                     total *= choosenNumbers[i];
                 }
