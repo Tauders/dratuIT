@@ -9,13 +9,11 @@ namespace Subtask_2
             Random rnd = new Random();
             int generatedNumber = rnd.Next(3, 7);
             Console.WriteLine($"Программа сгенерировала случайное число, {generatedNumber}");
-            string userInput = Console.ReadLine();
-            string[] numbers = userInput.Split(new char[] { ' ' });
+            string[] numbers = Stringsplit();
             while (numbers.Length > generatedNumber)
             {
                 Console.WriteLine("Вы ввели много данных, попробуйте снова");
-                userInput = Console.ReadLine();
-                numbers = userInput.Split(new char[] { ' ' });
+                numbers = Stringsplit();
             }
             int[] convertedNumbers = new int[generatedNumber];
             int counter = 0;
@@ -29,8 +27,7 @@ namespace Subtask_2
                 else
                 {
                     Console.WriteLine("Некорректный ввод: Введите числовые значения");
-                    userInput = Console.ReadLine();
-                    numbers = userInput.Split(new char[] { ' ' });
+                    numbers = Stringsplit();
                     counter = 0;
                 }
             }
@@ -39,13 +36,13 @@ namespace Subtask_2
             
             counter = 0;
             string inputNumbers = "";
-            while (inputNumbers != "X")
+            bool checkUserInput = false;
+            while (!checkUserInput)
             {
                 inputNumbers = Console.ReadLine();
                 if (inputNumbers != "X")
-                {
-                    bool isParsingSuccessful = int.TryParse(inputNumbers, out int newInputNumbers);
-                    if (isParsingSuccessful && newInputNumbers < generatedNumber && newInputNumbers >= 0)
+                { 
+                    if (int.TryParse(inputNumbers, out int newInputNumbers) && newInputNumbers < generatedNumber && newInputNumbers >= 0)
                     {
                         choosenNumbers[counter] = convertedNumbers[newInputNumbers];
                         counter++;
@@ -54,6 +51,10 @@ namespace Subtask_2
                     {
                         Console.WriteLine("Неверно введён индекс массива: введите существующий индекс массива");
                     }
+                }
+                else
+                {
+                    checkUserInput = true;
                 }
             }
             if (counter == 0)
@@ -77,6 +78,9 @@ namespace Subtask_2
                     break;
                 case "*":
                     total = Multiplication(choosenNumbers, counter);
+                    break;
+                default:
+                    Console.WriteLine("Вы ввели неверный оператор действия. Попробуйте ещё раз");
                     break;
             }
             Console.WriteLine(total);
@@ -122,6 +126,12 @@ namespace Subtask_2
                 total *= choosenNumbers[i];
             }
             return total;
+        }
+        public static string[] Stringsplit()
+        {
+            string userInput = Console.ReadLine();
+            string[] numbers = userInput.Split(new char[] { ' ' });
+            return numbers;
         }
     }
 }
