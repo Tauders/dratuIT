@@ -19,14 +19,17 @@ namespace Subtask_4
             if ((method == "asc") || (method == "1"))
             {
                 sorting = SortingMethod.asc;
+                Console.WriteLine("По возрастанию");
             }
             else if ((method == "desc") || (method == "2"))
             {
                 sorting = SortingMethod.desc;
+                Console.WriteLine("По убыванию");
             }
             else if ((method == "exit") || (method == "3"))
             {
                 sorting = SortingMethod.exit;
+                Console.WriteLine("Не сортированный список");
             }
             else
             {
@@ -61,7 +64,7 @@ namespace Subtask_4
                     groups.Value.Reverse();
                     break;
                 case SortingMethod.exit:
-                    Console.WriteLine("Несортированный словарь");
+                    
                     break;
                 default:
                     break;
@@ -116,14 +119,18 @@ namespace Subtask_4
                 }  
             }
             Console.WriteLine("Выберите метод сортировки: \n1. asc (сортировка по возрастанию) \n2. desc (сортировка по убыванию) \n3. exit (вывести исходный словарь)");
-            string method = Console.ReadLine();
-            SortingMethod sorting = ConvertInput(method);
-            while (sorting == SortingMethod.undefined)
+            bool isUndefined = false;
+            SortingMethod sorting = 0;
+            while (!isUndefined)
             {
+                string method = Console.ReadLine();
                 sorting = ConvertInput(method);
-                //method = Console.ReadLine();
+                if (sorting != SortingMethod.undefined)
+                {
+                    isUndefined = true;
+                }
             }
-            //PrintResult(groups, sorting);
+            PrintResult(groups, sorting);
             Console.ReadKey();
         }
     }
