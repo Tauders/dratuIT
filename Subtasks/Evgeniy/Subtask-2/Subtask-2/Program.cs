@@ -63,40 +63,65 @@ namespace Subtask_2
             }
             Console.WriteLine("Числа выбраны, введите необходимое действие");
             string action = Console.ReadLine();
-            int total = choosenNumbers[0];
-            if (action == "+")
+            int total = 0;
+            switch (action)
             {
-                for (int i = 1; i <= counter; i++)
-                {
-                    total += choosenNumbers[i];
-                }
-            }
-            else if (action == "-")
-            {
-                for(int i = 1; i <= counter; i++)
-                {
-                    total -= choosenNumbers[i];
-                }
-            }
-            else if (action == "/")
-            {
-                for (int i = 1; i <= counter; i++)
-                {
-                    if (choosenNumbers[i] == 0)
-                    {
-                        Console.WriteLine("На ноль делить нельзя");
-                    }
-                    total /= choosenNumbers[i];
-                }
-            }
-            else if (action == "*")
-            {
-                for (int i = 1; i <= counter; i++)
-                {
-                    total *= choosenNumbers[i];
-                }
+                case "+":
+                    total = Summation(choosenNumbers, counter);
+                    break;
+                case "-":
+                    total = Subtraction(choosenNumbers, counter);
+                    break;
+                case "/":
+                    total = Division(choosenNumbers, counter);
+                    break;
+                case "*":
+                    total = Multiplication(choosenNumbers, counter);
+                    break;
             }
             Console.WriteLine(total);
+
+           
+        }
+        public static int Summation(int[] choosenNumbers, int counter)
+        {
+            int total = choosenNumbers[0];
+            for (int i = 1; i <= counter; i++)
+            {
+                total += choosenNumbers[i];
+            }
+            return total;
+        }
+        public static int Subtraction(int[] choosenNumbers, int counter)
+        {
+            int total = choosenNumbers[0];
+            for (int i = 1; i <= counter; i++)
+            {
+                total -= choosenNumbers[i];
+            }
+            return total;
+        }
+        public static int Division(int[] choosenNumbers, int counter)
+        {
+            int total = choosenNumbers[0];
+            for (int i = 1; i <= counter; i++)
+            {
+                if (choosenNumbers[i] == 0)
+                {
+                    Console.WriteLine("На ноль делить нельзя");
+                }
+                total /= choosenNumbers[i];
+            }
+            return total;
+        }
+        public static int Multiplication(int[] choosenNumbers, int counter)
+        {
+            int total = choosenNumbers[0];
+            for (int i = 1; i <= counter; i++)
+            {
+                total *= choosenNumbers[i];
+            }
+            return total;
         }
     }
 }
