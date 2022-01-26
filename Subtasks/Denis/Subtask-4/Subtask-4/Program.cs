@@ -1,39 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
+
 namespace Subtask_4
 {
     class Program
     {
-        public enum SortingMethod
-        {
-            asc = 1,
-            desc,
-            exit,
-            undefined
-        }
-
         public static SortingMethod ConvertInput(string method)
         {
             SortingMethod sorting = 0;
             if ((method == "asc") || (method == "1"))
             {
-                sorting = SortingMethod.asc;
+                sorting = SortingMethod.Asc;
                 Console.WriteLine("По возрастанию");
             }
             else if ((method == "desc") || (method == "2"))
             {
-                sorting = SortingMethod.desc;
+                sorting = SortingMethod.Desc;
                 Console.WriteLine("По убыванию");
             }
             else if ((method == "exit") || (method == "3"))
             {
-                sorting = SortingMethod.exit;
+                sorting = SortingMethod.Exit;
                 Console.WriteLine("Не сортированный список");
             }
             else
             {
-                sorting = SortingMethod.undefined;
+                sorting = SortingMethod.Undefined;
                 Console.WriteLine("Указанный вами метод не существует. Поворите ввод");
             }
             return sorting;
@@ -56,14 +50,14 @@ namespace Subtask_4
         {
             switch (method)
             {
-                case SortingMethod.asc:
+                case SortingMethod.Asc:
                     groups.Value.Sort();
                     break;
-                case SortingMethod.desc:
+                case SortingMethod.Desc:
                     groups.Value.Sort();
                     groups.Value.Reverse();
                     break;
-                case SortingMethod.exit:
+                case SortingMethod.Exit:
                     
                     break;
                 default:
@@ -119,15 +113,15 @@ namespace Subtask_4
                 }  
             }
             Console.WriteLine("Выберите метод сортировки: \n1. asc (сортировка по возрастанию) \n2. desc (сортировка по убыванию) \n3. exit (вывести исходный словарь)");
-            bool isUndefined = false;
-            SortingMethod sorting = 0;
+            bool isUndefined = true;
+            SortingMethod sorting = SortingMethod.Undefined;
             while (!isUndefined)
             {
                 string method = Console.ReadLine();
                 sorting = ConvertInput(method);
-                if (sorting != SortingMethod.undefined)
+                if (sorting != SortingMethod.Undefined)
                 {
-                    isUndefined = true;
+                    isUndefined = false;
                 }
             }
             PrintResult(groups, sorting);
