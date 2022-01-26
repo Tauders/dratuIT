@@ -7,31 +7,7 @@ namespace Subtask_4
 {
     class Program
     {
-        public static SortingMethod ConvertInput(string method)
-        {
-            SortingMethod sorting = 0;
-            if ((method == "asc") || (method == "1"))
-            {
-                sorting = SortingMethod.Asc;
-                Console.WriteLine("По возрастанию");
-            }
-            else if ((method == "desc") || (method == "2"))
-            {
-                sorting = SortingMethod.Desc;
-                Console.WriteLine("По убыванию");
-            }
-            else if ((method == "exit") || (method == "3"))
-            {
-                sorting = SortingMethod.Exit;
-                Console.WriteLine("Не сортированный список");
-            }
-            else
-            {
-                sorting = SortingMethod.Undefined;
-                Console.WriteLine("Указанный вами метод не существует. Поворите ввод");
-            }
-            return sorting;
-        }
+
 
         public static void PrintResult(Dictionary<string, List<string>> groups, SortingMethod sorting)
         {
@@ -52,17 +28,17 @@ namespace Subtask_4
             {
                 case SortingMethod.Asc:
                     groups.Value.Sort();
+                    Console.WriteLine("По возрастанию");
                     break;
                 case SortingMethod.Desc:
                     groups.Value.Sort();
                     groups.Value.Reverse();
-                    break;
-                case SortingMethod.Exit:
-                    
+                    Console.WriteLine("По убыванию");
                     break;
                 default:
                     break;
             }
+            
         }
 
         static void Main(string[] args)
@@ -95,7 +71,7 @@ namespace Subtask_4
                             {
                                 group = temp[1];
                             }
-                            
+
                         }
                         if (string.IsNullOrWhiteSpace(group))
                         {
@@ -110,22 +86,29 @@ namespace Subtask_4
                             groups[group].Add(name);
                         }
                     }
-                }  
+                }
             }
-            Console.WriteLine("Выберите метод сортировки: \n1. asc (сортировка по возрастанию) \n2. desc (сортировка по убыванию) \n3. exit (вывести исходный словарь)");
-            bool isUndefined = true;
+            Console.WriteLine("Выберите метод сортировки: \n1. Asc \n2. Desc");
             SortingMethod sorting = SortingMethod.Undefined;
-            while (!isUndefined)
+            bool isUndefined = true;
+            while (isUndefined)
             {
                 string method = Console.ReadLine();
-                sorting = ConvertInput(method);
-                if (sorting != SortingMethod.Undefined)
+                method = method.Replace(method[0], char.ToUpper(method[0]));
+                if (Enum.IsDefined(typeof(SortingMethod), method) == true)
                 {
+                    sorting = (SortingMethod)Enum.Parse(typeof(SortingMethod), method);
                     isUndefined = false;
+                }
+                else
+                {
+                    sorting = SortingMethod.Undefined;
+                    Console.WriteLine("Данного метода не существует. Повторите ввод");
                 }
             }
             PrintResult(groups, sorting);
             Console.ReadKey();
+        
         }
     }
 }
