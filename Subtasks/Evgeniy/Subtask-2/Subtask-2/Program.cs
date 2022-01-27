@@ -19,9 +19,9 @@ namespace Subtask_2
             int counter = 0;
             while (counter < lengthUserInput)
             {
-                if (int.TryParse(result[counter], out int newNumbers))
+                if (int.TryParse(result[counter], out int newNumber))
                 {
-                    convertedNumbers[counter] = newNumbers;
+                    convertedNumbers[counter] = newNumber;
                     counter++;
                 }
                 else
@@ -42,9 +42,9 @@ namespace Subtask_2
                 inputNumber = Console.ReadLine();
                 if (inputNumber != "X")
                 { 
-                    if (int.TryParse(inputNumber, out int newInputNumbers) && newInputNumbers < lengthUserInput && newInputNumbers >= 0)
+                    if (int.TryParse(inputNumber, out int newInputNumber) && newInputNumber < lengthUserInput && newInputNumber >= 0)
                     {
-                        choosenNumbers[counter] = convertedNumbers[newInputNumbers];
+                        choosenNumbers[counter] = convertedNumbers[newInputNumber];
                         counter++;
                     }
                     else
@@ -64,11 +64,10 @@ namespace Subtask_2
             }
             Console.WriteLine("Числа выбраны, введите необходимое действие");
             int total = 0;
-            string action = "";
             bool isValidAction = false;
             while (!isValidAction)
             {
-                action = Console.ReadLine();
+                string action = Console.ReadLine();
                 switch (action)
                 {
                     case "+":
@@ -92,8 +91,8 @@ namespace Subtask_2
                         break;
                 }
             }
+            Console.WriteLine(total);
 
-           
         }
         public static int Summation(int[] choosenNumbers, int counter)
         {
@@ -102,7 +101,6 @@ namespace Subtask_2
             {
                 total += choosenNumbers[i];
             }
-            Console.WriteLine(total);
             return total;
         }
         public static int Subtraction(int[] choosenNumbers, int counter)
@@ -112,7 +110,6 @@ namespace Subtask_2
             {
                 total -= choosenNumbers[i];
             }
-            Console.WriteLine(total);
             return total;
         }
         public static int Division(int[] choosenNumbers, int counter)
@@ -126,7 +123,6 @@ namespace Subtask_2
                 }
                 total /= choosenNumbers[i];
             }
-            Console.WriteLine(total);
             return total;
         }
         public static int Multiplication(int[] choosenNumbers, int counter)
@@ -136,14 +132,12 @@ namespace Subtask_2
             {
                 total *= choosenNumbers[i];
             }
-            Console.WriteLine(total);
             return total;
         }
         public static string[] ReadAndSplitUserInput()
         {
             string userInput = Console.ReadLine();
-            string[] result = userInput.Split(new char[] { ' ' });
-            return result;
+            return userInput.Split(new char[] { ' ' });
         }
     }
 }
