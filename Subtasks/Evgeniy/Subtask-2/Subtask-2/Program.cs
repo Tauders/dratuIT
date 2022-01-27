@@ -7,19 +7,19 @@ namespace Subtask_2
         static void Main(string[] args)
         {
             Random rnd = new Random();
-            int generatedNumber = rnd.Next(3, 7);
-            Console.WriteLine($"Программа сгенерировала случайное число, {generatedNumber}");
-            string[] numbers = Stringsplit();
-            while (numbers.Length > generatedNumber)
+            int lengthUserInput = rnd.Next(3, 7);
+            Console.WriteLine($"Программа сгенерировала случайное число, {lengthUserInput}");
+            string[] result = ReadAndSplitUserInput();
+            while (result.Length > lengthUserInput)
             {
                 Console.WriteLine("Вы ввели много данных, попробуйте снова");
-                numbers = Stringsplit();
+                result = ReadAndSplitUserInput();
             }
-            int[] convertedNumbers = new int[generatedNumber];
+            int[] convertedNumbers = new int[lengthUserInput];
             int counter = 0;
-            while (counter < generatedNumber)
+            while (counter < lengthUserInput)
             {
-                if (int.TryParse(numbers[counter], out int newNumbers))
+                if (int.TryParse(result[counter], out int newNumbers))
                 {
                     convertedNumbers[counter] = newNumbers;
                     counter++;
@@ -27,22 +27,22 @@ namespace Subtask_2
                 else
                 {
                     Console.WriteLine("Некорректный ввод: Введите числовые значения");
-                    numbers = Stringsplit();
+                    result = ReadAndSplitUserInput();
                     counter = 0;
                 }
             }
             Console.WriteLine("Числа ввведены, выберите нужное из доступных. X - выход");
-            int[] choosenNumbers = new int[generatedNumber];
+            int[] choosenNumbers = new int[lengthUserInput];
             
             counter = 0;
-            string inputNumbers = "";
-            bool checkUserInput = false;
-            while (!checkUserInput)
+            string inputNumber = "";
+            bool validUserInput = false;
+            while (!validUserInput)
             {
-                inputNumbers = Console.ReadLine();
-                if (inputNumbers != "X")
+                inputNumber = Console.ReadLine();
+                if (inputNumber != "X")
                 { 
-                    if (int.TryParse(inputNumbers, out int newInputNumbers) && newInputNumbers < generatedNumber && newInputNumbers >= 0)
+                    if (int.TryParse(inputNumber, out int newInputNumbers) && newInputNumbers < lengthUserInput && newInputNumbers >= 0)
                     {
                         choosenNumbers[counter] = convertedNumbers[newInputNumbers];
                         counter++;
@@ -54,7 +54,7 @@ namespace Subtask_2
                 }
                 else
                 {
-                    checkUserInput = true;
+                    validUserInput = true;
                 }
             }
             if (counter == 0)
@@ -63,27 +63,35 @@ namespace Subtask_2
                 return;
             }
             Console.WriteLine("Числа выбраны, введите необходимое действие");
-            string action = Console.ReadLine();
             int total = 0;
-            switch (action)
+            string action = "";
+            bool isValidAction = false;
+            while (!isValidAction)
             {
-                case "+":
-                    total = Summation(choosenNumbers, counter);
-                    break;
-                case "-":
-                    total = Subtraction(choosenNumbers, counter);
-                    break;
-                case "/":
-                    total = Division(choosenNumbers, counter);
-                    break;
-                case "*":
-                    total = Multiplication(choosenNumbers, counter);
-                    break;
-                default:
-                    Console.WriteLine("Вы ввели неверный оператор действия. Попробуйте ещё раз");
-                    break;
+                action = Console.ReadLine();
+                switch (action)
+                {
+                    case "+":
+                        total = Summation(choosenNumbers, counter);
+                        isValidAction = true;
+                        break;
+                    case "-":
+                        total = Subtraction(choosenNumbers, counter);
+                        isValidAction = true;
+                        break;
+                    case "/":
+                        total = Division(choosenNumbers, counter);
+                        isValidAction = true;
+                        break;
+                    case "*":
+                        total = Multiplication(choosenNumbers, counter);
+                        isValidAction = true;
+                        break;
+                    default:
+                        Console.WriteLine("Вы ввели неверный оператор действия. Попробуйте ещё раз");
+                        break;
+                }
             }
-            Console.WriteLine(total);
 
            
         }
@@ -94,6 +102,7 @@ namespace Subtask_2
             {
                 total += choosenNumbers[i];
             }
+            Console.WriteLine(total);
             return total;
         }
         public static int Subtraction(int[] choosenNumbers, int counter)
@@ -103,6 +112,7 @@ namespace Subtask_2
             {
                 total -= choosenNumbers[i];
             }
+            Console.WriteLine(total);
             return total;
         }
         public static int Division(int[] choosenNumbers, int counter)
@@ -116,6 +126,7 @@ namespace Subtask_2
                 }
                 total /= choosenNumbers[i];
             }
+            Console.WriteLine(total);
             return total;
         }
         public static int Multiplication(int[] choosenNumbers, int counter)
@@ -125,13 +136,14 @@ namespace Subtask_2
             {
                 total *= choosenNumbers[i];
             }
+            Console.WriteLine(total);
             return total;
         }
-        public static string[] Stringsplit()
+        public static string[] ReadAndSplitUserInput()
         {
             string userInput = Console.ReadLine();
-            string[] numbers = userInput.Split(new char[] { ' ' });
-            return numbers;
+            string[] result = userInput.Split(new char[] { ' ' });
+            return result;
         }
     }
 }
