@@ -13,17 +13,14 @@ namespace Subtask_4
             {
                 case SortingMethod.Asc:
                     groups.Value.Sort();
-                    Console.WriteLine("По возрастанию");
                     break;
                 case SortingMethod.Desc:
                     groups.Value.Sort();
                     groups.Value.Reverse();
-                    Console.WriteLine("По убыванию");
                     break;
                 default:
                     break;
             }
-            
         }
 
         static void Main(string[] args)
@@ -81,14 +78,10 @@ namespace Subtask_4
                 string method = Console.ReadLine();
                 if (Enum.TryParse(method, true, out sorting))
                 {
-                    if(Enum.IsDefined(typeof(SortingMethod), sorting))
-                    {
-                        isUndefined = false;
-                    }
+                    isUndefined = false;
                 }
                 else
                 {
-                    sorting = SortingMethod.Undefined;
                     Console.WriteLine("Данного метода не существует. Повторите ввод");
                 }
             }
@@ -103,7 +96,6 @@ namespace Subtask_4
                 }
             }
             Console.ReadKey();
-        
         }
     }
 }
