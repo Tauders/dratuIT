@@ -35,12 +35,11 @@ namespace Subtask_2
             int[] choosenNumbers = new int[lengthUserInput];
             
             counter = 0;
-            string inputNumber = "";
             bool validUserInput = false;
             while (!validUserInput)
             {
-                inputNumber = Console.ReadLine();
-                if (inputNumber != "X")
+                string inputNumber = Console.ReadLine().ToLower();
+                if (inputNumber != "exit")
                 { 
                     if (int.TryParse(inputNumber, out int newInputNumber) && newInputNumber < lengthUserInput && newInputNumber >= 0)
                     {
