@@ -16,6 +16,7 @@ namespace Subtask_4
                     groups.Value.Reverse();
                     break;
                 default:
+                    Console.WriteLine("test");
                     break;
             }
         }
@@ -71,7 +72,15 @@ namespace Subtask_4
             while (sorting == SortingMethod.Undefined)
             {
                 string method = Console.ReadLine();
-                if (!Enum.TryParse(method, true, out sorting))
+                if (Enum.TryParse(method, true, out sorting))
+                {
+                    if (!Enum.IsDefined(typeof(SortingMethod), sorting))
+                    {
+                        sorting = SortingMethod.Undefined;
+                        Console.WriteLine("Данного метода не существует. Повторите ввод");
+                    }
+                }
+                else
                 {
                     Console.WriteLine("Данного метода не существует. Повторите ввод");
                 }
