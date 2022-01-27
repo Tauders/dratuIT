@@ -7,21 +7,6 @@ namespace Subtask_4
 {
     class Program
     {
-
-
-        public static void PrintResult(Dictionary<string, List<string>> groups, SortingMethod sorting)
-        {
-            foreach (KeyValuePair<string, List<string>> group in groups)
-            {
-                Console.WriteLine($"Группа {group.Key}");
-                SortKeyValueValues(sorting, group);
-                foreach (string value in group.Value)
-                {
-                    Console.WriteLine(value);
-                }
-            }
-        }
-        
         public static void SortKeyValueValues(SortingMethod method, KeyValuePair<string, List<string>> groups)
         {
             switch (method)
@@ -94,11 +79,12 @@ namespace Subtask_4
             while (isUndefined)
             {
                 string method = Console.ReadLine();
-                method = method.Replace(method[0], char.ToUpper(method[0]));
-                if (Enum.IsDefined(typeof(SortingMethod), method) == true)
+                if (Enum.TryParse(method, true, out sorting))
                 {
-                    sorting = (SortingMethod)Enum.Parse(typeof(SortingMethod), method);
-                    isUndefined = false;
+                    if(Enum.IsDefined(typeof(SortingMethod), sorting))
+                    {
+                        isUndefined = false;
+                    }
                 }
                 else
                 {
@@ -106,7 +92,16 @@ namespace Subtask_4
                     Console.WriteLine("Данного метода не существует. Повторите ввод");
                 }
             }
-            PrintResult(groups, sorting);
+
+            foreach (KeyValuePair<string, List<string>> group in groups)
+            {
+                Console.WriteLine($"Группа {group.Key}");
+                SortKeyValueValues(sorting, group);
+                foreach (string value in group.Value)
+                {
+                    Console.WriteLine(value);
+                }
+            }
             Console.ReadKey();
         
         }
