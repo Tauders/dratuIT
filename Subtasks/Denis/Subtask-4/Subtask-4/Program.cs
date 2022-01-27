@@ -40,17 +40,15 @@ namespace Subtask_4
                     }
                     else
                     {
+                        string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                         string name = null;
                         string group = null;
-                        string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                        for (int i = 0; i < temp.Length; i++)
+                        if(temp.Length > 1)
                         {
-                            name = temp[0];
-                            if (temp.Length > 1)
-                            {
-                                group = temp[1];
-                            }
+                            name = temp[0]; 
+                            group = temp[1];
                         }
+                        
                         if (string.IsNullOrWhiteSpace(group))
                         {
                             Console.WriteLine("Вы не ввели ключ");
