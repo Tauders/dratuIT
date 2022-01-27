@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
-
-
 namespace Subtask_4
 {
     class Program
@@ -37,7 +34,7 @@ namespace Subtask_4
                 }
                 else
                 {
-                    if (input.ToUpper() == "X")
+                    if (string.Equals(input, "x", StringComparison.InvariantCultureIgnoreCase))
                     {
                         isExit = true;
                     }
@@ -73,15 +70,10 @@ namespace Subtask_4
             Console.WriteLine("1. Asc");
             Console.WriteLine("2. Desc");
             SortingMethod sorting = SortingMethod.Undefined;
-            bool isUndefined = true;
-            while (isUndefined)
+            while (sorting == SortingMethod.Undefined)
             {
                 string method = Console.ReadLine();
-                if (Enum.TryParse(method, true, out sorting))
-                {
-                    isUndefined = false;
-                }
-                else
+                if (!Enum.TryParse(method, true, out sorting))
                 {
                     Console.WriteLine("Данного метода не существует. Повторите ввод");
                 }
