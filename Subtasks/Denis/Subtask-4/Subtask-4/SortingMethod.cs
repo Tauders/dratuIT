@@ -2,8 +2,8 @@
 {
     public enum SortingMethod
     {
-        Asc = 1,
-        Desc,
-        Undefined
+        Undefined,
+        Asc,
+        Desc
     }
 }

@@ -53,7 +53,6 @@ namespace Subtask_4
                             {
                                 group = temp[1];
                             }
-
                         }
                         if (string.IsNullOrWhiteSpace(group))
                         {
@@ -70,7 +69,9 @@ namespace Subtask_4
                     }
                 }
             }
-            Console.WriteLine("Выберите метод сортировки: \n1. Asc \n2. Desc");
+            Console.WriteLine("Выберите метод сортировки:");
+            Console.WriteLine("1. Asc");
+            Console.WriteLine("2. Desc");
             SortingMethod sorting = SortingMethod.Undefined;
             bool isUndefined = true;
             while (isUndefined)
