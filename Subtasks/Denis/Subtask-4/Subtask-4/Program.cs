@@ -15,10 +15,22 @@ namespace Subtask_4
                     groups.Value.Sort();
                     groups.Value.Reverse();
                     break;
+            }
+        }
+
+        public static SortingMethod DefineMethod(SortingMethod method)
+        {
+            switch (method)
+            {
+                case SortingMethod.Asc:
+                    break;
+                case SortingMethod.Desc:
+                    break;
                 default:
-                    Console.WriteLine("test");
+                    Console.WriteLine("Данного метода не существует. Повторите ввод");
                     break;
             }
+            return method;
         }
 
         static void Main(string[] args)
@@ -71,19 +83,20 @@ namespace Subtask_4
             SortingMethod sorting = SortingMethod.Undefined;
             while (sorting == SortingMethod.Undefined)
             {
-                string method = Console.ReadLine();
-                if (Enum.TryParse(method, true, out sorting))
+                string input = Console.ReadLine();
+                SortingMethod sortingMethod = sorting;
+                if (Enum.TryParse(input, true, out sortingMethod))
                 {
-                    if (!Enum.IsDefined(typeof(SortingMethod), sorting))
+                    if (Enum.IsDefined(typeof(SortingMethod), sortingMethod))
                     {
-                        sorting = SortingMethod.Undefined;
-                        Console.WriteLine("Данного метода не существует. Повторите ввод");
+                        sorting = sortingMethod;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Данного метода не существует. Повторите ввод");
+                    sorting = sortingMethod;
                 }
+                sorting = DefineMethod(sorting);
             }
 
             foreach (KeyValuePair<string, List<string>> group in groups)
