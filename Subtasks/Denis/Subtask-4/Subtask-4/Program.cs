@@ -44,15 +44,15 @@ namespace Subtask_4
                         string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                         string name = null;
                         string group = null;
-                        if(temp.Length > 1)
+                        if(temp.Length == 2)
                         {
                             name = temp[0]; 
                             group = temp[1];
                         }
-                        
-                        if (string.IsNullOrWhiteSpace(group))
+
+                        if ((string.IsNullOrWhiteSpace(group)) || (temp.Length > 2))
                         {
-                            Console.WriteLine("Вы не ввели ключ");
+                            Console.WriteLine("Допушена ошибка при вводе");
                         }
                         else
                         {
