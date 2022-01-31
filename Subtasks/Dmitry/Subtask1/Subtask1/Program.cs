@@ -13,7 +13,7 @@ namespace Subtask1
             string strLines = Console.ReadLine();
             int numberLines;
             bool result = int.TryParse(strLines, out numberLines);
-            if (result)
+            if (result && numberLines > 0)
             {
                 int numberingLines = 1;
                 string[] lines = new string[numberLines];
@@ -22,31 +22,35 @@ namespace Subtask1
                     Console.WriteLine("Введите строку " + (numberingLines++));
                     string input = Console.ReadLine();
                     lines[i] = input;
-
                 }
                 bool x = true;
                 while (x)
-
                 {
                     Console.WriteLine("Все строки введены, выберите строку для отображения");
                     string arrayIndex = Console.ReadLine();
-                    int numberArrayIndext = 0;
+                    int numberArrayIndex;
                     if (arrayIndex == "x")
                     {
                         x = false;
+                        Console.WriteLine("Завершение работы!");
                     }
                     else
                     {
-                        numberArrayIndext = Convert.ToInt32(arrayIndex);
-                        Console.WriteLine(lines[numberArrayIndext]);
+                        bool resultIndex = int.TryParse(arrayIndex, out numberArrayIndex);
+                        if (resultIndex && numberArrayIndex-- <= numberLines)
+                        {
+                            Console.WriteLine(lines[numberArrayIndex]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ошибка! Такой строки не существует");
+                        }
                     }
-
                 }
-              
             }
             else
             {
-                Console.WriteLine("Ошибка! Нужно ввести число");
+                Console.WriteLine("Ошибка! Нужно ввести целое положительное число от 1 до N");
             }
                     
 
