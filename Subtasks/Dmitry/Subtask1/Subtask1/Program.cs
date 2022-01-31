@@ -7,9 +7,6 @@ namespace Subtask1
         static void Main(string[] args)
         {
             Console.WriteLine("Введите количество строк, которые хотите использовать");
-            /*int numberLines;
-            numberLines = Convert.ToInt32(Console.ReadLine());
-            */
             string strLines = Console.ReadLine();
             int numberLines;
             bool result = int.TryParse(strLines, out numberLines);
@@ -37,7 +34,7 @@ namespace Subtask1
                     else
                     {
                         bool resultIndex = int.TryParse(arrayIndex, out numberArrayIndex);
-                        if (resultIndex && numberArrayIndex-- <= numberLines)
+                        if (resultIndex && numberArrayIndex-- <= numberLines && numberArrayIndex > 0)
                         {
                             Console.WriteLine(lines[numberArrayIndex]);
                         }
