@@ -11,6 +11,11 @@ namespace Subtask1
             {
                 Console.Write("Введите количество строк, которые хотите использовать: ");
                 string inputNumberLines = Console.ReadLine();
+                if(inputNumberLines == "x")
+                {
+                    Console.WriteLine("Завершение работы");
+                    break;
+                }
                 if (int.TryParse(inputNumberLines, out int numberLines) && numberLines > 0)
                 {
                     string[] lines = new string[numberLines];
@@ -27,8 +32,7 @@ namespace Subtask1
                         string inputArrayIndex = Console.ReadLine();
                         if (inputArrayIndex == "x")
                         {
-                            inputX = false;
-                            Console.WriteLine("Завершение работы!");
+                            goto shutDown;
                         }
                         else
                         {
@@ -49,6 +53,7 @@ namespace Subtask1
                     Console.WriteLine("Ошибка! Нужно ввести целое положительное число от 1 до N");
                 }
             }
+        shutDown: Console.WriteLine("Завершение работы!");
         }
     }
 }
