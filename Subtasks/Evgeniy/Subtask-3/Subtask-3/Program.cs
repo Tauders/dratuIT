@@ -9,28 +9,41 @@ namespace Subtask_3
         {
             Console.WriteLine("Введите построчно слова для дальнейшей сортировки");
             string userInput = "";
-            List<string> aSetOfWords = new List<string>();
-            while (userInput.ToLower() != "exit")
+            List<string> SetOfWords = new List<string>();
+            bool validUserInput = false;
+            while (!validUserInput)
             {
                 userInput = Console.ReadLine();
                 if (userInput.ToLower() != "exit")
                 {
-                    aSetOfWords.Add(userInput);
+                    SetOfWords.Add(userInput);
                 }
-            }
-            int count = 0;
-            string[] words = new string[aSetOfWords.Count];
-            foreach (string aSetOfWord in aSetOfWords)
-            {
-                words[count] = aSetOfWords[count];
-                count++;
+                else
+                {
+                    validUserInput = true;
+                }
             }
             Console.WriteLine("Введите asc или desc для выбора сортировки");
             string sortSelection = Console.ReadLine();
             if (sortSelection.ToLower() == "asc")
             {
-                Array.Sort(words);
-                Array.ForEach(words, Console.WriteLine);
+                SetOfWords.Sort();
+                foreach (var word in SetOfWords)
+                {
+                    Console.WriteLine(word);
+                }
+            }
+            else if (sortSelection.ToLower() == "desc")
+            {
+                SetOfWords.Sort((str1, str2) => { return string.Compare(str2, str1); });
+                foreach (var word in SetOfWords)
+                {
+                    Console.WriteLine(word);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Вы ввели неверное значение, значит вам нужно отдохнуть и больше не вводить значений");
             }
         }
     }
