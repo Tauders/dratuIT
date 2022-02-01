@@ -6,45 +6,48 @@ namespace Subtask1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите количество строк, которые хотите использовать");
-            string inputNumberLines = Console.ReadLine();
-            if (int.TryParse(inputNumberLines, out int numberLines) && numberLines > 0)
+            bool input = true;
+            while (input)
             {
-                int amountLines = 1;
-                string[] lines = new string[numberLines];
-                for (int i = 0; i < numberLines; i++)
+                Console.Write("Введите количество строк, которые хотите использовать: ");
+                string inputNumberLines = Console.ReadLine();
+                if (int.TryParse(inputNumberLines, out int numberLines) && numberLines > 0)
                 {
-                    Console.WriteLine("Введите строку " + (amountLines++));
-                    string inputLineNumber = Console.ReadLine();
-                    lines[i] = inputLineNumber;
-                }
-                bool shutDown = true;
-                while (shutDown)
-                {
-                    Console.WriteLine("Все строки введены, выберите строку для отображения");
-                    string inputArrayIndex = Console.ReadLine();
-                    if (inputArrayIndex == "x")
+                    string[] lines = new string[numberLines];
+                    for (int i = 0; i < numberLines; i++)
                     {
-                        shutDown = false;
-                        Console.WriteLine("Завершение работы!");
+                        Console.WriteLine($"Введите строку {i + 1}");
+                        string inputLineNumber = Console.ReadLine();
+                        lines[i] = inputLineNumber;
                     }
-                    else
+                    bool inputX = true;
+                    Console.Write("Все строки введены, выберите строку для отображения: ");
+                    while (inputX)
                     {
-                        if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberLines && arrayIndex > 0)
+                        string inputArrayIndex = Console.ReadLine();
+                        if (inputArrayIndex == "x")
                         {
-                            arrayIndex--;
-                            Console.WriteLine(lines[arrayIndex]);
+                            inputX = false;
+                            Console.WriteLine("Завершение работы!");
                         }
                         else
                         {
-                            Console.WriteLine("Ошибка! Такой строки не существует");
+                            if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberLines && arrayIndex > 0)
+                            {
+                                arrayIndex--;
+                                Console.WriteLine(lines[arrayIndex]);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ошибка! Такой строки не существует");
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                Console.WriteLine("Ошибка! Нужно ввести целое положительное число от 1 до N");
+                else
+                {
+                    Console.WriteLine("Ошибка! Нужно ввести целое положительное число от 1 до N");
+                }
             }
         }
     }
