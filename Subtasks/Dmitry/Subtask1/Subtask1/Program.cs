@@ -10,11 +10,11 @@ namespace Subtask1
             string inputNumberLines = Console.ReadLine();
             if (int.TryParse(inputNumberLines, out int numberLines) && numberLines > 0)
             {
-                int numberingLines = 1;
+                int amountLines = 1;
                 string[] lines = new string[numberLines];
                 for (int i = 0; i < numberLines; i++)
                 {
-                    Console.WriteLine("Введите строку " + (numberingLines++));
+                    Console.WriteLine("Введите строку " + (amountLines++));
                     string inputLineNumber = Console.ReadLine();
                     lines[i] = inputLineNumber;
                 }
@@ -23,7 +23,6 @@ namespace Subtask1
                 {
                     Console.WriteLine("Все строки введены, выберите строку для отображения");
                     string inputArrayIndex = Console.ReadLine();
-                    int arrayIndex;
                     if (inputArrayIndex == "x")
                     {
                         shutDown = false;
@@ -31,7 +30,7 @@ namespace Subtask1
                     }
                     else
                     {
-                        if (int.TryParse(inputArrayIndex, out arrayIndex) && arrayIndex <= numberLines && arrayIndex > 0)
+                        if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberLines && arrayIndex > 0)
                         {
                             arrayIndex--;
                             Console.WriteLine(lines[arrayIndex]);
