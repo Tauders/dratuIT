@@ -44,7 +44,7 @@ namespace Subtask_4
                         string name = null;
                         string group = null;
 
-                        if ((keyValuePairs.Length < 2) || (keyValuePairs.Length > 2))
+                        if (keyValuePairs.Length != 2)
                         {
                             Console.WriteLine("Допушена ошибка при вводе");
                         }
