@@ -73,7 +73,7 @@ namespace Subtask_4
 
                         if ((keyValuePairs.Length <= 1) || (keyValuePairs.Length > 2))
                         {
-                            Console.WriteLine("Допущена ошибка при вводе");
+                            Console.WriteLine("Допушена ошибка при вводе");
                         }
                         else
                         {
