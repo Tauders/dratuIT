@@ -80,6 +80,11 @@ namespace Subtask_4
                         }
                     }
                 }
+                
+                if(sorting == SortingMethod.Undefined)
+                {
+                    Console.WriteLine("Данного метода не существует. Повторите ввод");
+                }
             }
 
             foreach (KeyValuePair<string, List<string>> group in groups)
