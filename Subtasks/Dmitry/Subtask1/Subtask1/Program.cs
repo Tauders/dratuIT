@@ -18,7 +18,7 @@ namespace Subtask1
                 }
                 else
                 {
-                    if (int.TryParse(inputNumberLines, out int numberLines))
+                    if (int.TryParse(inputNumberLines, out int numberLines) && numberLines > 0)
                     {
                         string[] lines = new string[numberLines];
                         for (int i = 0; i < numberLines; i++)
@@ -32,31 +32,20 @@ namespace Subtask1
                         while (inputX)
                         {
                             string inputArrayIndex = Console.ReadLine();
-                            if (int.TryParse(inputArrayIndex, out int arrayIndex))
-                            {
-                                if (arrayIndex <= numberLines && arrayIndex > 0)
-                                {
-                                    Console.WriteLine(lines[arrayIndex - 1]);
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Ошибка! Такой строки не существует");
-                                }
-                            }
-                            else if (inputArrayIndex.ToLower() == "x")
+                            if (inputArrayIndex.ToLower() == "x")
                             {
                                 Console.WriteLine("Завершение работы!");
                                 return;
+                            }
+                            if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberLines && arrayIndex > 0)
+                            {
+                                Console.WriteLine(lines[arrayIndex - 1]);
                             }
                             else
                             {
                                 Console.WriteLine("Ошибка! Такой строки не существует");
                             }
                         }
-                    }
-                    else if (numberLines == 0)
-                    {
-                        Console.WriteLine("Ошибка! Нужно ввести целое положительное число от 1 до N");
                     }
                     else
                     {
