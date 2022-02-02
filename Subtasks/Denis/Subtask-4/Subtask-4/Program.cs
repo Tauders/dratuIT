@@ -16,12 +16,11 @@ namespace Subtask_4
                     groups.Value.Reverse();
                     break;
                 default:
-                    Console.WriteLine("Данного метода не существует. Повторите ввод");
-                    break;
+                    throw new ArgumentOutOfRangeException($"Метод SortKeyValueValues не поддерживает значение Enum`a {method}");
             }
         }
 
-        public static SortingMethod test(string input) 
+        public static SortingMethod DefineValue(string input) 
         {
             SortingMethod sorting = SortingMethod.Undefined;
             if (int.TryParse(input, out _))
@@ -63,18 +62,18 @@ namespace Subtask_4
                     }
                     else
                     {
-                        string[] KeyValuePairs = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                        string[] keyValuePairs = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                         string name = null;
                         string group = null;
-                        if (KeyValuePairs.Length == 2)
+                        if (keyValuePairs.Length == 2)
                         {
-                            name = KeyValuePairs[0];
-                            group = KeyValuePairs[1];
+                            name = keyValuePairs[0];
+                            group = keyValuePairs[1];
                         }
 
-                        if ((KeyValuePairs.Length <= 1) || (KeyValuePairs.Length > 2))
+                        if ((keyValuePairs.Length <= 1) || (keyValuePairs.Length > 2))
                         {
-                            Console.WriteLine("Допушена ошибка при вводе");
+                            Console.WriteLine("Допущена ошибка при вводе");
                         }
                         else
                         {
@@ -100,7 +99,7 @@ namespace Subtask_4
                 }
                 else
                 {
-                   sorting = test(input);
+                   sorting = DefineValue(input);
                 }
                 Console.WriteLine($"{input} = {sorting}");
             }
