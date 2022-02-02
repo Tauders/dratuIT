@@ -43,18 +43,15 @@ namespace Subtask_4
                         string[] keyValuePairs = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                         string name = null;
                         string group = null;
-                        if (keyValuePairs.Length == 2)
-                        {
-                            name = keyValuePairs[0];
-                            group = keyValuePairs[1];
-                        }
 
-                        if ((keyValuePairs.Length <= 1) || (keyValuePairs.Length > 2))
+                        if ((keyValuePairs.Length < 2) || (keyValuePairs.Length > 2))
                         {
                             Console.WriteLine("Допушена ошибка при вводе");
                         }
                         else
                         {
+                            name = keyValuePairs[0];
+                            group = keyValuePairs[1];
                             if (!groups.ContainsKey(group))
                             {
                                 groups.Add(group, new List<string>());
