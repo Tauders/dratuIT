@@ -63,16 +63,16 @@ namespace Subtask_4
                     }
                     else
                     {
-                        string[] temp = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                        string[] KeyValuePairs = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                         string name = null;
                         string group = null;
-                        if (temp.Length == 2)
+                        if (KeyValuePairs.Length == 2)
                         {
-                            name = temp[0];
-                            group = temp[1];
+                            name = KeyValuePairs[0];
+                            group = KeyValuePairs[1];
                         }
 
-                        if ((temp.Length <= 1) || (temp.Length > 2))
+                        if ((KeyValuePairs.Length <= 1) || (KeyValuePairs.Length > 2))
                         {
                             Console.WriteLine("Допушена ошибка при вводе");
                         }
