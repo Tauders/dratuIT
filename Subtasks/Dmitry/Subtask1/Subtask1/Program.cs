@@ -31,16 +31,15 @@ namespace Subtask1
                         while (inputX)
                         {
                             string inputArrayIndex = Console.ReadLine();
-                            if (inputArrayIndex.ToLower() == "x")
+                            if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberLines && arrayIndex > 0)
+                            {
+                                Console.WriteLine(lines[arrayIndex - 1]);
+                            }
+                            else if (inputArrayIndex.ToLower() == "x")
                             {
                                 inputX = false;
                                 input = false;
                                 Console.WriteLine("Завершение работы!");
-
-                            }
-                            if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberLines && arrayIndex > 0)
-                            {
-                                Console.WriteLine(lines[arrayIndex - 1]);
                             }
                             else
                             {
@@ -53,8 +52,6 @@ namespace Subtask1
                         Console.WriteLine("Ошибка! Нужно ввести целое положительное число от 1 до N");
                     }
                 }
-
-
             }
         }
     }
