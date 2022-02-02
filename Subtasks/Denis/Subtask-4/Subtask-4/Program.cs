@@ -19,29 +19,7 @@ namespace Subtask_4
                     throw new ArgumentOutOfRangeException($"Метод SortKeyValueValues не поддерживает значение Enum`a {method}");
             }
         }
-
-        public static SortingMethod DefineValue(string input) 
-        {
-            SortingMethod sorting = SortingMethod.Undefined;
-            if (int.TryParse(input, out _))
-            {
-                Enum.TryParse<SortingMethod>(input, true, out sorting);
-                if (!Enum.IsDefined(typeof(SortingMethod), sorting))
-                {
-                    sorting = SortingMethod.Undefined;
-                }
-            }
-            else
-            {
-                Enum.TryParse<SortingMethod>(input, true, out sorting);
-                if (!Enum.IsDefined(typeof(SortingMethod), sorting))
-                {
-                    sorting = SortingMethod.Undefined;
-                }
-            }
-            return sorting;
-        }
-       
+        
         static void Main(string[] args)
         {
             Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
@@ -99,9 +77,14 @@ namespace Subtask_4
                 }
                 else
                 {
-                   sorting = DefineValue(input);
+                    if (Enum.TryParse<SortingMethod>(input, true, out sorting))
+                    {
+                        if (!Enum.IsDefined(typeof(SortingMethod), sorting))
+                        {
+                            sorting = SortingMethod.Undefined;
+                        }
+                    }
                 }
-                Console.WriteLine($"{input} = {sorting}");
             }
 
             foreach (KeyValuePair<string, List<string>> group in groups)
