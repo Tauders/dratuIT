@@ -7,16 +7,15 @@ namespace Subtask1
         static void Main(string[] args)
         {
             bool input = true;
-            while (input)
+            Console.Write("Введите количество строк, которые хотите использовать: ");
+            string inputNumberLines = Console.ReadLine();
+            if (inputNumberLines.ToLower() == "x")
             {
-                Console.Write("Введите количество строк, которые хотите использовать: ");
-                string inputNumberLines = Console.ReadLine();
-                if (inputNumberLines.ToLower() == "x")
-                {
-                    input = false;
-                    Console.WriteLine("Завершение работы");
-                }
-                else
+                Console.WriteLine("Завершение работы");
+            }
+            else
+            {
+                while (input)
                 {
                     if (int.TryParse(inputNumberLines, out int numberLines) && numberLines > 0)
                     {
@@ -34,8 +33,10 @@ namespace Subtask1
                             string inputArrayIndex = Console.ReadLine();
                             if (inputArrayIndex.ToLower() == "x")
                             {
+                                inputX = false;
+                                input = false;
                                 Console.WriteLine("Завершение работы!");
-                                return;
+
                             }
                             if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberLines && arrayIndex > 0)
                             {
@@ -52,6 +53,8 @@ namespace Subtask1
                         Console.WriteLine("Ошибка! Нужно ввести целое положительное число от 1 до N");
                     }
                 }
+
+
             }
         }
     }
