@@ -13,27 +13,22 @@ namespace Subtask_5
             string inputNumberLenth = Console.ReadLine();
             if(int.TryParse(inputNumberLenth, out int numbersLenth))
             {
-                List<int> number = new List<int>();
+                List<int> numbers = new List<int>();
                 Console.WriteLine("Количество чисел получено");
-                int[] numbers = new int[numbersLenth];
                 int min = 100;
                 int max = 0;
                 double result = 0;
                 for (int i = 0; i < numbersLenth; i++)
                 {
-                    numbers[i] = rnd.Next(1, 101);
-                    int temp = numbers[i];
-                    if (min > temp)
+                    numbers.Add(rnd.Next(1, 101));
+                    int tempNumber = numbers[i];
+                    if (min > tempNumber)
                     {
-                        min = temp;
+                        min = tempNumber;
                     }
-                    else if (max < temp)
+                    else if (max < tempNumber)
                     {
-                        max = temp;
-                    }
-                    else if (numbers[i-1] != numbers[i])
-                    {
-                        number.Add(numbers[i]);
+                        max = tempNumber;
                     }
                     result += numbers[i];
                     Console.Write(numbers[i] + " ");
