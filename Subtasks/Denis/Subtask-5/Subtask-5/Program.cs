@@ -33,11 +33,16 @@ namespace Subtask_5
                     result += numbers[i];
                     Console.Write(numbers[i] + " ");
                 }
-
-                double middle = result / numbersLenth;
+                IEnumerable<int> distinctNumbers = numbers.Distinct();
+                double midValue = Math.Round((result / numbersLenth), 1);
+                Console.WriteLine("\nУникальные значения:");
+                foreach (int number in distinctNumbers)
+                {
+                    Console.Write(number + " ");
+                }
                 Console.WriteLine($"\nМинимально значение = {min}");
                 Console.WriteLine($"Максимальное значение = {max}");
-                Console.WriteLine($"Среднее значение = {middle}");
+                Console.WriteLine($"Среднее значение = {midValue}");
             }
             else
             {
