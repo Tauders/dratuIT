@@ -40,16 +40,16 @@ namespace Subtask_4
                     }
                     else
                     {
-                        string[] keyValuePairs = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                        string[] keyValuePair = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                          
-                        if (keyValuePairs.Length != 2)
+                        if (keyValuePair.Length != 2)
                         {
                             Console.WriteLine("Допушена ошибка при вводе");
                         }
                         else
                         {
-                            string name = keyValuePairs[0];
-                            string group = keyValuePairs[1];
+                            string name = keyValuePair[0];
+                            string group = keyValuePair[1];
                             if (!groups.ContainsKey(group))
                             {
                                 groups.Add(group, new List<string>());
