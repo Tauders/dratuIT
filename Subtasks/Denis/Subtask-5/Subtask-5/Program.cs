@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Subtask_5
 {
@@ -7,33 +8,47 @@ namespace Subtask_5
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Введите количество чисел (от 10 до 1000)");
             Random rnd = new Random();
-            int numbersLenth = rnd.Next(10, 1001);
-            int[] numbers = new int[numbersLenth];
-            int min = 100;
-            int max = 0;
-            double middle = 0;
-            double result = 0;
-            for (int i = 0; i < numbersLenth; i++)
+            string inputNumberLenth = Console.ReadLine();
+            if(int.TryParse(inputNumberLenth, out int numbersLenth))
             {
-                numbers[i] = rnd.Next(1, 101);
-                int temp = numbers[i];
-                Console.Write(numbers[i] + " ");
-                if (min > temp)
+                List<int> number = new List<int>();
+                Console.WriteLine("Количество чисел получено");
+                int[] numbers = new int[numbersLenth];
+                int min = 100;
+                int max = 0;
+                double result = 0;
+                for (int i = 0; i < numbersLenth; i++)
                 {
-                    min = temp;
+                    numbers[i] = rnd.Next(1, 101);
+                    int temp = numbers[i];
+                    if (min > temp)
+                    {
+                        min = temp;
+                    }
+                    else if (max < temp)
+                    {
+                        max = temp;
+                    }
+                    else if (numbers[i-1] != numbers[i])
+                    {
+                        number.Add(numbers[i]);
+                    }
+                    result += numbers[i];
+                    Console.Write(numbers[i] + " ");
                 }
-                else if (max < temp)
-                {
-                    max = temp;
-                }
-                result += numbers[i] ;
+
+                double middle = result / numbersLenth;
+                Console.WriteLine($"\nМинимально значение = {min}");
+                Console.WriteLine($"Максимальное значение = {max}");
+                Console.WriteLine($"Среднее значение = {middle}");
             }
-            middle = result / numbersLenth;
-
-            Console.WriteLine($"\nМинимальное значение: {min}, Максимальное значение: {max}, Среднее значение {middle}");
+            else
+            {
+                Console.WriteLine("Вы указали данные в другом формате");
+            }
             Console.ReadLine();
-
         } 
     }
 }
