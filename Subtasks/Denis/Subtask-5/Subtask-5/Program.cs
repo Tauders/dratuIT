@@ -29,31 +29,31 @@ namespace Subtask_5
                             numbers.Add(rnd.Next(1, 101));
                             isNotError = false;
                         }
-                        IEnumerable<int> ts = numbers.Distinct();
-                        List<int> test = ts.ToList();
+                        IEnumerable<int> distincrNumber = numbers.Distinct();
+                        List<int> uniqueValues = distincrNumber.ToList();
                         Console.WriteLine("Уникальные значения:");
-                        foreach (int number in test)
+                        foreach (int number in uniqueValues)
                         {
                             Console.Write(number +" ");
                         } 
                         
                         int max = 0;
                         double result = 0;
-                        for (int i = 0; i < test.Count; i++)
+                        for (int i = 0; i < uniqueValues.Count; i++)
                         {
-                            int tempNumber = test[i];
+                            int tempNumber = uniqueValues[i];
                             if (max < tempNumber)
                             {
                                 max = tempNumber;
                             }
-                            result += test[i];
+                            result += uniqueValues[i];
 
                         }
-                        double midNumber = Math.Round((result / test.Count),1);
+                        double midNumber = Math.Round((result / uniqueValues.Count),1);
                         int min = max;
-                        for (int i = 0; i < test.Count; i++)
+                        for (int i = 0; i < uniqueValues.Count; i++)
                         {
-                            int tempNumber = test[i];
+                            int tempNumber = uniqueValues[i];
                             if (min > tempNumber)
                             {
                                 min = tempNumber;
