@@ -12,7 +12,7 @@ namespace Subtask1
             while (!isInputEnded)
             {
                 string inputNumberLines = Console.ReadLine();
-                if (int.TryParse(inputNumberLines, out numberOfLines) && numberOfLines>0)
+                if (int.TryParse(inputNumberLines, out numberOfLines) && numberOfLines > 0)
                 {
                     isInputEnded = true;
                 }
@@ -22,15 +22,15 @@ namespace Subtask1
                 }
             }
             string[] lines = new string[numberOfLines];
-                for (int i = 0; i < numberOfLines; i++)
-                {
-                    Console.WriteLine($"Введите строку {i + 1}");
-                    string inputLineNumber = Console.ReadLine();
-                    lines[i] = inputLineNumber;
-                }
-            //bool inputX = true;
+            for (int i = 0; i < numberOfLines; i++)
+            {
+                Console.WriteLine($"Введите строку {i + 1}");
+                string inputLineNumber = Console.ReadLine();
+                lines[i] = inputLineNumber;
+            }
             Console.Write("Все строки введены, выберите строку для отображения: ");
-            while (isInputEnded)
+            bool isInputX = true;
+            while (isInputX)
             {
                 string inputArrayIndex = Console.ReadLine();
                 if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberOfLines && arrayIndex > 0)
@@ -39,14 +39,14 @@ namespace Subtask1
                 }
                 else if (inputArrayIndex.ToLower() == "x")
                 {
-                    isInputEnded = false;
+                    isInputX = false;
                     Console.WriteLine("Завершение работы!");
                 }
                 else
                 {
                     Console.WriteLine("Ошибка! Такой строки не существует");
                 }
-            }  
+            }
         }
     }
 }
