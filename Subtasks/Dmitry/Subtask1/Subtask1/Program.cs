@@ -6,43 +6,40 @@ namespace Subtask1
     {
         static void Main(string[] args)
         {
-            bool input = false;
-            int numberLines = 0;
+            bool isInputEnded = false;
+            int numberOfLines = 0;
             Console.Write("Введите количество строк, которые хотите использовать: ");
-            while (!input)
+            while (!isInputEnded)
             {
                 string inputNumberLines = Console.ReadLine();
-                if (int.TryParse(inputNumberLines, out numberLines))
+                if (int.TryParse(inputNumberLines, out numberOfLines) && numberOfLines>0)
                 {
-                    input = true;
+                    isInputEnded = true;
                 }
                 else
                 {
-                    Console.WriteLine("Ошибка! Нужно ввести целое положительное число от 1 до N");
+                    Console.WriteLine("Ошибка! Нужно ввести целое положительное число");
                 }
             }
-            string[] lines = new string[numberLines];
-            if (numberLines > 0)
-            {
-                for (int i = 0; i < numberLines; i++)
+            string[] lines = new string[numberOfLines];
+                for (int i = 0; i < numberOfLines; i++)
                 {
                     Console.WriteLine($"Введите строку {i + 1}");
                     string inputLineNumber = Console.ReadLine();
                     lines[i] = inputLineNumber;
                 }
-            }
-            bool inputX = true;
+            //bool inputX = true;
             Console.Write("Все строки введены, выберите строку для отображения: ");
-            while (inputX)
+            while (isInputEnded)
             {
                 string inputArrayIndex = Console.ReadLine();
-                if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberLines && arrayIndex > 0)
+                if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberOfLines && arrayIndex > 0)
                 {
                     Console.WriteLine(lines[arrayIndex - 1]);
                 }
                 else if (inputArrayIndex.ToLower() == "x")
                 {
-                    inputX = false;
+                    isInputEnded = false;
                     Console.WriteLine("Завершение работы!");
                 }
                 else
