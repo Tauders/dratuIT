@@ -32,25 +32,21 @@ namespace Subtask_3
                     case "asc":
                         setOfWords.Sort();
                         Console.WriteLine("Сортировка слов по алфавиту:");
-                        foreach (var word in setOfWords)
-                        {
-                            Console.WriteLine(word);
-                        }
                         isValidAction = true;
                         break;
                     case "desc":
                         setOfWords.Sort((str1, str2) => { return string.Compare(str2, str1); });
                         Console.WriteLine("Сортировка слов в обратном порядке алфавита:");
-                        foreach (var word in setOfWords)
-                        {
-                            Console.WriteLine(word);
-                        }
                         isValidAction = true;
                         break;
                     default:
                         Console.WriteLine("Вы ввели неверное значение, значит вам нужно отдохнуть и больше не вводить значений");
                         break;
                 }
+            }
+            foreach (var word in setOfWords)
+            {
+                Console.WriteLine(word);
             }
         }
     }
