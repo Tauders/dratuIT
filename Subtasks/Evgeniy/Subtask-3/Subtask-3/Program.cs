@@ -22,32 +22,33 @@ namespace Subtask_3
                     isInputEnded = true;
                 }
             }
-            bool endOfInput = false;
-            while (!endOfInput)
+            Console.WriteLine("Введите asc или desc для выбора сортировки");
+            bool isValidAction = false;
+            while (!isValidAction)
             {
-                Console.WriteLine("Введите asc или desc для выбора сортировки");
                 string sortSelection = Console.ReadLine().ToLower();
                 switch (sortSelection)
                 {
                     case "asc":
                         setOfWords.Sort();
+                        Console.WriteLine("Сортировка слов по алфавиту:");
                         foreach (var word in setOfWords)
                         {
                             Console.WriteLine(word);
                         }
+                        isValidAction = true;
                         break;
                     case "desc":
                         setOfWords.Sort((str1, str2) => { return string.Compare(str2, str1); });
+                        Console.WriteLine("Сортировка слов в обратном порядке алфавита:");
                         foreach (var word in setOfWords)
                         {
                             Console.WriteLine(word);
                         }
-                        break;
-                    case "exit":
-                        endOfInput = true;
+                        isValidAction = true;
                         break;
                     default:
-                        Console.WriteLine("Вы выбрали неверный способ сортировки, попробуйте ещё раз");
+                        Console.WriteLine("Вы ввели неверное значение, значит вам нужно отдохнуть и больше не вводить значений");
                         break;
                 }
             }
