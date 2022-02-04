@@ -24,42 +24,44 @@ namespace Subtask_5
                     {
                         List<int> numbers = new List<int>();
                         Console.WriteLine("Количество чисел получено");
-                        int max = 0;
-                        double result = 0;
                         for (int i = 0; i < numbersLenth; i++)
                         {
                             numbers.Add(rnd.Next(1, 101));
-                            int tempNumber = numbers[i];
+                            isNotError = false;
+                        }
+                        IEnumerable<int> ts = numbers.Distinct();
+                        List<int> test = ts.ToList();
+                        Console.WriteLine("Уникальные значения:");
+                        foreach (int number in test)
+                        {
+                            Console.Write(number +" ");
+                        } 
+                        
+                        int max = 0;
+                        double result = 0;
+                        for (int i = 0; i < test.Count; i++)
+                        {
+                            int tempNumber = test[i];
                             if (max < tempNumber)
                             {
                                 max = tempNumber;
                             }
+                            result += test[i];
 
-                            result += numbers[i];
-                            Console.Write(numbers[i] + " ");
                         }
-
+                        double midNumber = Math.Round((result / test.Count),1);
                         int min = max;
-                        for (int i = 0; i < numbersLenth; i++)
+                        for (int i = 0; i < test.Count; i++)
                         {
-                            int tempNumber = numbers[i];
+                            int tempNumber = test[i];
                             if (min > tempNumber)
                             {
                                 min = tempNumber;
                             }
                         }
-                        isNotError = false;
-
-                        IEnumerable<int> distinctNumbers = numbers.Distinct();
-                        double midValue = Math.Round((result / numbersLenth), 1);
-                        Console.WriteLine("\nУникальные значения:");
-                        foreach (int number in distinctNumbers)
-                        {
-                            Console.Write(number + " ");
-                        }
-                        Console.WriteLine($"\nМинимально значение = {min}");
-                        Console.WriteLine($"Максимальное значение = {max}");
-                        Console.WriteLine($"Среднее значение = {midValue}");
+                        Console.WriteLine($"\nМинимальное значение = {min}");
+                        Console.WriteLine($"Максимальное значение значение = {max}");
+                        Console.WriteLine($"Среднее значение = {midNumber}");
                     }
                 } 
                 else
