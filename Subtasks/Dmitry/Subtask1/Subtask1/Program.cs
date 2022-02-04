@@ -18,7 +18,7 @@ namespace Subtask1
                 }
                 else
                 {
-                    Console.WriteLine("Ошибка! Нужно ввести целое положительное число");
+                    Console.WriteLine("Ошибка! Нужно ввести целое положительное число!");
                 }
             }
             string[] lines = new string[numberOfLines];
@@ -44,7 +44,7 @@ namespace Subtask1
                 }
                 else
                 {
-                    Console.WriteLine("Ошибка! Такой строки не существует");
+                    Console.WriteLine($"Ошибка! Нужно ввести номер строки от 1 до {numberOfLines}");
                 }
             }
         }
