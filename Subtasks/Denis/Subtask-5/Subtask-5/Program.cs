@@ -10,8 +10,8 @@ namespace Subtask_5
         {
             Console.WriteLine("Введите количество чисел (от 10 до 1000)");
             Random rnd = new Random();
-            bool isSelect = false;
-            while (!isSelect)
+            bool isNotError = true;
+            while (isNotError)
             {
                 string inputNumberLenth = Console.ReadLine();
                 if (int.TryParse(inputNumberLenth, out int numbersLenth))
@@ -48,7 +48,7 @@ namespace Subtask_5
                                 min = tempNumber;
                             }
                         }
-                        isSelect = true;
+                        isNotError = false;
 
                         IEnumerable<int> distinctNumbers = numbers.Distinct();
                         double midValue = Math.Round((result / numbersLenth), 1);
