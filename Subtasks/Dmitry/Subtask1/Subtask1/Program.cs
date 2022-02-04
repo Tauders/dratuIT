@@ -29,8 +29,8 @@ namespace Subtask1
                 lines[i] = inputLineNumber;
             }
             Console.Write("Все строки введены, выберите строку для отображения: ");
-            bool isInputX = true;
-            while (isInputX)
+            bool isInputX = false;
+            while (!isInputX)
             {
                 string inputArrayIndex = Console.ReadLine();
                 if (int.TryParse(inputArrayIndex, out int arrayIndex) && arrayIndex <= numberOfLines && arrayIndex > 0)
@@ -39,7 +39,7 @@ namespace Subtask1
                 }
                 else if (inputArrayIndex.ToLower() == "x")
                 {
-                    isInputX = false;
+                    isInputX = true;
                     Console.WriteLine("Завершение работы!");
                 }
                 else
