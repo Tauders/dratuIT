@@ -46,6 +46,16 @@ namespace Subtask_5
                 Console.Write($"{number} ");
                 if (max < number)
                     max = number;
+
+                if (min != 0)
+                {
+                    if(min>number)
+                        min = number;
+                }
+                else
+                {
+                    min = number;
+                }
                 
                 result += number;
             }
