@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Subtask_5
 {
@@ -9,7 +8,7 @@ namespace Subtask_5
         static void Main(string[] args)
         {
             Console.WriteLine("Введите количество чисел (от 10 до 1000)");
-            Random rnd = new Random();
+            Random randomNumber = new Random();
             bool isNotError = true;
             int numbersLength = 0;
             while (isNotError)
@@ -35,16 +34,19 @@ namespace Subtask_5
             Console.WriteLine("Количество чисел получено");
             for (int i = 0; i < numbersLength; i++)
             {
-                numbers.Add(rnd.Next(1, 101));
+                numbers.Add(randomNumber.Next(1, 101));
             }
 
-            int max = numbers.SelectMany(max => numbers).Max();
-            int min = numbers.SelectMany(min => numbers).Min();
+            int max = 0;
+            int min = 0;
             double result = 0;
             Console.WriteLine("Уникальные значения:");
             foreach (int number in numbers)
             {
                 Console.Write($"{number} ");
+                if (max < number)
+                    max = number;
+                
                 result += number;
             }
 
