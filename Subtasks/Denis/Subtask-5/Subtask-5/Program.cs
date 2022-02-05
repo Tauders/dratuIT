@@ -11,10 +11,11 @@ namespace Subtask_5
             Console.WriteLine("Введите количество чисел (от 10 до 1000)");
             Random rnd = new Random();
             bool isNotError = true;
+            int numbersLength = 0;
             while (isNotError)
             {
                 string inputNumberLength = Console.ReadLine();
-                if (int.TryParse(inputNumberLength, out int numbersLength))
+                if (int.TryParse(inputNumberLength, out numbersLength))
                 {
                     if ((numbersLength < 10) || (numbersLength > 1000))
                     {
@@ -22,28 +23,7 @@ namespace Subtask_5
                     }
                     else
                     {
-                        HashSet<int> numbers = new HashSet<int>();
-                        Console.WriteLine("Количество чисел получено");
-                        for (int i = 0; i < numbersLength; i++)
-                        {
-                            numbers.Add(rnd.Next(1, 101));
-                        }
                         isNotError = false;
-                        int max = numbers.SelectMany(max => numbers).Max();
-                        int min = numbers.SelectMany(min => numbers).Min();
-                        double result = 0;
-                        Console.WriteLine("Уникальные значения:");
-                        foreach (int number in numbers)
-                        {
-                            Console.Write($"{number} ");
-                            result += number;
-                        }
-                        
-                        double midNumber = Math.Round((result / numbers.Count), 1);
-                        Console.WriteLine();
-                        Console.WriteLine($"Минимальное значение = {min}");
-                        Console.WriteLine($"Максимальное значение значение = {max}");
-                        Console.WriteLine($"Среднее значение = {midNumber}");
                     }
                 } 
                 else
@@ -51,6 +31,29 @@ namespace Subtask_5
                     Console.WriteLine("Вы указали не числовое значение. Повторите ввод");
                 }
             }
+            HashSet<int> numbers = new HashSet<int>();
+            Console.WriteLine("Количество чисел получено");
+            for (int i = 0; i < numbersLength; i++)
+            {
+                numbers.Add(rnd.Next(1, 101));
+            }
+
+            int max = numbers.SelectMany(max => numbers).Max();
+            int min = numbers.SelectMany(min => numbers).Min();
+            double result = 0;
+            Console.WriteLine("Уникальные значения:");
+            foreach (int number in numbers)
+            {
+                Console.Write($"{number} ");
+                result += number;
+            }
+
+            double midNumber = Math.Round((result / numbers.Count), 1);
+            Console.WriteLine();
+            Console.WriteLine($"Минимальное значение = {min}");
+            Console.WriteLine($"Максимальное значение значение = {max}");
+            Console.WriteLine($"Среднее значение = {midNumber}");
+
             Console.ReadLine();
         }
     }
