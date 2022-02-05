@@ -29,8 +29,8 @@ namespace Subtask_5
                             numbers.Add(rnd.Next(1, 101));
                         }
                         isNotError = false;
-                        int max = numbers.SelectMany(x => numbers).Max();
-                        int min = numbers.SelectMany(y => numbers).Min();
+                        int max = numbers.SelectMany(max => numbers).Max();
+                        int min = numbers.SelectMany(min => numbers).Min();
                         double result = 0;
                         Console.WriteLine("Уникальные значения:");
                         foreach (int number in numbers)
