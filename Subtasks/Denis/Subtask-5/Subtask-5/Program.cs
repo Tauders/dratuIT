@@ -13,60 +13,42 @@ namespace Subtask_5
             bool isNotError = true;
             while (isNotError)
             {
-                string inputNumberLenth = Console.ReadLine();
-                if (int.TryParse(inputNumberLenth, out int numbersLenth))
+                string inputNumberLength = Console.ReadLine();
+                if (int.TryParse(inputNumberLength, out int numbersLength))
                 {
-                    if ((numbersLenth < 10) || (numbersLenth > 1000))
+                    if ((numbersLength < 10) || (numbersLength > 1000))
                     {
                         Console.WriteLine("Введенное вами число вне диапозона");
                     }
                     else
                     {
-                        List<int> numbers = new List<int>();
+                        HashSet<int> numbers = new HashSet<int>();
                         Console.WriteLine("Количество чисел получено");
-                        for (int i = 0; i < numbersLenth; i++)
+                        for (int i = 0; i < numbersLength; i++)
                         {
                             numbers.Add(rnd.Next(1, 101));
-                            isNotError = false;
                         }
-                        IEnumerable<int> distincrNumber = numbers.Distinct();
-                        List<int> uniqueValues = distincrNumber.ToList();
-                        Console.WriteLine("Уникальные значения:");
-                        foreach (int number in uniqueValues)
-                        {
-                            Console.Write(number +" ");
-                        } 
-                        
-                        int max = 0;
+                        isNotError = false;
+                        int max = numbers.SelectMany(x => numbers).Max();
+                        int min = numbers.SelectMany(y => numbers).Min();
                         double result = 0;
-                        for (int i = 0; i < uniqueValues.Count; i++)
+                        Console.WriteLine("Уникальные значения:");
+                        foreach (int number in numbers)
                         {
-                            int tempNumber = uniqueValues[i];
-                            if (max < tempNumber)
-                            {
-                                max = tempNumber;
-                            }
-                            result += uniqueValues[i];
-
+                            Console.Write($"{number} ");
+                            result += number;
                         }
-                        double midNumber = Math.Round((result / uniqueValues.Count),1);
-                        int min = max;
-                        for (int i = 0; i < uniqueValues.Count; i++)
-                        {
-                            int tempNumber = uniqueValues[i];
-                            if (min > tempNumber)
-                            {
-                                min = tempNumber;
-                            }
-                        }
-                        Console.WriteLine($"\nМинимальное значение = {min}");
+                        
+                        double midNumber = Math.Round((result / numbers.Count), 1);
+                        Console.WriteLine();
+                        Console.WriteLine($"Минимальное значение = {min}");
                         Console.WriteLine($"Максимальное значение значение = {max}");
                         Console.WriteLine($"Среднее значение = {midNumber}");
                     }
                 } 
                 else
                 {
-                    Console.WriteLine("Вы указали данные в другом формате");
+                    Console.WriteLine("Вы указали не числовое значение. Повторите ввод");
                 }
             }
             Console.ReadLine();
