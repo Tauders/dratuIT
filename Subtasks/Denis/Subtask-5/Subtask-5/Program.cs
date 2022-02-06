@@ -18,7 +18,7 @@ namespace Subtask_5
                 {
                     if ((numbersLength < 10) || (numbersLength > 1000))
                     {
-                        Console.WriteLine("Введенное вами число вне диапозона");
+                        Console.WriteLine("Введенное вами число вне диапазона");
                     }
                     else
                     {
