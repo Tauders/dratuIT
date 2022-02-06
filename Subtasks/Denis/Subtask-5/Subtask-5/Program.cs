@@ -9,9 +9,9 @@ namespace Subtask_5
         {
             Console.WriteLine("Введите количество чисел (от 10 до 1000)");
             Random randomNumber = new Random();
-            bool isNotError = true;
+            bool isError = false;
             int numbersLength = 0;
-            while (isNotError)
+            while (!isError)
             {
                 string inputNumberLength = Console.ReadLine();
                 if (int.TryParse(inputNumberLength, out numbersLength))
@@ -22,7 +22,7 @@ namespace Subtask_5
                     }
                     else
                     {
-                        isNotError = false;
+                        isError = true;
                     }
                 } 
                 else
@@ -38,7 +38,7 @@ namespace Subtask_5
             }
 
             int max = 0;
-            int min = 0;
+            int min = int.MaxValue;
             double result = 0;
             Console.WriteLine("Уникальные значения:");
             foreach (int number in numbers)
@@ -47,16 +47,9 @@ namespace Subtask_5
                 if (max < number)
                     max = number;
 
-                if (min != 0)
-                {
-                    if(min>number)
-                        min = number;
-                }
-                else
-                {
+                if (min > number)
                     min = number;
-                }
-                
+
                 result += number;
             }
 
