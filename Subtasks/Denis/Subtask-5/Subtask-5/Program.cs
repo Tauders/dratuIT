@@ -39,7 +39,7 @@ namespace Subtask_5
 
             int max = 0;
             int min = int.MaxValue;
-            double result = 0;
+            int result = 0;
             Console.WriteLine("Уникальные значения:");
             foreach (int number in numbers)
             {
@@ -53,7 +53,7 @@ namespace Subtask_5
                 result += number;
             }
 
-            double midNumber = Math.Round((result / numbers.Count), 1);
+            double midNumber = Math.Round(((double)result / numbers.Count), 1);
             Console.WriteLine();
             Console.WriteLine($"Минимальное значение = {min}");
             Console.WriteLine($"Максимальное значение значение = {max}");
