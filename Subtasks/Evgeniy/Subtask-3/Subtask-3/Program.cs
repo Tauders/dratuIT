@@ -27,20 +27,21 @@ namespace Subtask_3
             while (!isValidAction)
             {
                 string sortSelection = Console.ReadLine().ToLower();
-                switch (sortSelection)
+                Enum.TryParse(sortSelection, out SortWords convertedSortSelection);
+                switch (convertedSortSelection)
                 {
-                    case "asc":
+                    case SortWords.asc:
                         setOfWords.Sort();
                         Console.WriteLine("Сортировка слов по алфавиту:");
                         isValidAction = true;
                         break;
-                    case "desc":
+                    case SortWords.desc:
                         setOfWords.Sort((str1, str2) => { return string.Compare(str2, str1); });
                         Console.WriteLine("Сортировка слов в обратном порядке алфавита:");
                         isValidAction = true;
                         break;
                     default:
-                        Console.WriteLine("Вы ввели неверное значение, значит вам нужно отдохнуть и больше не вводить значений");
+                        Console.WriteLine("Вы выбрали неверный способ сортировки, попробуйте снова");
                         break;
                 }
             }
@@ -48,6 +49,12 @@ namespace Subtask_3
             {
                 Console.WriteLine(word);
             }
+
+        }
+        enum SortWords
+        {
+            asc,
+            desc
         }
     }
 }
