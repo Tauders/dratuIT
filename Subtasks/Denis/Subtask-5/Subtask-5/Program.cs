@@ -9,9 +9,9 @@ namespace Subtask_5
         {
             Console.WriteLine("Введите количество чисел (от 10 до 1000)");
             Random randomNumber = new Random();
-            bool isError = true;
+            bool isUnknownNumber = true;
             int numbersLength = 0;
-            while (isError)
+            while (isUnknownNumber)
             {
                 string inputNumberLength = Console.ReadLine();
                 if (int.TryParse(inputNumberLength, out numbersLength))
@@ -22,7 +22,7 @@ namespace Subtask_5
                     }
                     else
                     {
-                        isError = false;
+                        isUnknownNumber = false;
                     }
                 } 
                 else
