@@ -26,8 +26,8 @@ namespace Subtask_3
             bool isValidAction = false;
             while (!isValidAction)
             {
-                string sortSelection = Console.ReadLine().ToLower();
-                Enum.TryParse(sortSelection, out SortMethod convertedSortSelection);
+                string sortSelection = Console.ReadLine();
+                Enum.TryParse(sortSelection, true, out SortMethod convertedSortSelection);
                 switch (convertedSortSelection)
                 {
                     case SortMethod.Unknown:
