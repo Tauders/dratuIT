@@ -8,15 +8,14 @@ namespace Subtask_6
         static void Main(string[] args)
         {
             List<string> names = new List<string>();
-            bool isSelect = false;
+            bool isExit = false;
             Console.WriteLine("Введите строки");
-            while (isSelect != true)
+            while (isExit != true)
             {
                 string input = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(input))
                 {
                     Console.WriteLine("Вы ничего не ввели");
-                    
                 }
                 else
                 {
@@ -26,39 +25,42 @@ namespace Subtask_6
                     }
                     else
                     {
-                        isSelect = true;
+                        isExit = true;
                     }
                 }
             }
             Console.WriteLine("Строки получены, введите количество групп");
             string inputNumber = Console.ReadLine();
-            int numberOfName = 0;
+            
             Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
             if (int.TryParse(inputNumber, out int number))
             {
-                if(names.Count / 2 == 0)
-                {
-                    numberOfName = names.Count / number;
-                }
-                else if (names.Count / 2 != 0)
-                {
-                    numberOfName = names.Count % number;
-                }
-                
-                for (int i = 0, j = 0; i < number; i++)
-                {
-                    string group = ($"Группа {i+1}");
-                    groups.Add(group, new List<string>());
-                    for(; j < names.Count/number; j++)
-                    {
-                        groups[group].Add(names[j]);
-                    }
-                    j += 2;
+                int numberOfName = names.Count / number;
+
+                //if (names.Count / 2 != 0)
+                //{
+                //    //numberOfName = names.Count % number;
+                //    Console.WriteLine("нечетное число");
+                //}
+
+                //if (names.Count / 2 == 0)
+                //{
                     
+                //}
+                for (int i = 0; i < number; i++)
+                {
+                    string group = ($"Группа {i + 1}");
+                    groups.Add(group, new List<string>());
+                    for (int j = 0; j < numberOfName; j++)
+                    {
+                        groups[group].Add(names[0]);
+                        names.RemoveAt(0);
+                    }
                 }
-                Console.WriteLine(names.Count);
-                Console.WriteLine(numberOfName);
-            
+
+                //Console.WriteLine(names.Count);
+                //Console.WriteLine(numberOfName);
+
             }
             else
             {
@@ -73,12 +75,7 @@ namespace Subtask_6
                     Console.WriteLine(name);
                 }
             }
-            
-
-
-
             Console.ReadKey();
-
         }
     }
 }
