@@ -27,12 +27,9 @@ namespace Subtask_3
             while (!isValidAction)
             {
                 string sortSelection = Console.ReadLine();
-                Enum.TryParse(sortSelection, true, out SortMethod convertedSortSelection);
-                switch (convertedSortSelection)
+                Enum.TryParse(sortSelection, true, out SortMethod selectedSortMethod);
+                switch (selectedSortMethod)
                 {
-                    case SortMethod.Unknown:
-                        Console.WriteLine("Вы выбрали неверный способ сортировки, попробуйте снова");
-                        break;
                     case SortMethod.Asc:
                         setOfWords.Sort();
                         Console.WriteLine("Сортировка слов по алфавиту:");
@@ -52,6 +49,7 @@ namespace Subtask_3
             {
                 Console.WriteLine(word);
             }
+            Console.WriteLine("Все значения выведены.");
 
         }
         
