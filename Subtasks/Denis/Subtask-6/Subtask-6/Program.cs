@@ -30,63 +30,54 @@ namespace Subtask_6
                 }
             }
             Console.WriteLine("Строки получены, введите количество групп");
-            bool isRepite = false;
-            while (isRepite == true)
+            string inputNumber = Console.ReadLine();
+            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+            if (int.TryParse(inputNumber, out int number))
             {
-                string inputNumber = Console.ReadLine();
-                Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
-                if (int.TryParse(inputNumber, out int number))
+                int numberOfName = names.Count / number;
+                while(names.Count != 0)
                 {
-                    int numberOfName = names.Count / number;
-                    while (names.Count != 0)
+                    for (int i = 0; i < number; i++)
                     {
-                        for (int i = 0; i < number; i++)
+                        if (i != (number))
                         {
-                            if (i != (number))
+                            string group = ($"Группа {i + 1}");
+                            if (!groups.ContainsKey(group))
                             {
-                                string group = ($"Группа {i + 1}");
-                                if (!groups.ContainsKey(group))
-                                {
-                                    groups.Add(group, new List<string>());
-                                }
+                                groups.Add(group, new List<string>());
+                            }
 
-                                for (int j = 0; j < numberOfName; j++)
+                            for (int j = 0; j < numberOfName; j++)
+                            {
+                                if (names.Count != 0)
                                 {
-                                    if (names.Count != 0)
-                                    {
-                                        groups[group].Add(names[0]);
-                                        names.RemoveAt(0);
-                                    }
+                                    groups[group].Add(names[0]);
+                                    names.RemoveAt(0);
                                 }
                             }
-                            else
-                            {
-                                i = 0;
-                            }
+                        }
+                        else
+                        {
+                            i=0;
                         }
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Вы указали не числовое значение. Повторите ввод");
-                }
+            }
+            else
+            {
+                Console.WriteLine("Вы указали не числовое значение. Повторите ввод");
+            }
 
-                foreach (KeyValuePair<string, List<string>> group in groups)
+            foreach (KeyValuePair<string, List<string>> group in groups)
+            {
+                Console.WriteLine(group.Key);
+                foreach (string name in group.Value)
                 {
-                    Console.WriteLine(group.Key);
-                    foreach (string name in group.Value)
-                    {
-                        Console.WriteLine(name);
-                    }
-                }
-                Console.WriteLine("Ещё раз? y/n");
-                string inputSelect = Console.ReadLine();
-                if(inputSelect != "y") 
-                {
-                    isRepite = false;
+                    Console.WriteLine(name);
                 }
             }
-            
+            Console.WriteLine("Ещё раз? y/n");
+            string inputSelect = Console.ReadLine();
                 Console.ReadKey();
         }
     }
