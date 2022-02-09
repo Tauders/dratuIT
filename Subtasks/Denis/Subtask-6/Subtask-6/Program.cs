@@ -31,37 +31,36 @@ namespace Subtask_6
             }
             Console.WriteLine("Строки получены, введите количество групп");
             string inputNumber = Console.ReadLine();
+            
             Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
             if (int.TryParse(inputNumber, out int number))
             {
                 int numberOfName = names.Count / number;
-                while(names.Count != 0)
-                {
-                    for (int i = 0; i < number; i++)
-                    {
-                        if (i != (number))
-                        {
-                            string group = ($"Группа {i + 1}");
-                            if (!groups.ContainsKey(group))
-                            {
-                                groups.Add(group, new List<string>());
-                            }
 
-                            for (int j = 0; j < numberOfName; j++)
-                            {
-                                if (names.Count != 0)
-                                {
-                                    groups[group].Add(names[0]);
-                                    names.RemoveAt(0);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            i=0;
-                        }
+                //if (names.Count / 2 != 0)
+                //{
+                //    //numberOfName = names.Count % number;
+                //    Console.WriteLine("нечетное число");
+                //}
+
+                //if (names.Count / 2 == 0)
+                //{
+                    
+                //}
+                for (int i = 0; i < number; i++)
+                {
+                    string group = ($"Группа {i + 1}");
+                    groups.Add(group, new List<string>());
+                    for (int j = 0; j < numberOfName; j++)
+                    {
+                        groups[group].Add(names[0]);
+                        names.RemoveAt(0);
                     }
                 }
+
+                //Console.WriteLine(names.Count);
+                //Console.WriteLine(numberOfName);
+
             }
             else
             {
@@ -76,9 +75,7 @@ namespace Subtask_6
                     Console.WriteLine(name);
                 }
             }
-            Console.WriteLine("Ещё раз? y/n");
-            string inputSelect = Console.ReadLine();
-                Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }
