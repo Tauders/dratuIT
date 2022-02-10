@@ -29,6 +29,7 @@ namespace Subtask_6
                     }
                 }
             }
+
             Console.WriteLine("Строки получены, введите количество групп");
             string inputNumber = Console.ReadLine();
             Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
@@ -39,7 +40,7 @@ namespace Subtask_6
                 {
                     for (int i = 0; i < number; i++)
                     {
-                        if (i != (number))
+                        if (i != number)
                         {
                             string group = ($"Группа {i + 1}");
                             if (!groups.ContainsKey(group))
