@@ -29,54 +29,70 @@ namespace Subtask_6
                     }
                 }
             }
-
-            Console.WriteLine("Строки получены, введите количество групп");
-            string inputNumber = Console.ReadLine();
-            Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
-            if (int.TryParse(inputNumber, out int number))
+            
+            bool isExit2 = false;
+            while (!isExit2)
             {
-                int numberOfName = names.Count / number;
-                while (names.Count != 0)
+                Console.WriteLine("Строки получены, введите количество групп");
+                string inputNumber = Console.ReadLine();
+                Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+                if (int.TryParse(inputNumber, out int number))
                 {
-                    for (int i = 0; i < number; i++)
+                    int numberOfName = names.Count / number;
+                    while (names.Count != 0)
                     {
-                        if (i != number)
+                        for (int i = 0; i < number; i++)
                         {
-                            string group = ($"Группа {i + 1}");
-                            if (!groups.ContainsKey(group))
+                            if (i != number)
                             {
-                                groups.Add(group, new List<string>());
-                            }
-
-                            for (int j = 0; j < numberOfName; j++)
-                            {
-                                if (names.Count != 0)
+                                string group = ($"Группа {i + 1}");
+                                if (!groups.ContainsKey(group))
                                 {
-                                    groups[group].Add(names[0]);
-                                    names.RemoveAt(0);
+                                    groups.Add(group, new List<string>());
+                                }
+
+                                for (int j = 0; j < numberOfName; j++)
+                                {
+                                    if (names.Count != 0)
+                                    {
+                                        groups[group].Add(names[0]);
+                                        names.RemoveAt(0);
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            i = 0;
+                            else
+                            {
+                                i = 0;
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                Console.WriteLine("Вы указали не числовое значение. Повторите ввод");
-            }
-
-            foreach (KeyValuePair<string, List<string>> group in groups)
-            {
-                Console.WriteLine(group.Key);
-                foreach (string name in group.Value)
+                else
                 {
-                    Console.WriteLine(name);
+                    Console.WriteLine("Вы указали не числовое значение. Повторите ввод");
+                }
+
+                foreach (KeyValuePair<string, List<string>> group in groups)
+                {
+                    Console.WriteLine(group.Key);
+                    foreach (string name in group.Value)
+                    {
+                        Console.WriteLine(name);
+                    }
+                }
+                Console.WriteLine("Ещё раз? y/n");
+                string input = Console.ReadLine();
+                while (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Повторите ввод");
+                }
+
+                if (input == "n")
+                {
+                    isExit2 = true;
                 }
             }
+            Console.WriteLine("Завершение программы");
             Console.ReadKey();
         }
     }
