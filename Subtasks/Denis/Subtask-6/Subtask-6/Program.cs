@@ -5,12 +5,27 @@ namespace Subtask_6
 {
     internal class Program
     {
+        public static answerOptions ChoiceAnswer(answerOptions choice)
+        {
+            switch (choice)
+            {
+                case answerOptions.Yes:
+                    choice = answerOptions.Yes;
+                    break;
+                case answerOptions.No:
+                    choice = answerOptions.No;
+                    break;
+            }
+            return choice;
+        }
+
+
         static void Main(string[] args)
         {
             List<string> names = new List<string>();
-            bool isExit = false;
+            bool isInputTermination = false;
             Console.WriteLine("Введите строки");
-            while (isExit != true)
+            while (isInputTermination != true)
             {
                 string input = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(input))
@@ -19,27 +34,28 @@ namespace Subtask_6
                 }
                 else
                 {
-                    if (!string.Equals(input,"x", StringComparison.InvariantCultureIgnoreCase))
+                    if (!string.Equals(input, "x", StringComparison.InvariantCultureIgnoreCase))
                     {
                         names.Add(input);
                     }
                     else
                     {
-                        isExit = true;
+                        isInputTermination = true;
                     }
                 }
             }
-            
-            bool isExit2 = false;
-            while (!isExit2)
+
+            answerOptions choice = answerOptions.Undefenite;
+            while (choice != answerOptions.No)
             {
+                List<string> copyNames = new List<string>(names);
                 Console.WriteLine("Строки получены, введите количество групп");
                 string inputNumber = Console.ReadLine();
                 Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
                 if (int.TryParse(inputNumber, out int number))
                 {
-                    int numberOfName = names.Count / number;
-                    while (names.Count != 0)
+                    int numberOfName = copyNames.Count / number;
+                    while (copyNames.Count != 0)
                     {
                         for (int i = 0; i < number; i++)
                         {
@@ -53,10 +69,10 @@ namespace Subtask_6
 
                                 for (int j = 0; j < numberOfName; j++)
                                 {
-                                    if (names.Count != 0)
+                                    if (copyNames.Count != 0)
                                     {
-                                        groups[group].Add(names[0]);
-                                        names.RemoveAt(0);
+                                        groups[group].Add(copyNames[0]);
+                                        copyNames.RemoveAt(0);
                                     }
                                 }
                             }
@@ -81,16 +97,19 @@ namespace Subtask_6
                     }
                 }
                 Console.WriteLine("Ещё раз? y/n");
-                string input = Console.ReadLine();
-                while (string.IsNullOrWhiteSpace(input))
+                string choiceInput = Console.ReadLine();
+                if (Enum.TryParse<answerOptions>(choiceInput, true, out choice))
                 {
-                    Console.WriteLine("Повторите ввод");
-                }
-
-                if (input == "n")
-                {
-                    isExit2 = true;
-                }
+                    if(Enum.IsDefined(typeof(answerOptions), choice))
+                    {
+                        ChoiceAnswer(choice);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Данного варианта ответа нету. Повторите ввод");
+                    }
+                    
+                }                
             }
             Console.WriteLine("Завершение программы");
             Console.ReadKey();
