@@ -5,20 +5,22 @@ namespace Subtask_6
 {
     internal class Program
     {
-        public static answerOptions ChoiceAnswer(answerOptions choice)
+        public static answerOptions ChoiceAnswer(string choiceInput)
         {
-            switch (choice)
+            answerOptions answerOption = answerOptions.Undefenite;
+            switch (choiceInput) 
             {
-                case answerOptions.Yes:
-                    choice = answerOptions.Yes;
+                case "y":
+                    answerOption = answerOptions.Yes;
                     break;
-                case answerOptions.No:
-                    choice = answerOptions.No;
+                case "n":
+                    answerOption = answerOptions.No;
                     break;
+                default:
+                    throw new ArgumentException($"Данный вариант не поддерживается в {answerOption}");
             }
-            return choice;
+            return answerOption;
         }
-
 
         static void Main(string[] args)
         {
@@ -50,42 +52,56 @@ namespace Subtask_6
             {
                 List<string> copyNames = new List<string>(names);
                 Console.WriteLine("Строки получены, введите количество групп");
-                string inputNumber = Console.ReadLine();
                 Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
-                if (int.TryParse(inputNumber, out int number))
+                bool isDigit = false;
+                while (isDigit != true)
                 {
-                    int numberOfName = copyNames.Count / number;
-                    while (copyNames.Count != 0)
+                    string inputNumber = Console.ReadLine();
+                    if (int.TryParse(inputNumber, out int number))
                     {
-                        for (int i = 0; i < number; i++)
-                        {
-                            if (i != number)
-                            {
-                                string group = ($"Группа {i + 1}");
-                                if (!groups.ContainsKey(group))
-                                {
-                                    groups.Add(group, new List<string>());
-                                }
 
-                                for (int j = 0; j < numberOfName; j++)
+                        if (number > copyNames.Count)
+                        {
+                            Console.WriteLine("Вы указали некорректное число. Повторите ввод");
+                        }
+
+                        else
+                        {
+                            int numberOfName = copyNames.Count / number;
+                            while (copyNames.Count != 0)
+                            {
+                                for (int i = 0; i < number; i++)
                                 {
-                                    if (copyNames.Count != 0)
+                                    if (i != number)
                                     {
-                                        groups[group].Add(copyNames[0]);
-                                        copyNames.RemoveAt(0);
+                                        string group = ($"Группа {i + 1}");
+                                        if (!groups.ContainsKey(group))
+                                        {
+                                            groups.Add(group, new List<string>());
+                                        }
+
+                                        for (int j = 0; j < numberOfName; j++)
+                                        {
+                                            if (copyNames.Count != 0)
+                                            {
+                                                groups[group].Add(copyNames[0]);
+                                                copyNames.RemoveAt(0);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        i = 0;
                                     }
                                 }
                             }
-                            else
-                            {
-                                i = 0;
-                            }
+                            isDigit = true;
                         }
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Вы указали не числовое значение. Повторите ввод");
+                    else
+                    {
+                        Console.WriteLine("Ошибка ввод. Повторите ввод");
+                    }
                 }
 
                 foreach (KeyValuePair<string, List<string>> group in groups)
@@ -97,19 +113,20 @@ namespace Subtask_6
                     }
                 }
                 Console.WriteLine("Ещё раз? y/n");
-                string choiceInput = Console.ReadLine();
-                if (Enum.TryParse<answerOptions>(choiceInput, true, out choice))
+                bool isChoice = false;
+                while(isChoice != true)
                 {
-                    if(Enum.IsDefined(typeof(answerOptions), choice))
+                    string choiceInput = Console.ReadLine();
+                    choice = ChoiceAnswer(choiceInput);
+                    if (choice == answerOptions.Undefenite)
                     {
-                        ChoiceAnswer(choice);
+                        Console.WriteLine("Ошибка ввода. Повторите ввод");
                     }
                     else
                     {
-                        Console.WriteLine("Данного варианта ответа нету. Повторите ввод");
+                        isChoice = true;
                     }
-                    
-                }                
+                }
             }
             Console.WriteLine("Завершение программы");
             Console.ReadKey();
