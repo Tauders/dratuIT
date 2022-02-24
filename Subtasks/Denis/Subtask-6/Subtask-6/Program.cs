@@ -17,7 +17,8 @@ namespace Subtask_6
                     answerOption = answerOptions.No;
                     break;
                 default:
-                    throw new ArgumentException($"Данный вариант не поддерживается в {answerOption}");
+                    Console.WriteLine("Ошибка ввода. Повторите ввод");
+                    break;
             }
             return answerOption;
         }
@@ -118,11 +119,7 @@ namespace Subtask_6
                 {
                     string choiceInput = Console.ReadLine();
                     choice = ChoiceAnswer(choiceInput);
-                    if (choice == answerOptions.Undefenite)
-                    {
-                        Console.WriteLine("Ошибка ввода. Повторите ввод");
-                    }
-                    else
+                    if (choice != answerOptions.Undefenite)
                     {
                         isChoice = true;
                     }
