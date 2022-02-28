@@ -53,7 +53,7 @@ namespace Subtask_6
             {
                 List<string> copyNames = new List<string>(names);
                 Console.WriteLine("Строки получены, введите количество групп");
-                Dictionary<string, List<string>> groups = new Dictionary<string, List<string>>();
+                Dictionary<int, List<string>> groups = new Dictionary<int, List<string>>();
                 bool isDigit = false;
                 while (isDigit != true)
                 {
@@ -68,25 +68,29 @@ namespace Subtask_6
 
                         else
                         {
-                            int numberOfName = copyNames.Count / number;
+                            
                             while (copyNames.Count != 0)
                             {
+                                Random random = new Random();
+                                
                                 for (int i = 0; i < number; i++)
                                 {
+                                    int rndGroup = random.Next(number);
                                     if (i != number)
                                     {
-                                        string group = ($"Группа {i + 1}");
+                                        int group = rndGroup + 1;
                                         if (!groups.ContainsKey(group))
                                         {
                                             groups.Add(group, new List<string>());
                                         }
 
-                                        for (int j = 0; j < numberOfName; j++)
+                                        for (int j = 0; j < 1; j++)
                                         {
+                                            int rnd = random.Next(copyNames.Count);
                                             if (copyNames.Count != 0)
                                             {
-                                                groups[group].Add(copyNames[0]);
-                                                copyNames.RemoveAt(0);
+                                                groups[group].Add(copyNames[rnd]);
+                                                copyNames.RemoveAt(rnd);
                                             }
                                         }
                                     }
@@ -104,14 +108,15 @@ namespace Subtask_6
                         Console.WriteLine("Ошибка ввод. Повторите ввод");
                     }
                 }
-
-                foreach (KeyValuePair<string, List<string>> group in groups)
+                int index = 1;
+                foreach (KeyValuePair<int, List<string>> group in groups)
                 {
-                    Console.WriteLine(group.Key);
+                    Console.WriteLine($"Группа {index}");
                     foreach (string name in group.Value)
                     {
                         Console.WriteLine(name);
                     }
+                    index++;
                 }
                 Console.WriteLine("Ещё раз? y/n");
                 bool isChoice = false;
