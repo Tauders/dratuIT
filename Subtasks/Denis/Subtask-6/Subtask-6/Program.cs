@@ -107,17 +107,15 @@ namespace Subtask_6
                                 groups.Add(group, new List<string>());
                             }
 
+                            Random random = new Random();
                             while (copyNames.Count != 0)
                             {
-                                for (int j = 0; j < 1; j++)
+                                group = random.Next(1, number + 1);
+                                int test = random.Next(copyNames.Count);
+                                if (copyNames.Count != 0)
                                 {
-                                    Random random = new Random();
-                                    group = random.Next(1, number+1);
-                                    if (copyNames.Count != 0)
-                                    {
-                                        groups[group].Add(copyNames[j]);
-                                        copyNames.RemoveAt(j);
-                                    }
+                                    groups[group].Add(copyNames[test]);
+                                    copyNames.RemoveAt(test);
                                 }
                             }
                             isDigit = true;
