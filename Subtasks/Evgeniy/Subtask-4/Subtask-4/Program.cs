@@ -7,14 +7,18 @@ namespace Subtask_4
     {
         static void Main(string[] args)
         {
-            string userInput = "";
             List<string> listOfPeopleBySportsSection = new List<string>();
-            while (userInput.ToLower() != "exit")
+            bool isInputEnded = false;
+            while (!isInputEnded)
             {
-                userInput = Console.ReadLine();
+                string userInput = Console.ReadLine();
                 if (userInput.ToLower() != "exit")
                 {
                     listOfPeopleBySportsSection.Add(userInput);
+                }
+                else
+                {
+                    isInputEnded = true;
                 }
             }
             Console.WriteLine("Данные введены, выберите способ сортировки");
@@ -23,7 +27,7 @@ namespace Subtask_4
             foreach (string choiceOfSectionByEachPerson in listOfPeopleBySportsSection)
             {
 
-                words[count] = choiceOfSectionByEachPerson.Split(new char[] { ' ' });
+                words = choiceOfSectionByEachPerson.Split(new char[] { ' ' });
                 count++;
             }
         }
