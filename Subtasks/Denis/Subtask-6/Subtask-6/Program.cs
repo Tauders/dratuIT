@@ -8,55 +8,19 @@ namespace Subtask_6
         public static answerOptions ChoiceAnswer(string choiceInput)
         {
             answerOptions answerOption = answerOptions.Undefenite;
-            switch (choiceInput)
+            if (choiceInput == "y")
             {
-                case "y":
-                    answerOption = answerOptions.Yes;
-                    break;
-                case "n":
-                    answerOption = answerOptions.No;
-                    break;
-                default:
-                    Console.WriteLine("Ошибка ввода. Повторите ввод");
-                    break;
+                answerOption = answerOptions.Yes;
+            }
+            else if (choiceInput == "n")
+            {
+                answerOption = answerOptions.No;
             }
             return answerOption;
         }
 
         static void Main(string[] args)
         {
-            //Random random = new Random();
-            //List<int> list = new List<int>();
-            //string input = Console.ReadLine();
-            //Console.Clear();
-            //if(int.TryParse(input, out int result))
-            //{
-            //    for (int i = result; i > 0; i--)
-            //    {
-            //        list.Add(i);
-            //    }
-            //}
-
-            //for (int i = 0; i < list.Count; i++)
-            //{
-            //    Console.WriteLine(list[i]);
-            //}
-
-            //Console.WriteLine("===============================");
-
-            //while (list.Count != 0)
-            //{
-            //    int rnd = random.Next(list.Count);
-            //    Console.WriteLine(list[rnd]);
-            //    list.RemoveAt(rnd);
-            //}
-
-
-
-
-
-
-
             List<string> names = new List<string>();
             bool isInputTermination = false;
             Console.WriteLine("Введите строки");
@@ -141,7 +105,11 @@ namespace Subtask_6
                 {
                     string choiceInput = Console.ReadLine();
                     choice = ChoiceAnswer(choiceInput);
-                    if (choice != answerOptions.Undefenite)
+                    if (choice == answerOptions.Undefenite)
+                    {
+                        Console.WriteLine("Ошибка ввод. Повторите ввод");
+                    }
+                    else
                     {
                         isChoice = true;
                     }
