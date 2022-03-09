@@ -72,14 +72,27 @@ namespace Subtask_6
                             }
 
                             Random random = new Random();
+                            List<int> numbers = new List<int>();
+                            for (int i = 0; i < number; i++)
+                            {
+                                numbers.Add(i + 1);
+                            }
+
+
                             while (copyNames.Count != 0)
                             {
-                                group = random.Next(1, number + 1);
-                                int test = random.Next(copyNames.Count);
-                                if (copyNames.Count != 0)
+                                List<int> copyNumbers = new List<int>(numbers);
+                                while (copyNumbers.Count != 0)
                                 {
-                                    groups[group].Add(copyNames[test]);
-                                    copyNames.RemoveAt(test);
+                                    int randomIndes = random.Next(copyNumbers.Count);
+                                    group = copyNumbers[randomIndes];
+                                    copyNumbers.RemoveAt(randomIndes);
+                                    int test = random.Next(copyNames.Count);
+                                    if (copyNames.Count != 0)
+                                    {
+                                        groups[group].Add(copyNames[test]);
+                                        copyNames.RemoveAt(test);
+                                    }
                                 }
                             }
                             isDigit = true;
