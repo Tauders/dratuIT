@@ -91,7 +91,7 @@
     transition: .3s;
 }
 
-button.form_btn {
+.form_btn {
     position: relative;
     font-size: 31px;
     text-align: center;
@@ -109,7 +109,7 @@ button.form_btn {
     color:#999;
 }
 
-svg {
+.border {
     position: absolute;
     left: 0;
     top: 0;
@@ -130,7 +130,7 @@ svg {
     background: transparent;
 }
 
-.form_btn:hover svg {
+.form_btn:hover .border {
     stroke-dashoffset: -343;
 }
 
