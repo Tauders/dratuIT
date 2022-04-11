@@ -44,7 +44,7 @@
     z-index: -1;
 }
 
-h1.page_heading {
+.page_heading {
     text-align: center;
     color: #25ffe0;
     font-size: 50px;
