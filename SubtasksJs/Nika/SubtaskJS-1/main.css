@@ -1,100 +1,69 @@
 #form_page {
     background-color: #000;
-    width: 100%;
-    background-size: 100%;
-    max-width: 1920px;
     margin: auto;
 }
 
 #container {
     background-image: url('./images/background.png');
     background-repeat: no-repeat;
-    background-size: 500px;
-    max-width: 1920px;
-    height: 890px;
-    background-position: right;
+    height: 100%;
+    min-height: 555px;
+    background-position-x: right;
     opacity: 0.7;
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    font-family: cursive;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 #container:after {
     content: '';
     background-image: url('./images/background.png');
-    transform: rotateY(180deg);background-size: 500px;
+    transform: rotateY(180deg);
     position: absolute;
-    background-position: right;
-    max-width: 1920px;
+    background-position-x: right;
     width: 100%;
-    right: 0;
-    height: 890px;
+    height: 100%;
+    min-height: 555px;
     background-repeat: no-repeat;
     z-index: -1;
 }
 
 .page_heading {
-    text-align: center;
     color: #25ffe0;
     font-size: 50px;
-    margin-top: 200px;
 }
 
 .form {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
     gap: 50px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    flex-direction: column;
 }
 
 .form_data {
     font-size: 32px;
-    text-align: center;
+    text-align:center;
     background: transparent;
     border-radius: 10px;
     padding: 20px;
-    -webkit-transition: .3s;
-    -o-transition: .3s;
     transition: .3s;
     border-style: outset;
-    color:#999;
+    color: #999;
 }
 
 .form_data:focus-visible,
 .form_data:focus-within,
 .form_data:hover {
     border: 2px outset #25ffe0;
-    cursor: pointer;
-    -webkit-transition: .3s;
-    -o-transition: .3s;
+    cursor: auto;
     transition: .3s;
 }
 
 .form_btn {
     position: relative;
     font-size: 31px;
-    text-align: center;
     border-radius: 10px;
     padding: 20px;
     width: 190px;
@@ -103,10 +72,8 @@
     background: transparent;
     border: 1px solid #25ffe0;
     outline: none;
-    -webkit-transition: 1s ease-in-out;
-    -o-transition: 1s ease-in-out;
     transition: 1s ease-in-out;
-    color:#999;
+    color: #999;
 }
 
 .border {
@@ -117,15 +84,11 @@
     stroke: #25ffe0;
     stroke-dasharray: 405 410;
     stroke-dashoffset: 140;
-    -webkit-transition: 1s ease-in-out;
-    -o-transition: 1s ease-in-out;
     transition: 1s ease-in-out;
     border-radius: 10px;
 }
 
 .form_btn:hover {
-    -webkit-transition: 1s ease-in-out;
-    -o-transition: 1s ease-in-out;
     transition: 1s ease-in-out;
     background: transparent;
 }
@@ -138,15 +101,13 @@
     #container:after {
         background: none;
     }
+
     #container {
-        -webkit-box-align: start;
-            -ms-flex-align: start;
-                align-items: flex-start;
+        align-items: flex-start;
         margin-left: 40px;
     }
+
     .form {
-        -webkit-box-align: start;
-            -ms-flex-align: start;
-                align-items: flex-start;
+        align-items: flex-start;
     }
 }
