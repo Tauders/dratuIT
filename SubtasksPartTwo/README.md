@@ -9,26 +9,27 @@
 
 1. Пользователь вводит полный путь до файла с данными.
 
-Файл содержит колонки вида:
+    Файл содержит колонки вида:
 
-group|song|genres|duration
+    group|song|genres|duration
 
-Содержимое файл выглядит примерно так:
+    Содержимое файл выглядит примерно так:
 
-```txt
-Queen|Bohemian Rhapsody|Progressive rock, hard rock, progressive pop|5:55
-Guns N' Roses|Paradise City|Glam metal, hard rock, heavy metal|6:48
-Imagine Dragons|Radioactive|Electronic rock, alternative rock|3:07
-Queen|We Will Rock You|Arena rock|2:59
-Led Zeppelin|Good Times Bad Times|Hard rock|2:43
-Imagine Dragons|Enemy|Pop rock, rock|2:53
-```
+    ```txt
+    Queen|Bohemian Rhapsody|Progressive rock, hard rock, progressive pop|5:55
+    Guns N' Roses|Paradise City|Glam metal, hard rock, heavy metal|6:48
+    Imagine Dragons|Radioactive|Electronic rock, alternative rock|3:07
+    Queen|We Will Rock You|Arena rock|2:59
+    Led Zeppelin|Good Times Bad Times|Hard rock|2:43
+    Imagine Dragons|Enemy|Pop rock, rock|2:53
+    ```
 
-2. Пользователь вводит колонку, по которой делать выборку и дополнительную информация.
+2. Пользователь вводит колонку, по которой собирается делать выборку и получать дополнительную информацию.
 
-У каждой колонки свои правила. У `group` -> фильтровать по названию. У `song` -> фильтровать по названию. У `genres` -> фильтровать по названию жанра. У `duration` -> сортировка (`asc` или `desc`).
+    У каждой колонки свои правила. У `group` -> фильтровать по названию. У `song` -> фильтровать по названию. У `genres` -> фильтровать по названию жанра. У `duration` -> сортировка (`asc` или `desc`). Результатом должны быть отфильтрованные, либо сортированные записи.
 
-3. Сохранить обработанные записи в файл `output.txt` в вводном формате.
+3. Пользователь вводит строку с дополнительной информацией.
+4. Сохранить обработанные записи в файл `output.txt` во входном формате.
 
 ### Пример упражнения 1
 
@@ -36,7 +37,7 @@ Imagine Dragons|Enemy|Pop rock, rock|2:53
 
 <- Введите полный путь до файла
 -> C:/temp/input.txt
-<- Введите название колонки, по которой фильтровать
+<- Введите название колонки, по которой производить действия
 -> genres
 <- Введите название жанра
 -> Hard rock
