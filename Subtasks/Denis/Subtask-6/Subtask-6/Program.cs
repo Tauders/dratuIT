@@ -56,7 +56,6 @@ namespace Subtask_6
                     string inputNumber = Console.ReadLine();
                     if (int.TryParse(inputNumber, out int number))
                     {
-
                         if (number > copyNames.Count)
                         {
                             Console.WriteLine("Вы указали некорректное число. Повторите ввод");
