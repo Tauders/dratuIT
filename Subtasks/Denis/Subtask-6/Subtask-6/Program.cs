@@ -80,10 +80,10 @@ namespace Subtask_6
                                 List<int> copyNumbers = new List<int>(numbers);
                                 while (copyNumbers.Count != 0)
                                 {
-                                    int randomIndes = random.Next(copyNumbers.Count);
-                                    group = copyNumbers[randomIndes];
-                                    copyNumbers.RemoveAt(randomIndes);
-                                    int test = random.Next(copyNames.Count);
+                                    int randomIndex = random.Next(copyNumbers.Count);
+                                    group = copyNumbers[randomIndex];
+                                    copyNumbers.RemoveAt(randomIndex);
+                                    int test = random.Next(copyNames.Count);    
                                     if (copyNames.Count != 0)
                                     {
                                         groups[group].Add(copyNames[test]);
@@ -116,7 +116,7 @@ namespace Subtask_6
                     choice = ChoiceAnswer(choiceInput);
                     if (choice == AnswerOptions.Undefined)
                     {
-                        Console.WriteLine("Ошибка ввод. Повторите ввод");
+                        Console.WriteLine("Ошибка ввода. Повторите ввод");
                     }
                     else
                     {
