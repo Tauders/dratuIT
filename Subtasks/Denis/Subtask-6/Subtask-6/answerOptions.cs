@@ -2,9 +2,9 @@
 
 namespace Subtask_6
 {
-    public enum answerOptions
+    public enum AnswerOptions
     {
-        Undefenite,
+        Undefined,
         Yes,
         No
     }

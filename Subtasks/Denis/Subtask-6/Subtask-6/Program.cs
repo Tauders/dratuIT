@@ -5,16 +5,16 @@ namespace Subtask_6
 {
     internal class Program
     {
-        public static answerOptions ChoiceAnswer(string choiceInput)
+        public static AnswerOptions ChoiceAnswer(string choiceInput)
         {
-            answerOptions answerOption = answerOptions.Undefenite;
-            if (choiceInput == "y")
+            AnswerOptions answerOption = AnswerOptions.Undefined;
+            if (choiceInput == "y" || choiceInput == "Y")
             {
-                answerOption = answerOptions.Yes;
+                answerOption = AnswerOptions.Yes;
             }
-            else if (choiceInput == "n")
+            else if (choiceInput == "n" || choiceInput == "N")
             {
-                answerOption = answerOptions.No;
+                answerOption = AnswerOptions.No;
             }
             return answerOption;
         }
@@ -44,8 +44,8 @@ namespace Subtask_6
                 }
             }
 
-            answerOptions choice = answerOptions.Undefenite;
-            while (choice != answerOptions.No)
+            AnswerOptions choice = AnswerOptions.Undefined;
+            while (choice != AnswerOptions.No)
             {
                 List<string> copyNames = new List<string>(names);
                 Console.WriteLine("Строки получены, введите количество групп");
@@ -61,13 +61,11 @@ namespace Subtask_6
                         {
                             Console.WriteLine("Вы указали некорректное число. Повторите ввод");
                         }
-
                         else
                         {
-                            int group = 0;
-                            for (int i = 1; i <= number; i++)
+                            int group = 1;
+                            for (; group <= number; group++)
                             {
-                                group = i;
                                 groups.Add(group, new List<string>());
                             }
 
@@ -77,7 +75,6 @@ namespace Subtask_6
                             {
                                 numbers.Add(i + 1);
                             }
-
 
                             while (copyNames.Count != 0)
                             {
@@ -100,7 +97,7 @@ namespace Subtask_6
                     }
                     else
                     {
-                        Console.WriteLine("Ошибка ввод. Повторите ввод");
+                        Console.WriteLine("Ошибка ввода. Повторите ввод");
                     }
                 }
                 
@@ -118,7 +115,7 @@ namespace Subtask_6
                 {
                     string choiceInput = Console.ReadLine();
                     choice = ChoiceAnswer(choiceInput);
-                    if (choice == answerOptions.Undefenite)
+                    if (choice == AnswerOptions.Undefined)
                     {
                         Console.WriteLine("Ошибка ввод. Повторите ввод");
                     }
