@@ -35,7 +35,7 @@ document.querySelector(".form2").addEventListener('submit', function (e) {
         resultsArray.sort().reverse();
     } 
     
-    resultsArray.forEach(function(item, i, arr) {
+    resultsArray.forEach(function(item) {
         let sortItem  = document.createElement('li');
         sortItem.innerHTML = item;
         sortItem.className = 'sort_results-item';
