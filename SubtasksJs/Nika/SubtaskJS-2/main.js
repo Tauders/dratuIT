@@ -1,44 +1,52 @@
-let inputList = document.getElementById('input_results-list');
-let sortList = document.getElementById('sort_results-list');
+const inputList = document.getElementById('input_results-list');
+const sortList = document.getElementById('sort_results-list');
 
-document.querySelector(".form1").addEventListener('submit', function (e) {
+document.querySelector('#input-word--form').addEventListener('submit', function (e) {
     e.preventDefault();
-    if(document.querySelectorAll('.sort_results-item').length != 0){
+
+    const sortCollectionItems = document.querySelectorAll('.sort_results-item');
+
+    if(sortCollectionItems.length !== 0){
         inputList.innerHTML = '';
         sortList.innerHTML = '';
     }
 
-    let passValue = document.querySelector('.form_data').value;
-    let inputItem = document.createElement('li');
-    inputItem.className = 'input_results-item';
+    const passValue = document.querySelector('.form_data').value;
+    const inputItem = document.createElement('li');
+    const inputItemClassName = 'input_results-item';
+
+    inputItem.className = inputItemClassName;
     inputItem.innerHTML = passValue;
     inputList.append(inputItem);
     document.querySelector('.form_data').value = '';
 });
 
-let radioDescending = document.getElementById('sort_descending');
-let radioAscending = document.getElementById('sort_ascending');
-
-document.querySelector(".form2").addEventListener('submit', function (e) {
+document.querySelector('#sort-word--form').addEventListener('submit', function (e) {
     e.preventDefault();
-    if(document.querySelectorAll('.sort_results-item').length != 0){
+
+    const radioDescending = document.getElementById('sort_descending');
+    const radioAscending = document.getElementById('sort_ascending');
+    const sortCollectionItems = document.querySelectorAll('.sort_results-item');
+    const inputCollectionItems = document.querySelectorAll('.input_results-item');
+
+    if(sortCollectionItems.length !== 0){
         sortList.innerHTML = '';
     }
-    let inputItem = document.querySelectorAll('.input_results-item');
-    let resultsArray = Array.from(inputItem);
 
-    resultsArray = resultsArray.map(t => { return t.innerText })
+    let inputArrayItems = Array.from(inputCollectionItems).map(t=>t.innerText);
 
     if(radioAscending.checked) {
-        resultsArray.sort();
-    } if (radioDescending.checked) {
-        resultsArray.sort().reverse();
+        inputArrayItems.sort();
+    } else if (radioDescending.checked) {
+        inputArrayItems.sort().reverse();
     } 
     
-    resultsArray.forEach(function(item) {
-        let sortItem  = document.createElement('li');
-        sortItem.innerHTML = item;
-        sortItem.className = 'sort_results-item';
+    for (let result of inputArrayItems) {
+        const sortItem  = document.createElement('li');
+        const sortItemClassName = 'sort_results-item';
+        
+        sortItem.className = sortItemClassName;
+        sortItem.innerHTML = result;
         sortList.append(sortItem);
-      });
+    }
 });
