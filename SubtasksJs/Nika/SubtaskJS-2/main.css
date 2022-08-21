@@ -4,7 +4,7 @@
 }
 
 #container {
-  background-image: url("./images/background.png");
+  background-image: url('./images/background.png');
   background-repeat: no-repeat;
   height: 100%;
   min-height: 555px;
@@ -17,8 +17,8 @@
 }
 
 #container:after {
-  content: "";
-  background-image: url("./images/background.png");
+  content: '';
+  background-image: url('./images/background.png');
   transform: rotateY(180deg);
   position: absolute;
   background-position-x: right;
@@ -126,14 +126,14 @@ h2 {
   flex-direction: column;
 }
 
-input[type="radio"]:focus,
-input[type="radio"]:focus-visible {
+input[type='radio']:focus,
+input[type='radio']:focus-visible {
   outline-color: #fff;
   outline-width: 1px;
   outline-style: solid;
 }
 
-.form_radio-list input[type="radio"] {
+.form_radio-list input[type='radio'] {
   width: 16px;
   height: 16px;
   margin-right: 5px;
@@ -141,8 +141,8 @@ input[type="radio"]:focus-visible {
   position: relative;
 }
 
-.form_radio-list input[type="radio"]:before {
-  content: "";
+.form_radio-list input[type='radio']:before {
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -154,8 +154,8 @@ input[type="radio"]:focus-visible {
   border: 2px solid #1ab29c;
 }
 
-.form_radio-list input[type="radio"]:checked::after {
-  content: "";
+.form_radio-list input[type='radio']:checked::after {
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;

@@ -1,52 +1,58 @@
-const inputList = document.getElementById('input_results-list');
-const sortList = document.getElementById('sort_results-list');
+const formInputWordID = 'input-word--form';
+const formSortingWordID = 'sort-word--form';
+const sortedListID = 'sort_results-list';
+const outputListID = 'input_results-list';
+const enteredValueID = 'form--input-data';
+const itemSortedListClassName = '.sort_results-item';
+const outputListItemClassName = '.input_results-item';
 
-document.querySelector('#input-word--form').addEventListener('submit', function (e) {
+document.getElementById(formInputWordID).addEventListener('submit', function (e) {
     e.preventDefault();
-
-    const sortCollectionItems = document.querySelectorAll('.sort_results-item');
-
-    if(sortCollectionItems.length !== 0){
-        inputList.innerHTML = '';
-        sortList.innerHTML = '';
+    const sortedList = document.getElementById(sortedListID);
+    const outputList = document.getElementById(outputListID);
+    const collectionSortedListItems = document.querySelectorAll(itemSortedListClassName);
+    if(collectionSortedListItems.length !== 0){
+        outputList.innerHTML = '';
+        sortedList.innerHTML = '';
     }
 
-    const passValue = document.querySelector('.form_data').value;
-    const inputItem = document.createElement('li');
-    const inputItemClassName = 'input_results-item';
+    const enteredValue = document.getElementById(enteredValueID).value;
+    const outputListItem = document.createElement('li');
+    const outputListItemClassName = 'input_results-item';
 
-    inputItem.className = inputItemClassName;
-    inputItem.innerHTML = passValue;
-    inputList.append(inputItem);
-    document.querySelector('.form_data').value = '';
+    outputListItem.className = outputListItemClassName;
+    outputListItem.innerHTML = enteredValue;
+    outputList.append(outputListItem);
+    document.getElementById(enteredValueID).value = '';
 });
 
-document.querySelector('#sort-word--form').addEventListener('submit', function (e) {
+document.getElementById(formSortingWordID).addEventListener('submit', function (e) {
     e.preventDefault();
+    const sortedList = document.getElementById(sortedListID);
+    const collectionSortedListItems = document.querySelectorAll(itemSortedListClassName);
+    const collectionOutputListItems = document.querySelectorAll(outputListItemClassName);
 
-    const radioDescending = document.getElementById('sort_descending');
-    const radioAscending = document.getElementById('sort_ascending');
-    const sortCollectionItems = document.querySelectorAll('.sort_results-item');
-    const inputCollectionItems = document.querySelectorAll('.input_results-item');
+    const radioDescendingOption = document.getElementById('sort_descending');
+    const radioAscendingOption = document.getElementById('sort_ascending');
 
-    if(sortCollectionItems.length !== 0){
-        sortList.innerHTML = '';
+    if(collectionSortedListItems.length !== 0){
+        sortedList.innerHTML = '';
     }
 
-    let inputArrayItems = Array.from(inputCollectionItems).map(t=>t.innerText);
+    const itemsArrayOutputListItems = Array.from(collectionOutputListItems).map(t=>t.innerText);
 
-    if(radioAscending.checked) {
-        inputArrayItems.sort();
-    } else if (radioDescending.checked) {
-        inputArrayItems.sort().reverse();
+    if(radioAscendingOption.checked) {
+        itemsArrayOutputListItems.sort();
+    } else if (radioDescendingOption.checked) {
+        itemsArrayOutputListItems.sort().reverse();
     } 
     
-    for (let result of inputArrayItems) {
-        const sortItem  = document.createElement('li');
-        const sortItemClassName = 'sort_results-item';
+    for (let result of itemsArrayOutputListItems) {
+        const itemSortedList  = document.createElement('li');
+        const itemSortedListClassName = 'sort_results-item';
         
-        sortItem.className = sortItemClassName;
-        sortItem.innerHTML = result;
-        sortList.append(sortItem);
+        itemSortedList.className = itemSortedListClassName;
+        itemSortedList.innerHTML = result;
+        sortedList.append(itemSortedList);
     }
 });
