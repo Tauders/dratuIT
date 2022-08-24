@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Трататушки</title>
+  <link href="main.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body id="form_page">
+  <main id="container">
+    <h1 class="page_heading">Тюлень у калькулятора</h1>
+    <form action="#" class="form" id="input-number--form">
+      <h2>Введите числа через пробел:</h2>
+      <div class="form_item">
+        <input class="form_data" id="form--input-data" type="text" placeholder="числа на тюленьем" />
+      </div>
+      <button class="form_btn" type="submit">
+        <svg viewBox="0 0 180 65" class="border-hover-effect--button">
+          <polyline points="189,1 189,79 1,79 1,1 189,1" class="bg-line" />
+          <polyline points="189,1 189,79 1,79 1,1 189,1" class="hl-line" />
+        </svg>
+        Отправить
+      </button>
+      <div class="error--box"></div>
+    </form>
+    <div class="checkboxList" id="checkboxList"></div>
+    <form action="#" class="form control" id="counting-number--form">
+      <label for="addition">
+        <input type="radio" id="addition">+</label>
+      <label for="subtraction">
+        <input type="radio" id="subtraction">-</label>
+      <label for="multiplication">
+        <input type="radio" id="multiplication">*</label>
+      <label for="division">
+        <input type="radio" id="division">/</label>
+      <button class="form_btn" type="submit">
+        <svg viewBox="0 0 180 65" class="border-hover-effect--button">
+          <polyline points="189,1 189,79 1,79 1,1 189,1" class="bg-line" />
+          <polyline points="189,1 189,79 1,79 1,1 189,1" class="hl-line" />
+        </svg>
+        Посчитать
+      </button>
+    </form>
+    <div class="block_results">
+      <h3>Результат вычислений:</h3>
+      <div class="block_counting-results" id="counting-results">
+      </div>
+    </div>
+  </main>
+  <script src="main.js"></script>
+</body>
+
+</html>
