@@ -21,7 +21,8 @@ document
     }
 
     const enteredValue = document.getElementById(enteredValueID).value;
-    const outputListItem = document.createElement('li');
+    const outputListItemTagName = 'li';
+    const outputListItem = document.createElement(outputListItemTagName);
     const outputListItemClassName = 'input_results-item';
 
     outputListItem.className = outputListItemClassName;
@@ -42,8 +43,14 @@ document
       outputListItemClassName
     );
 
-    const radioDescendingOption = document.getElementById('sort_descending');
-    const radioAscendingOption = document.getElementById('sort_ascending');
+    const radioDescendingOptioniD = 'sort_descending';
+    const radioAscendingOptionID = 'sort_ascending';
+    const radioDescendingOption = document.getElementById(
+      radioDescendingOptioniD
+    );
+    const radioAscendingOption = document.getElementById(
+      radioAscendingOptionID
+    );
 
     if (collectionSortedListItems.length !== 0) {
       sortedList.innerHTML = '';
@@ -59,8 +66,9 @@ document
       itemsArrayOutputListItems.sort().reverse();
     }
 
-    for (let result of itemsArrayOutputListItems) {
-      const itemSortedList = document.createElement('li');
+    for (const result of itemsArrayOutputListItems) {
+      const itemSortedListTagName = 'li';
+      const itemSortedList = document.createElement(itemSortedListTagName);
       const itemSortedListClassName = 'sort_results-item';
 
       itemSortedList.className = itemSortedListClassName;
