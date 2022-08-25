@@ -5,6 +5,8 @@ const outputListID = 'input_results-list';
 const enteredValueID = 'form--input-data';
 const itemSortedListClassName = '.sort_results-item';
 const outputListItemClassName = '.input_results-item';
+const radioDescendingOptionID = 'sort_descending';
+const radioAscendingOptionID = 'sort_ascending';
 
 document
   .getElementById(formInputWordID)
@@ -21,9 +23,7 @@ document
     }
 
     const enteredValue = document.getElementById(enteredValueID).value;
-    const outputListItemTagName = 'li';
-    const outputListItem = document.createElement(outputListItemTagName);
-    const outputListItemClassName = 'input_results-item';
+    const outputListItem = document.createElement('li');
 
     outputListItem.className = outputListItemClassName;
     outputListItem.innerHTML = enteredValue;
@@ -43,10 +43,9 @@ document
       outputListItemClassName
     );
 
-    const radioDescendingOptioniD = 'sort_descending';
-    const radioAscendingOptionID = 'sort_ascending';
+    
     const radioDescendingOption = document.getElementById(
-      radioDescendingOptioniD
+      radioDescendingOptionID
     );
     const radioAscendingOption = document.getElementById(
       radioAscendingOptionID
@@ -67,9 +66,8 @@ document
     }
 
     for (const result of itemsArrayOutputListItems) {
-      const itemSortedListTagName = 'li';
-      const itemSortedList = document.createElement(itemSortedListTagName);
-      const itemSortedListClassName = 'sort_results-item';
+
+      const itemSortedList = document.createElement('li');
 
       itemSortedList.className = itemSortedListClassName;
       itemSortedList.innerHTML = result;
