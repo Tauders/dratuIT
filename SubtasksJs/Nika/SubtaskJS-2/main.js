@@ -63,6 +63,7 @@ document
     } else if (radioDescendingOption.checked) {
       itemsArrayOutputListItems.sort().reverse();
     }
+
     for (const result of itemsArrayOutputListItems) {
       const itemSortedList = document.createElement('li');
       itemSortedList.className = itemSortedListClassName;
