@@ -43,7 +43,6 @@ document
       outputListItemClassName
     );
 
-    
     const radioDescendingOption = document.getElementById(
       radioDescendingOptionID
     );
@@ -65,9 +64,7 @@ document
       itemsArrayOutputListItems.sort().reverse();
     }
     for (const result of itemsArrayOutputListItems) {
-
       const itemSortedList = document.createElement('li');
-
       itemSortedList.className = itemSortedListClassName;
       itemSortedList.innerHTML = result;
       sortedList.append(itemSortedList);
