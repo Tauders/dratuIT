@@ -6,66 +6,96 @@ const checkboxListID = 'checkboxList';
 const checkboxList = document.getElementById(checkboxListID);
 const countingResultsID = 'counting-results';
 const countingResults = document.getElementById(countingResultsID);
+const radioAdditionOptionID = 'addition';
+const radioSubtractionOptionID = 'subtraction';
+const radioMultiplicationOptionID = 'multiplication';
+const radioDivisionOptionID = 'division';
+const errorBoxClassName = '.error--box';
+const errorBox = document.querySelector(errorBoxClassName);
+const checkboxItemClassName = 'checkbox';
+const labelItemClassName = 'label';
+
+function clearCheckboxSheet() {
+  if (checkboxList.firstChild) {
+    checkboxList.innerHTML = '';
+  }
+}
+function clearResultsBlock() {
+  countingResults.innerHTML = '';
+}
 
 document
   .getElementById(formInputNumberID)
   .addEventListener('submit', function (e) {
     e.preventDefault();
-    countingResults.innerHTML = '';
-    if (checkboxList.firstChild) {
-      checkboxList.innerHTML = '';
-    }
-
-    const errorBoxClassName = '.error--box';
-    const errorBox = document.querySelector(errorBoxClassName);
+    clearResultsBlock();
+    clearCheckboxSheet();
 
     const enteredValues = document.getElementById(enteredValuesID).value;
     const arrayEnteredValues = enteredValues.split(' ');
 
     if (arrayEnteredValues.length >= 20) {
-      const error = document.createElement('span');
-      error.className = 'error';
-      error.innerHTML =
-        'Вы ввели недопустимое количество чисел! Введите не более 20 чисел.';
-      errorBox.append(error);
-    } else {
-      for (let enteredValue of arrayEnteredValues) {
-        if (isNaN(enteredValue)) {
-          if (!errorBox.firstChild) {
-            const error = document.createElement('span');
-            error.className = 'error';
-            error.innerHTML = 'Вы ввели нечисловое значение! Попробуйте снова.';
-            errorBox.append(error);
-            checkboxList.innerHTML = '';
-            break;
-          }
-        } else if (enteredValue.length >= 20) {
+      function giveErrorInvalidQuantity() {
+        if (!errorBox.firstChild) {
           const error = document.createElement('span');
           error.className = 'error';
           error.innerHTML =
-            'Вы ввели слишком длинное число! Максимально разрешенная  длина числа - 20 знаков.';
+            'Вы ввели недопустимое количество чисел! Введите не более 20 чисел.';
           errorBox.append(error);
-          checkboxList.innerHTML = '';
-          break;
-        } else if (enteredValue === '') {
-          continue;
-        } else {
-          if (errorBox.firstChild) {
-            errorBox.innerHTML = '';
-          }
-
-          const labelItem = document.createElement('label');
-          const checkboxItem = document.createElement('input');
-
-          checkboxItem.setAttribute('type', 'checkbox');
-          checkboxItem.className = 'checkbox';
-          checkboxItem.id = enteredValue;
-          labelItem.setAttribute('for', enteredValue);
-          checkboxList.append(labelItem);
-          labelItem.append(checkboxItem);
-          labelItem.append(enteredValue);
         }
       }
+      giveErrorInvalidQuantity();
+    } else {
+      function CheckEnteredValues() {
+        for (const enteredValue of arrayEnteredValues) {
+          if (enteredValue === '') {
+            continue;
+          } else if (isNaN(enteredValue)) {
+            function giveErrorNonNumericValue() {
+              if (!errorBox.firstChild) {
+                const error = document.createElement('span');
+                error.className = 'error';
+                error.innerHTML =
+                  'Вы ввели нечисловое значение! Попробуйте снова.';
+                errorBox.append(error);
+                checkboxList.innerHTML = '';
+              }
+            }
+            giveErrorNonNumericValue();
+            break;
+          } else if (enteredValue.length >= 20) {
+            function giveErrorInvalidNumberLength() {
+              if (!errorBox.firstChild) {
+                const error = document.createElement('span');
+                error.className = 'error';
+                error.innerHTML =
+                  'Вы ввели слишком длинное число! Максимально разрешенная  длина числа - 20 знаков.';
+                errorBox.append(error);
+                checkboxList.innerHTML = '';
+              }
+            }
+            giveErrorInvalidNumberLength();
+            break;
+          } else {
+            clearCheckboxSheet();
+            function createCheckboxItem() {
+              const labelItem = document.createElement('label');
+              const checkboxItem = document.createElement('input');
+
+              checkboxItem.setAttribute('type', 'checkbox');
+              checkboxItem.className = checkboxItemClassName;
+              labelItem.className = labelItemClassName;
+              checkboxItem.id = enteredValue;
+              labelItem.setAttribute('for', enteredValue);
+              checkboxList.append(labelItem);
+              labelItem.append(checkboxItem);
+              labelItem.append(enteredValue);
+            }
+            createCheckboxItem();
+          }
+        }
+      }
+      CheckEnteredValues();
     }
 
     document.getElementById(enteredValuesID).value = '';
@@ -76,41 +106,72 @@ document
   .addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const radioAdditionOption = document.getElementById('addition');
-    const radioSubtractionOption = document.getElementById('subtraction');
-    const radioMultiplicationOption = document.getElementById('multiplication');
-    const radioDivisionOption = document.getElementById('division');
     const checkboxElementsClassName = '#checkboxList label input';
     const checkboxElements = document.querySelectorAll(
       checkboxElementsClassName
     );
     const arrayEnteredValuesChecked = [];
-    for (let i = 0; i < checkboxElements.length; i++) {
-      if (checkboxElements[i].checked) {
-        arrayEnteredValuesChecked.push(+checkboxElements[i].id);
+
+    for (const checkboxElement of checkboxElements) {
+      if (checkboxElement.checked) {
+        arrayEnteredValuesChecked.push(+checkboxElement.id);
       }
     }
 
-    if (radioAdditionOption.checked) {
-      countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
-        (addition, current) => addition + current
-      );
+    const radioAdditionOption = document.getElementById(radioAdditionOptionID);
+    const radioSubtractionOption = document.getElementById(
+      radioSubtractionOptionID
+    );
+    const radioMultiplicationOption = document.getElementById(
+      radioMultiplicationOptionID
+    );
+    const radioDivisionOption = document.getElementById(radioDivisionOptionID);
 
+    function performСalculationOperation() {
+      if (radioAdditionOption.checked) {
+        return arrayEnteredValuesChecked.reduce(function (addition, current) {
+          return addition + current;
+        });
+      } else if (radioSubtractionOption.checked) {
+        return arrayEnteredValuesChecked.reduce(function (
+          subtraction,
+          current
+        ) {
+          return subtraction - current;
+        });
+      } else if (radioMultiplicationOption.checked) {
+        return arrayEnteredValuesChecked.reduce(function (
+          multiplication,
+          current
+        ) {
+          return multiplication * current;
+        });
+      } else if (radioDivisionOption.checked) {
+        if (arrayEnteredValuesChecked.includes(0)) {
+          function giveErrorDivisionZero() {
+            if (!errorBox.firstChild) {
+              const error = document.createElement('span');
+              error.className = 'error';
+              error.innerHTML = 'Делить на ноль нельзя!';
+              errorBox.append(error);
+            }
+          }
+          giveErrorDivisionZero();
+          return;
+        }
+        return arrayEnteredValuesChecked.reduce(function (division, current) {
+          return division / current;
+        });
+      }
+    }
+
+    countingResults.innerHTML = performСalculationOperation();
+
+    function resetRadioButtons() {
       radioAdditionOption.checked = false;
-    } else if (radioSubtractionOption.checked) {
-      countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
-        (subtraction, current) => subtraction - current
-      );
       radioSubtractionOption.checked = false;
-    } else if (radioMultiplicationOption.checked) {
-      countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
-        (multiplication, current) => multiplication * current
-      );
       radioMultiplicationOption.checked = false;
-    } else if (radioDivisionOption.checked) {
-      countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
-        (division, current) => division / current
-      );
       radioDivisionOption.checked = false;
     }
+    resetRadioButtons();
   });

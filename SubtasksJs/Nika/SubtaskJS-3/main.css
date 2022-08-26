@@ -108,20 +108,12 @@
   outline-style: solid;
 }
 
-#form_page h2 {
+#form_page .page_subtitle {
   color: #1ab29c;
   font-size: 28px;
   display: block;
   width: 100%;
   text-align: center;
-}
-
-input[type='radio']:focus,
-input[type='radio']:focus-visible {
-  outline-color: #fff;
-  outline-width: 1px;
-  outline-style: solid;
-  border: 2px solid #ffffff;
 }
 
 .block_results {
@@ -139,7 +131,7 @@ input[type='radio']:focus-visible {
   flex-wrap: wrap;
 }
 
-.block_results h3 {
+.block_results .block_results--title {
   color: #25ffe0;
   font-size: 24px;
   font-weight: 500;
@@ -159,10 +151,14 @@ input[type='radio']:focus-visible {
 }
 
 .error {
-  color: rgb(255, 255, 255);
+  color: #ffff;
 }
 
-.control label {
+.control {
+  margin: 0 0 30px;
+}
+
+.control .control--radio-label {
   border: 2px solid;
   border-radius: 100px;
   padding: 5px;
@@ -176,15 +172,10 @@ input[type='radio']:focus-visible {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  vertical-align: middle;
   margin-right: 10px;
 }
 
-.control {
-  margin: 0 0 30px;
-}
-
-input[type='radio'] {
+.control--radio-input {
   appearance: none;
   position: absolute;
   z-index: 1;
@@ -195,6 +186,14 @@ input[type='radio'] {
   top: 0;
   left: 0;
   margin: 0;
+}
+
+.control--radio-input:focus,
+.control--radio-input:focus-visible {
+  outline-color: #fff;
+  outline-width: 1px;
+  outline-style: solid;
+  border: 2px solid #ffffff;
 }
 
 #checkboxList {
@@ -208,7 +207,7 @@ input[type='radio'] {
   color: #25ffe0;
 }
 
-#checkboxList label {
+#checkboxList .label {
   display: flex;
   justify-content: center;
   align-items: center;
