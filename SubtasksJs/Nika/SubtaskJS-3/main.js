@@ -14,12 +14,15 @@ const errorBoxClassName = '.error--box';
 const errorBox = document.querySelector(errorBoxClassName);
 const checkboxItemClassName = 'checkbox';
 const labelItemClassName = 'label';
+const checkboxElementClassName = '.checkbox';
+const controlRadioOptionID = '.control--radio-input';
 
 function clearCheckboxSheet() {
   if (checkboxList.firstChild) {
     checkboxList.innerHTML = '';
   }
 }
+
 function clearErrorboxSheet() {
   if (errorBox.firstChild) {
     errorBox.innerHTML = '';
@@ -45,115 +48,152 @@ document
     e.preventDefault();
     clearResultsBlock();
     clearCheckboxSheet();
+    clearErrorboxSheet();
 
     const enteredValues = document.getElementById(enteredValuesID).value;
     const arrayEnteredValues = enteredValues.split(' ');
+
+    function CheckEnteredValues() {
+      for (const enteredValue of arrayEnteredValues) {
+        function createCheckboxItem() {
+          const labelItem = document.createElement('label');
+          const checkboxItem = document.createElement('input');
+
+          checkboxItem.setAttribute('type', 'checkbox');
+          checkboxItem.className = checkboxItemClassName;
+          labelItem.className = labelItemClassName;
+          checkboxItem.id = enteredValue;
+          labelItem.setAttribute('for', enteredValue);
+          checkboxList.append(labelItem);
+          labelItem.append(checkboxItem);
+          labelItem.append(enteredValue);
+        }
+
+        if (enteredValue === '') {
+          continue;
+        }
+        if (isNaN(enteredValue)) {
+          clearCheckboxSheet();
+          createError('Вы ввели нечисловое значение! Попробуйте снова.');
+          break;
+        }
+        if (enteredValue.length >= 20) {
+          createError(
+            'Вы ввели слишком длинное число! Максимально разрешенная  длина числа - 20 знаков.'
+          );
+          break;
+        }
+
+        clearErrorboxSheet();
+        createCheckboxItem();
+      }
+    }
 
     if (arrayEnteredValues.length >= 20) {
       createError(
         'Вы ввели недопустимое количество чисел! Введите не более 20 чисел.'
       );
     } else {
-      function CheckEnteredValues() {
-        for (const enteredValue of arrayEnteredValues) {
-          if (enteredValue === '') {
-            continue;
-          } else if (isNaN(enteredValue)) {
-            createError('Вы ввели нечисловое значение! Попробуйте снова.');
-            break;
-          } else if (enteredValue.length >= 20) {
-            createError(
-              'Вы ввели слишком длинное число! Максимально разрешенная  длина числа - 20 знаков.'
-            );
-            break;
-          } else {
-            clearErrorboxSheet();
-            function createCheckboxItem() {
-              const labelItem = document.createElement('label');
-              const checkboxItem = document.createElement('input');
-
-              checkboxItem.setAttribute('type', 'checkbox');
-              checkboxItem.className = checkboxItemClassName;
-              labelItem.className = labelItemClassName;
-              checkboxItem.id = enteredValue;
-              labelItem.setAttribute('for', enteredValue);
-              checkboxList.append(labelItem);
-              labelItem.append(checkboxItem);
-              labelItem.append(enteredValue);
-            }
-            createCheckboxItem();
-          }
-        }
-      }
       CheckEnteredValues();
     }
 
     document.getElementById(enteredValuesID).value = '';
   });
 
+const radioAdditionOption = document.getElementById(radioAdditionOptionID);
+const radioSubtractionOption = document.getElementById(
+  radioSubtractionOptionID
+);
+const radioMultiplicationOption = document.getElementById(
+  radioMultiplicationOptionID
+);
+const radioDivisionOption = document.getElementById(radioDivisionOptionID);
+
+function resetRadioButtons() {
+  radioAdditionOption.checked = false;
+  radioSubtractionOption.checked = false;
+  radioMultiplicationOption.checked = false;
+  radioDivisionOption.checked = false;
+}
+
+function defineIndex() {
+  const controlRadioOptionCollections =
+    document.querySelectorAll(controlRadioOptionID);
+  for (let i = 0; i < controlRadioOptionCollections.length; i++) {
+    if (controlRadioOptionCollections[i].checked) {
+      return i;
+    }
+  }
+}
+
+function performСalculationOperation() {
+  const arrayEnteredValuesChecked = [];
+  const checkboxElements = document.querySelectorAll(checkboxElementClassName);
+
+  for (const checkboxElement of checkboxElements) {
+    if (checkboxElement.checked) {
+      arrayEnteredValuesChecked.push(+checkboxElement.id);
+    }
+  }
+
+  if (arrayEnteredValuesChecked.length === 0) {
+    clearResultsBlock();
+    return createError('Для выполнения операций выберите числа!');
+  }
+
+  function addition() {
+    countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
+      (addition, current) => addition + current
+    );
+  }
+  function subtraction() {
+    countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
+      (subtraction, current) => subtraction - current
+    );
+  }
+  function multiplication() {
+    countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
+      (multiplication, current) => multiplication * current
+    );
+  }
+  function division() {
+    if (arrayEnteredValuesChecked.includes(0)) {
+      createError('Делить на ноль нельзя!');
+      clearResultsBlock();
+    } else {
+      countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
+        (division, current) => division / current
+      );
+    }
+  }
+
+  clearErrorboxSheet();
+
+  const controlRadioOptionIndex = defineIndex();
+
+  switch (controlRadioOptionIndex) {
+    case 0:
+      addition();
+      break;
+    case 1:
+      subtraction();
+      break;
+    case 2:
+      multiplication();
+      break;
+    case 3:
+      division();
+      break;
+    default:
+      createError('Выберите операцию!');
+      clearResultsBlock();
+  }
+}
+
 document
   .getElementById(formCountingNumberID)
   .addEventListener('submit', function (e) {
     e.preventDefault();
-
-    const checkboxElementsClassName = '#checkboxList label input';
-    const checkboxElements = document.querySelectorAll(
-      checkboxElementsClassName
-    );
-    const arrayEnteredValuesChecked = [];
-
-    for (const checkboxElement of checkboxElements) {
-      if (checkboxElement.checked) {
-        arrayEnteredValuesChecked.push(+checkboxElement.id);
-      }
-    }
-
-    const radioAdditionOption = document.getElementById(radioAdditionOptionID);
-    const radioSubtractionOption = document.getElementById(
-      radioSubtractionOptionID
-    );
-    const radioMultiplicationOption = document.getElementById(
-      radioMultiplicationOptionID
-    );
-    const radioDivisionOption = document.getElementById(radioDivisionOptionID);
-
-    function resetRadioButtons() {
-      radioAdditionOption.checked = false;
-      radioSubtractionOption.checked = false;
-      radioMultiplicationOption.checked = false;
-      radioDivisionOption.checked = false;
-    }
-
-    function performСalculationOperation(error) {
-      if (radioAdditionOption.checked) {
-        return arrayEnteredValuesChecked.reduce(function (addition, current) {
-          return addition + current;
-        });
-      } else if (radioSubtractionOption.checked) {
-        return arrayEnteredValuesChecked.reduce(function (
-          subtraction,
-          current
-        ) {
-          return subtraction - current;
-        });
-      } else if (radioMultiplicationOption.checked) {
-        return arrayEnteredValuesChecked.reduce(function (
-          multiplication,
-          current
-        ) {
-          return multiplication * current;
-        });
-      } else if (radioDivisionOption.checked) {
-        if (arrayEnteredValuesChecked.includes(0)) {
-          createError('Делить на ноль нельзя!');
-          return (error = '');
-        }
-        return arrayEnteredValuesChecked.reduce(function (division, current) {
-          return division / current;
-        });
-      }
-    }
-
-    countingResults.innerHTML = performСalculationOperation();
+    performСalculationOperation();
     resetRadioButtons();
   });
