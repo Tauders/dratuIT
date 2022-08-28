@@ -130,10 +130,9 @@ function determineValueSelectedRadioOption() {
   for (let i = 0; i < controlRadioOptionCollections.length; i++) {
     if (controlRadioOptionCollections[i].checked) {
       return controlRadioOptionCollections[i].value;
-    } else {
-      return 'error';
     }
   }
+  return 'error';
 }
 
 function addition(arrayEnteredValuesChecked) {
@@ -180,6 +179,7 @@ function performСalculationOperation() {
   clearErrorboxSheet();
 
   const action = determineValueSelectedRadioOption();
+  console.log(action);
 
   switch (action) {
     case 'addition':
