@@ -179,7 +179,6 @@ function performСalculationOperation() {
   clearErrorboxSheet();
 
   const action = determineValueSelectedRadioOption();
-  console.log(action);
 
   switch (action) {
     case 'addition':
