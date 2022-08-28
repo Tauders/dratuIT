@@ -130,29 +130,25 @@ function determineValueSelectedRadioOption() {
   for (let i = 0; i < controlRadioOptionCollections.length; i++) {
     if (controlRadioOptionCollections[i].checked) {
       return controlRadioOptionCollections[i].value;
+    } else {
+      return 'error';
     }
   }
 }
 
 function addition(arrayEnteredValuesChecked) {
-  countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
-    (addition, current) => {
-      return addition + current;
-    }
+  return arrayEnteredValuesChecked.reduce(
+    (addition, current) => addition + current
   );
 }
 function subtraction(arrayEnteredValuesChecked) {
-  countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
-    (subtraction, current) => {
-      return subtraction - current;
-    }
+  return arrayEnteredValuesChecked.reduce(
+    (subtraction, current) => subtraction - current
   );
 }
 function multiplication(arrayEnteredValuesChecked) {
-  countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
-    (multiplication, current) => {
-      return multiplication * current;
-    }
+  return arrayEnteredValuesChecked.reduce(
+    (multiplication, current) => multiplication * current
   );
 }
 function division(arrayEnteredValuesChecked) {
@@ -160,10 +156,8 @@ function division(arrayEnteredValuesChecked) {
     createError('Делить на ноль нельзя!');
     clearResultsBlock();
   } else {
-    countingResults.innerHTML = arrayEnteredValuesChecked.reduce(
-      (division, current) => {
-        return division / current;
-      }
+    return arrayEnteredValuesChecked.reduce(
+      (division, current) => division / current
     );
   }
 }
@@ -189,16 +183,16 @@ function performСalculationOperation() {
 
   switch (action) {
     case 'addition':
-      addition(arrayEnteredValuesChecked);
+      countingResults.innerHTML = addition(arrayEnteredValuesChecked);
       break;
     case 'subtraction':
-      subtraction(arrayEnteredValuesChecked);
+      countingResults.innerHTML = subtraction(arrayEnteredValuesChecked);
       break;
     case 'multiplication':
-      multiplication(arrayEnteredValuesChecked);
+      countingResults.innerHTML = multiplication(arrayEnteredValuesChecked);
       break;
     case 'division':
-      division(arrayEnteredValuesChecked);
+      countingResults.innerHTML = division(arrayEnteredValuesChecked);
       break;
     case 'error':
       createError('Выберите операцию!');
