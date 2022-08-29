@@ -216,7 +216,7 @@ document
     const arrayEnteredValuesChecked = createArrayEnteredValuesChecked();
     checkLengthArrayEnteredValuesChecked(arrayEnteredValuesChecked);
 
-    if (performSelectedAction(arrayEnteredValuesChecked) != undefined) {
+    if (performSelectedAction(arrayEnteredValuesChecked) !== undefined) {
       countingResults.innerHTML = performSelectedAction(
         arrayEnteredValuesChecked
       );
