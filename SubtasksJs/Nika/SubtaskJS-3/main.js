@@ -19,7 +19,7 @@ const controlRadioOptionID = '.control--radio-input';
 const MAXIMUM_ALLOWED_NUMBER = 20;
 const MAXIMUM_ALLOWED_LENGTH_NUMBER = 20;
 
-function clearCheckboxSheet() {
+function clearCheckboxList() {
   if (checkboxList.firstChild) {
     checkboxList.innerHTML = '';
   }
@@ -57,7 +57,7 @@ function createCheckboxItem(enteredValue) {
   labelItem.append(enteredValue);
 }
 
-function checkEnteredValue(enteredValue) {
+function validateEnteredValue(enteredValue) {
   if (enteredValue === '') {
     return false;
   }
@@ -67,7 +67,7 @@ function checkEnteredValue(enteredValue) {
   }
   if (enteredValue.length >= MAXIMUM_ALLOWED_LENGTH_NUMBER) {
     createError(
-      'Вы ввели слишком длинное число! Максимально разрешенная  длина числа - 20 знаков.'
+      'Вы ввели слишком длинное число! Максимально разрешенная длина числа - 20 знаков.'
     );
     return false;
   }
@@ -83,12 +83,11 @@ function checkEnteredValues(arrayEnteredValues) {
   }
 
   for (const enteredValue of arrayEnteredValues) {
-    if (checkEnteredValue(enteredValue)) {
-      createCheckboxItem(enteredValue);
-    } else {
-      clearCheckboxSheet();
+    if (!validateEnteredValue(enteredValue)) {
+      clearCheckboxList();
       return false;
     }
+    createCheckboxItem(enteredValue);
   }
 
   return true;
@@ -135,7 +134,7 @@ function createArrayEnteredValuesChecked() {
 
 function checkLengthArrayEnteredValuesChecked(arrayEnteredValuesChecked) {
   if (arrayEnteredValuesChecked.length === 0) {
-    return createError('Для выполнения операций выберите числа!');
+    createError('Для выполнения операций выберите числа!');
   }
 }
 
@@ -178,7 +177,7 @@ function performSelectedAction(arrayEnteredValuesChecked) {
       break;
     case 'division':
       if (checkImproverValue(arrayEnteredValuesChecked)) {
-        calculationResults = '';
+        calculationResults = undefined;
         createError('Делить на ноль нельзя!');
       } else {
         calculationResults = division(arrayEnteredValuesChecked);
@@ -186,7 +185,7 @@ function performSelectedAction(arrayEnteredValuesChecked) {
       break;
     case 'error':
       createError('Выберите операцию!');
-      calculationResults = '';
+      calculationResults = undefined;
   }
   return calculationResults;
 }
@@ -196,7 +195,7 @@ document
   .addEventListener('submit', function (e) {
     e.preventDefault();
     clearResultsBlock();
-    clearCheckboxSheet();
+    clearCheckboxList();
     clearErrorBox();
 
     const enteredValues = document.getElementById(enteredValuesID).value;
@@ -217,9 +216,11 @@ document
     const arrayEnteredValuesChecked = createArrayEnteredValuesChecked();
     checkLengthArrayEnteredValuesChecked(arrayEnteredValuesChecked);
 
-    countingResults.innerHTML = performSelectedAction(
-      arrayEnteredValuesChecked
-    );
+    if (performSelectedAction(arrayEnteredValuesChecked) != undefined) {
+      countingResults.innerHTML = performSelectedAction(
+        arrayEnteredValuesChecked
+      );
+    }
 
     resetRadioButtons();
   });
