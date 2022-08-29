@@ -73,6 +73,7 @@ function checkEnteredValue(enteredValue) {
   }
   return true;
 }
+
 function checkEnteredValues(arrayEnteredValues) {
   if (arrayEnteredValues.length >= MAXIMUM_ALLOWED_NUMBER) {
     createError(
@@ -85,6 +86,7 @@ function checkEnteredValues(arrayEnteredValues) {
     if (checkEnteredValue(enteredValue)) {
       createCheckboxItem(enteredValue);
     } else {
+      clearCheckboxSheet();
       return false;
     }
   }
