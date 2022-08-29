@@ -1,6 +1,7 @@
 #form-page {
   background-color: #000;
   margin: auto;
+  /* padding: 20px; */
 }
 
 #container {
@@ -27,6 +28,8 @@
   min-height: 555px;
   background-repeat: no-repeat;
   z-index: -1;
+  top: 0;
+  left: 0;
 }
 
 .page--heading {
@@ -49,7 +52,7 @@
   text-align: center;
   background: transparent;
   border-radius: 10px;
-  padding: 15px;
+  padding: 17px;
   transition: 0.3s;
   border-style: outset;
   color: #999;
@@ -101,9 +104,7 @@
 
 .form--btn:focus,
 .form--btn:focus-visible {
-  outline-color: #fff;
-  outline-width: 1px;
-  outline-style: solid;
+  outline: 1px solid #fff;
 }
 
 .form--title {
@@ -117,7 +118,6 @@
 .block-results {
   width: 100%;
   max-width: 560px;
-  flex: 0 0 50%;
   display: flex;
   gap: 30px;
   justify-content: center;
@@ -173,7 +173,7 @@
 
   #container {
     align-items: flex-start;
-    padding-left: 40px;
+    padding: 20px;
   }
 
   .form {
@@ -181,17 +181,17 @@
   }
 
   .block-results {
-    flex-wrap: wrap;
-    flex-direction: column;
     margin: 30px 0;
-    gap: 30px;
-    max-width: 560px;
-    width: 100%;
   }
 
   .page--heading {
     text-align: center;
     max-width: 560px;
     width: 100%;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .form {
+    row-gap: 10px;
   }
 }
