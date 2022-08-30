@@ -43,7 +43,6 @@ function clearErrorbox() {
 }
 
 function validateEnteredValue(enteredValue) {
-  clearErrorbox();
   if (!isFinite(enteredValue)) {
     createError('Необходимо ввести одно число!');
     return false;
@@ -89,31 +88,40 @@ function outputRandomlyGeneratedNumbers(arrayRandomlyGeneratedNumbers) {
 function additionRandomlyGeneratedNumbers(arrayRandomlyGeneratedNumbers) {
   return arrayRandomlyGeneratedNumbers.reduce((sum, current) => sum + current);
 }
-function calculateArithmeticMeanNumbers(arrayRandomlyGeneratedNumbers) {
-  return additionRandomlyGeneratedNumbers(arrayRandomlyGeneratedNumbers) / 2;
+function calculateArithmeticMeanNumbers(
+  arrayRandomlyGeneratedNumbers,
+  enteredValue
+) {
+  return (
+    additionRandomlyGeneratedNumbers(arrayRandomlyGeneratedNumbers) /
+    +enteredValue
+  );
 }
 
-function outputResultCalculatingArithmeticMean(arrayRandomlyGeneratedNumbers) {
+function outputResultCalculatingArithmeticMean(
+  arrayRandomlyGeneratedNumbers,
+  enteredValue
+) {
   resultCalculatingArithmeticMeanBlock.innerHTML =
-    calculateArithmeticMeanNumbers(arrayRandomlyGeneratedNumbers);
+    calculateArithmeticMeanNumbers(arrayRandomlyGeneratedNumbers, enteredValue);
 }
 
-function calculateMinimumNumbers(arrayRandomlyGeneratedNumbers) {
+function calculateMinimumNumber(arrayRandomlyGeneratedNumbers) {
   return Math.min(...arrayRandomlyGeneratedNumbers);
 }
 
-function calculateMaximumNumbers(arrayRandomlyGeneratedNumbers) {
+function calculateMaximumNumber(arrayRandomlyGeneratedNumbers) {
   return Math.max(...arrayRandomlyGeneratedNumbers);
 }
 
 function outputResultCalculationsMinimum(arrayRandomlyGeneratedNumbers) {
-  resultCalculationsMinimumBlock.innerHTML = calculateMinimumNumbers(
+  resultCalculationsMinimumBlock.innerHTML = calculateMinimumNumber(
     arrayRandomlyGeneratedNumbers
   );
 }
 
 function outputResultCalculationsMaximum(arrayRandomlyGeneratedNumbers) {
-  resultCalculationsMaximumBlock.innerHTML = calculateMaximumNumbers(
+  resultCalculationsMaximumBlock.innerHTML = calculateMaximumNumber(
     arrayRandomlyGeneratedNumbers
   );
 }
@@ -133,14 +141,13 @@ function outputInputResult(enteredValue) {
 formInputNumber.addEventListener('submit', function (e) {
   e.preventDefault();
   const enteredValue = document.getElementById(enteredValueID).value;
-
+  clearErrorbox();
+  clearBlocksResults();
   if (!validateEnteredValue(enteredValue)) {
-    clearBlocksResults();
     document.getElementById(enteredValueID).value = '';
-    return false;
+    return;
   }
 
-  clearErrorbox();
   outputInputResult(enteredValue);
 
   createArrayRandomlyGeneratedNumbers(enteredValue);
@@ -149,7 +156,10 @@ formInputNumber.addEventListener('submit', function (e) {
     createArrayRandomlyGeneratedNumbers(enteredValue);
 
   outputRandomlyGeneratedNumbers(arrayRandomlyGeneratedNumbers);
-  outputResultCalculatingArithmeticMean(arrayRandomlyGeneratedNumbers);
+  outputResultCalculatingArithmeticMean(
+    arrayRandomlyGeneratedNumbers,
+    enteredValue
+  );
   outputResultCalculationsMinimum(arrayRandomlyGeneratedNumbers);
   outputResultCalculationsMaximum(arrayRandomlyGeneratedNumbers);
 
