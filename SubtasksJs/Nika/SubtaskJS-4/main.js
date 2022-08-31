@@ -88,13 +88,10 @@ function outputRandomlyGeneratedNumbers(arrayRandomlyGeneratedNumbers) {
 function additionRandomlyGeneratedNumbers(arrayRandomlyGeneratedNumbers) {
   return arrayRandomlyGeneratedNumbers.reduce((sum, current) => sum + current);
 }
-function calculateArithmeticMeanNumbers(
-  arrayRandomlyGeneratedNumbers,
-  enteredValue
-) {
+function calculateArithmeticMeanNumbers(arrayRandomlyGeneratedNumbers) {
   return (
     additionRandomlyGeneratedNumbers(arrayRandomlyGeneratedNumbers) /
-    +enteredValue
+    arrayRandomlyGeneratedNumbers.length
   );
 }
 
@@ -103,7 +100,7 @@ function outputResultCalculatingArithmeticMean(
   enteredValue
 ) {
   resultCalculatingArithmeticMeanBlock.innerHTML =
-    calculateArithmeticMeanNumbers(arrayRandomlyGeneratedNumbers, enteredValue);
+    calculateArithmeticMeanNumbers(arrayRandomlyGeneratedNumbers);
 }
 
 function calculateMinimumNumber(arrayRandomlyGeneratedNumbers) {
