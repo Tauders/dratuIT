@@ -215,6 +215,7 @@ formInputString.addEventListener('submit', function (e) {
   for (let i = 0; i < arrayEnteredStrings.length; i++){
     if (arrayEnteredStrings[i] === '') {
       createError(formInputString, 'Введите не пустые строки!');
+      document.getElementById(enteredValuesStringID).value = '';
       return;
     }
   }
