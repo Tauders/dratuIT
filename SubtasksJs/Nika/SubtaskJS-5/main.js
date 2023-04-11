@@ -47,33 +47,30 @@ function clearErrorbox(parentSelector) {
 }
 
 function createResultInputBox(resultInput) {
+  const resultsInputClassName = 'result-input--box';
   const resultsBlockInput = document.getElementById(resultsBlockInputID);
   const resultInputBox = document.createElement('div');
-  resultInputBox.className = 'result-input--box';
+  resultInputBox.classList.add(resultsInputClassName);
   resultInputBox.innerHTML = resultInput;
   resultsBlockInput.append(resultInputBox);
 }
 
-function clearResultInputBox() {
-  if (document.querySelector(resultsInputClassName)) {
-    document.querySelector(resultsInputClassName).remove();
-  }
-}
-
-function clearHeadingSheet() {
-  if (document.querySelector(headingSheetClassName)) {
-    document.querySelector(headingSheetClassName).remove();
-  }
+function removeElement(selector) {
+  const element = document.querySelector(selector);
+  if (element) {
+    element.remove();
+  } 
 }
 
 function shuffleArrayEnteredStrings(arrayEnteredStrings) {
-  for (let i = arrayEnteredStrings.length - 1; i > 0; i--) {
+  const newArray = [...arrayEnteredStrings];
+  for (let i = newArray.length - 1; i > 0; i--) {
     const randomIndexEnteredString = Math.floor(Math.random() * (i + 1));
-    const randomEnteredString = arrayEnteredStrings[randomIndexEnteredString];
-    arrayEnteredStrings[randomIndexEnteredString] = arrayEnteredStrings[i];
-    arrayEnteredStrings[i] = randomEnteredString;
+    const randomEnteredString = newArray[randomIndexEnteredString];
+    newArray[randomIndexEnteredString] = newArray[i];
+    newArray[i] = randomEnteredString;
   }
-  return arrayEnteredStrings;
+  return newArray;
 }
 
 function distributeIntoGroupsRemainderOfJumbledArrayEnteredStrings(
@@ -110,7 +107,7 @@ function splitAnArrayIntoSubarrays(
   }
 
   if (numberOfGroups > jumbledArrayEnteredStringsCopy.length) {
-    numberOfGroups = +jumbledArrayEnteredStringsCopy.length;
+    numberOfGroups = jumbledArrayEnteredStringsCopy.length;
     createError(
       distributionStringsIntoForm,
       `Кол-во групп, которое Вы ввели, превышает кол-во элементов, было сформировано максимальное кол-во групп: ${numberOfGroups}`
@@ -160,7 +157,7 @@ function calculateInitialLengthOfSubarray(
 }
 
 function createInputsForHeaders(arrayWithSubarraysEnteredStrings) {
-  clearHeadingSheet();
+  removeElement(headingSheetClassName);
   const headingSheet = document.createElement('div');
   headingSheet.classList.add('heading-sheet');
   distributionStringsIntoForm.append(headingSheet);
@@ -184,19 +181,20 @@ function setGroupHeaders() {
     let groupsArr = [];
     const groups = document.querySelectorAll('.string--list');
     for (let i = 0; i < headingItems.length; i++){
-      const headerBox = document.createElement('h4');
-      headerBox.classList.add('group--title');
       if (headingItems[i].value == '') {
         groupsArr = [];
-        return createError(distributionStringsIntoForm, 'Введите не пустые значения заголовков!');    
+        createError(distributionStringsIntoForm, 'Введите не пустые значения заголовков!');
+        return;
       }
+      const headerBox = document.createElement('h4');
+      headerBox.classList.add('group--title');
       headerBox.textContent = headingItems[i].value;
       groupsArr.push(headerBox);  
     }
     for (let i = 0; i < groups.length; i++){
       groups[i].prepend(groupsArr[i])
     }  
-    clearHeadingSheet();
+    removeElement(headingSheetClassName);
 }
 
 formInputString.addEventListener('submit', function (e) {
@@ -207,8 +205,18 @@ formInputString.addEventListener('submit', function (e) {
     enteredValuesStringID
   ).value;
 
-  if (enteredValuesString == '') {
-    return createError(formInputString, 'Введите не пустое значение!');
+  if (enteredValuesString === '') {
+    createError(formInputString, 'Введите не пустое значение!');
+    return;
+  }
+
+  const arrayEnteredStrings = enteredValuesString.split(',');
+
+  for (let i = 0; i < arrayEnteredStrings.length; i++){
+    if (arrayEnteredStrings[i] === '') {
+      createError(formInputString, 'Введите не пустые строки!');
+      return;
+    }
   }
 
   const resultsInput = document.querySelector(resultsInputClassName);
@@ -234,18 +242,19 @@ distributionStringsIntoForm.addEventListener('submit', function (e) {
 
   if (
     numberOfGroups == '' ||
-    numberOfGroups == 0 ||
-    !Number.isInteger(+numberOfGroups) ||
-    !(typeof +numberOfGroups != Number)
+    numberOfGroups <= 0 ||
+    !Number.isInteger(+numberOfGroups)
   ) {
-    return createError(
+    createError(
       distributionStringsIntoForm,
       'Введите целое числовое значение > 0!'
     );
+    return;
   }
 
   if (document.querySelector(resultsInputClassName) == null) {
-    return createError(formInputString, 'Введите строки!');
+    createError(formInputString, 'Введите строки!'); 
+    return; 
   }
 
   const arrayEnteredStrings = document
@@ -281,9 +290,9 @@ distributionStringsIntoForm.addEventListener('submit', function (e) {
 
 clearButton.addEventListener('click', function (e) {
   e.preventDefault();
-  clearResultInputBox();
+  removeElement(resultsInputClassName);
   clearStringList();
-  clearHeadingSheet();
+  removeElement(headingSheetClassName);
   clearErrorbox(distributionStringsIntoForm);
   clearErrorbox(formInputString);
   clearButton.disabled = true;
