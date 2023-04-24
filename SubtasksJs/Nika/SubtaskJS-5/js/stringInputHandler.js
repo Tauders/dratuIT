@@ -1,3 +1,6 @@
+const formInputStringID = 'inputStringForm';
+const formInputString = document.getElementById(formInputStringID);
+
 formInputString.addEventListener('submit', function (e) {
   e.preventDefault();
   clearErrorbox(formInputString);
@@ -14,7 +17,7 @@ formInputString.addEventListener('submit', function (e) {
   const arrayEnteredStrings = enteredValuesString.split(',');
 
   for (const string of arrayEnteredStrings) {
-    if (string === '') {
+    if (string.trim() === '') {
       createError(formInputString, 'Введите не пустые строки!');
       document.getElementById(enteredValuesStringID).value = '';
       return;

@@ -1,3 +1,8 @@
+const distributionStringsIntoFormID = 'distributionStringsIntoForm';
+const distributionStringsIntoForm = document.getElementById(
+  distributionStringsIntoFormID
+);
+
 distributionStringsIntoForm.addEventListener('submit', function (e) {
   e.preventDefault();
   clearStringList();
@@ -7,7 +12,7 @@ distributionStringsIntoForm.addEventListener('submit', function (e) {
 
   if (
     numberOfGroups === '' ||
-    numberOfGroups <= 0 ||
+    +numberOfGroups <= 0 ||
     !Number.isInteger(+numberOfGroups)
   ) {
     createError(
@@ -41,7 +46,9 @@ distributionStringsIntoForm.addEventListener('submit', function (e) {
     numberOfGroups
   );
 
-  createInputsForHeaders(arrayIntoSubarrays);
+  const numbeOfFormedGroups = arrayIntoSubarrays.length;
+
+  createInputsForHeaders(numbeOfFormedGroups);
 
   createGroupRows(arrayIntoSubarrays);
 

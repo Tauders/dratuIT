@@ -1,3 +1,6 @@
+const clearButtonID = 'clear';
+const clearButton = document.getElementById(clearButtonID);
+
 function clearStringList() {
   document.querySelectorAll(stringListClassName).forEach(item => item.remove());
 }

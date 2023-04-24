@@ -1,10 +1,10 @@
-function createInputsForHeaders(arrayIntoSubarrays) {
+function createInputsForHeaders(numbeOfFormedGroups) {
   removeElement(headingSheetClassName);
   const headingSheet = document.createElement('div');
   headingSheet.classList.add(headingSheetClassNameWithoutDot);
   distributionStringsIntoForm.append(headingSheet);
 
-  for (let i = 0; i < arrayIntoSubarrays.length; i++) {
+  for (let i = 0; i < numbeOfFormedGroups; i++) {
     const headingItem = document.createElement('input');
     headingItem.classList.add(headingItemClassName, 'form--data');
     headingItem.placeholder = `заголовок для группы ${i + 1}`;

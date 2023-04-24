@@ -1,3 +1,8 @@
+const resultsBlockDistributionID = 'resultsBlockDistribution';
+const resultsBlockDistribution = document.getElementById(
+  resultsBlockDistributionID
+);
+
 function createGroupRows(arrayStrings) {
   for (const subArrayEnteredStrings of arrayStrings) {
     const stringList = document.createElement('ul');
